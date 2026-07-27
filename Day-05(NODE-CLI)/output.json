@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Learn JavaScript",
+    "status": "In Progress",
+    "priority": "High"
+  },
+  {
+    "id": 2,
+    "title": "Build TaskFlow",
+    "status": "Completed",
+    "priority": "Medium"
+  },
+  {
+    "id": 3,
+    "title": "Practice Node.js",
+    "status": "In Progress",
+    "priority": "High"
+  },
+  {
+    "id": 4,
+    "title": "Read JSON File",
+    "status": "Completed",
+    "priority": "Low"
+  },
+  {
+    "id": 5,
+    "title": "Write Output File",
+    "status": "In Progress",
+    "priority": "Medium"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "name": "day-05-node-cli",
+  "version": "1.0.0",
+  "description": "Node CLI that reads a JSON file, transforms it, and writes the result.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Preeti Jangid",
+  "license": "ISC"
+}
