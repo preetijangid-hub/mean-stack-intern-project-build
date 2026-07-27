@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Design Login Page",
+    "project": "TaskFlow",
+    "status": "In Progress",
+    "dueDate": "2026-07-30"
+  },
+  {
+    "id": 2,
+    "title": "Create MongoDB Schema",
+    "project": "TaskFlow",
+    "status": "Pending",
+    "dueDate": "2026-08-02"
+  },
+  {
+    "id": 3,
+    "title": "Implement JWT Authentication",
+    "project": "TaskFlow",
+    "status": "Completed",
+    "dueDate": "2026-07-28"
+  },
+  {
+    "id": 4,
+    "title": "Develop Task API",
+    "project": "TaskFlow",
+    "status": "In Progress",
+    "dueDate": "2026-07-31"
+  },
+  {
+    "id": 5,
+    "title": "Build Dashboard UI",
+    "project": "TaskFlow",
+    "status": "Pending",
+    "dueDate": "2026-08-05"
+  }
+]

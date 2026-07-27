@@ -1,0 +1,11 @@
+{
+  "name": "taskflow-node",
+  "version": "1.0.0",
+  "description": "Node script for TaskFlow project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Preeti Jangid",
+  "license": "ISC"
+}
