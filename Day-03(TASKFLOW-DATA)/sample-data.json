@@ -1,0 +1,78 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Preeti Jangid",
+      "email": "preeti@example.com",
+      "role": "Project Manager"
+    },
+    {
+      "id": 2,
+      "name": "Rahul Sharma",
+      "email": "rahul@example.com",
+      "role": "Frontend Developer"
+    },
+    {
+      "id": 3,
+      "name": "Anjali Verma",
+      "email": "anjali@example.com",
+      "role": "Backend Developer"
+    }
+  ],
+
+  "projects": [
+    {
+      "id": 101,
+      "name": "TaskFlow",
+      "description": "Task Management Application",
+      "ownerId": 1,
+      "status": "Active"
+    },
+    {
+      "id": 102,
+      "name": "Portfolio Website",
+      "description": "Personal Portfolio Project",
+      "ownerId": 2,
+      "status": "In Progress"
+    }
+  ],
+
+  "tasks": [
+    {
+      "id": 1001,
+      "title": "Design Login Page",
+      "description": "Create responsive login screen",
+      "status": "Completed",
+      "priority": "High",
+      "projectId": 101,
+      "assignedTo": 2
+    },
+    {
+      "id": 1002,
+      "title": "Develop REST API",
+      "description": "Create authentication endpoints",
+      "status": "Pending",
+      "priority": "High",
+      "projectId": 101,
+      "assignedTo": 3
+    },
+    {
+      "id": 1003,
+      "title": "Create Dashboard",
+      "description": "Build task dashboard UI",
+      "status": "In Progress",
+      "priority": "Medium",
+      "projectId": 101,
+      "assignedTo": 2
+    },
+    {
+      "id": 1004,
+      "title": "Deploy Website",
+      "description": "Deploy portfolio on hosting platform",
+      "status": "Pending",
+      "priority": "Low",
+      "projectId": 102,
+      "assignedTo": 2
+    }
+  ]
+}
