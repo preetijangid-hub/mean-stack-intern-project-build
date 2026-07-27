@@ -102,8 +102,3 @@ node dist/script.js
 - Removed implicit `any` types.
 - Configured TypeScript using `tsconfig.json`.
 
----
-
-## Author
-
-Preeti Jangid
