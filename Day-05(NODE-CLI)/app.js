@@ -37,7 +37,7 @@ fs.readFile("tasks.json", "utf8", (err, data) => {
                 return;
             }
 
-            console.log("✅ output.json created successfully!");
+            console.log("output.json created successfully!");
 
         }
     );
