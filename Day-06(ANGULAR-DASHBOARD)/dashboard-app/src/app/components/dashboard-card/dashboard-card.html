@@ -1,0 +1,51 @@
+<div class="dashboard">
+
+    <div class="card">
+
+        <h3>Total Tasks</h3>
+
+        <h1>{{ totalTasks() }}</h1>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Pending</h3>
+
+        <h1>{{ pendingTasks() }}</h1>
+
+    </div>
+
+    <div class="card">
+
+        <h3>In Progress</h3>
+
+        <h1>{{ inProgress() }}</h1>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Completed</h3>
+
+        <h1>{{ completedTasks() }}</h1>
+
+    </div>
+
+</div>
+
+<div class="buttons">
+
+    <button (click)="addTask()">
+
+        ➕ Add Task
+
+    </button>
+
+    <button (click)="completeTask()">
+
+        ✅ Complete Task
+
+    </button>
+
+</div>
