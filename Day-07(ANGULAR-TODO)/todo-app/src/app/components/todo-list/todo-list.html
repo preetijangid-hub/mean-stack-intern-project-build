@@ -1,0 +1,78 @@
+<div class="filter-buttons">
+
+  <button
+    [style.background]="buttonColor"
+    [style.color]="'white'"
+    (click)="setFilter('All')">
+    All
+  </button>
+
+  <button (click)="setFilter('Pending')">
+    Pending
+  </button>
+
+  <button (click)="setFilter('Completed')">
+    Completed
+  </button>
+
+  <button (click)="setFilter('In Progress')">
+    In Progress
+  </button>
+
+</div>
+
+<h2>Current Filter : {{ currentFilter }}</h2>
+
+@if(filteredTasks.length === 0){
+
+<p>No Tasks Found</p>
+
+}
+
+@else {
+
+@for(task of filteredTasks; track task){
+
+<div class="card">
+
+<h2>{{ task.title }}</h2>
+
+<p>
+
+Status :
+
+@switch(task.status){
+
+@case('Completed'){
+<span class="completed">
+Completed ✅
+</span>
+}
+
+@case('Pending'){
+<span class="pending">
+Pending ⏳
+</span>
+}
+
+@case('In Progress'){
+<span class="progress">
+In Progress 🚀
+</span>
+}
+
+@default{
+<span>
+Unknown
+</span>
+}
+
+}
+
+</p>
+
+</div>
+
+}
+
+}
