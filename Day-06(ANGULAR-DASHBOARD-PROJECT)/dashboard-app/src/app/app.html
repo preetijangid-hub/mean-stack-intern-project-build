@@ -1,0 +1,61 @@
+<app-header></app-header>
+
+<div class="welcome">
+
+<h2>{{ greeting() }}</h2>
+
+<p>{{ today | date:'fullDate' }}</p>
+
+</div>
+
+<div class="cards">
+
+<app-dashboard-card
+title="Total Tasks"
+[value]="totalTasks()">
+</app-dashboard-card>
+
+<app-dashboard-card
+title="Completed"
+[value]="completed()">
+</app-dashboard-card>
+
+<app-dashboard-card
+title="Pending"
+[value]="pending()">
+</app-dashboard-card>
+
+<app-dashboard-card
+title="In Progress"
+[value]="inProgress()">
+</app-dashboard-card>
+
+</div>
+
+<div class="progress-box">
+
+<h3>Overall Progress</h3>
+
+<div class="bar">
+
+<div
+class="fill"
+[style.width.%]="progress()">
+
+</div>
+
+</div>
+
+<h2>{{ progress() }}%</h2>
+
+</div>
+
+<div class="controls">
+
+<button (click)="decrease()">➖</button>
+
+<h1>{{ totalTasks() }}</h1>
+
+<button (click)="increase()">➕</button>
+
+</div>

@@ -1,0 +1,35 @@
+<div class="card">
+
+    <div class="icon">
+
+        @switch(title){
+
+            @case('Total Tasks'){
+                📋
+            }
+
+            @case('Completed'){
+                ✅
+            }
+
+            @case('Pending'){
+                ⏳
+            }
+
+            @case('In Progress'){
+                🚀
+            }
+
+            @default{
+                📌
+            }
+
+        }
+
+    </div>
+
+    <h2>{{title}}</h2>
+
+    <h1>{{value}}</h1>
+
+</div>
