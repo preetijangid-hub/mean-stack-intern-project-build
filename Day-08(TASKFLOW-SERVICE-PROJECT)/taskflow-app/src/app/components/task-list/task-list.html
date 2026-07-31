@@ -1,0 +1,31 @@
+<div class="list">
+
+@if(taskService.tasks().length===0){
+
+<h2 class="empty">
+
+No Tasks Available 🚫
+
+</h2>
+
+}
+
+@else{
+
+@for(task of taskService.tasks(); track task.id){
+
+<app-task-card
+
+[task]="task"
+
+(delete)="deleteTask($event)"
+
+(edit)="editTask($event)">
+
+</app-task-card>
+
+}
+
+}
+
+</div>
