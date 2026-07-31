@@ -1,0 +1,22 @@
+<div class="card">
+
+  <div class="top">
+
+    <h3>{{title}}</h3>
+
+    <span
+      class="badge"
+
+      [class.completed]="status==='Completed'"
+      [class.pending]="status==='Pending'"
+      [class.progress]="status==='In Progress'">
+
+      {{status}}
+
+    </span>
+
+  </div>
+
+  <p>Priority : {{priority}}</p>
+
+</div>

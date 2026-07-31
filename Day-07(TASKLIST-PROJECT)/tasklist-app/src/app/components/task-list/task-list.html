@@ -1,0 +1,55 @@
+<div class="container">
+
+<h1>TaskFlow Todo</h1>
+
+<div class="buttons">
+
+<button (click)="setFilter('All')">
+All
+</button>
+
+<button (click)="setFilter('Pending')">
+Pending
+</button>
+
+<button (click)="setFilter('Completed')">
+Completed
+</button>
+
+<button (click)="setFilter('In Progress')">
+In Progress
+</button>
+
+</div>
+
+<h3>Current Filter : {{ currentFilter }}</h3>
+
+@if(filteredTasks.length===0){
+
+<p class="empty">
+No Tasks Found 🚫
+</p>
+
+}
+
+@else{
+
+<div class="grid">
+
+@for(task of filteredTasks; track task){
+
+<app-task-card
+
+[title]="task.title"
+
+[status]="task.status">
+
+</app-task-card>
+
+}
+
+</div>
+
+}
+
+</div>
