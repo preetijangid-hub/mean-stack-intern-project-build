@@ -1,0 +1,23 @@
+.notfound{
+
+text-align:center;
+
+margin-top:100px;
+
+}
+
+button{
+
+padding:12px 20px;
+
+background:#e53935;
+
+color:white;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}

@@ -1,0 +1,22 @@
+<h1>Dashboard</h1>
+
+<div class="cards">
+
+@for(task of tasks; track task.id){
+
+<div class="card">
+
+<h2>{{task.title}}</h2>
+
+<button
+[routerLink]="['/task',task.id]">
+
+View Details
+
+</button>
+
+</div>
+
+}
+
+</div>
