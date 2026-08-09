@@ -1,0 +1,92 @@
+.card{
+
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.card h2{
+
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.card p{
+
+    margin:10px 0;
+    line-height:1.6;
+}
+
+label{
+
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+input,
+textarea,
+select{
+
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+textarea{
+
+    resize:none;
+    height:100px;
+}
+
+.buttons{
+
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+button{
+
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.edit-btn{
+
+    margin-top:20px;
+    background:#2563eb;
+    color:white;
+}
+
+.save{
+
+    background:#16a34a;
+    color:white;
+}
+
+.cancel{
+
+    background:#dc2626;
+    color:white;
+}
+
+.edit-btn:hover{
+
+    background:#1d4ed8;
+}
+
+.save:hover{
+
+    background:#15803d;
+}
+
+.cancel:hover{
+
+    background:#b91c1c;
+}

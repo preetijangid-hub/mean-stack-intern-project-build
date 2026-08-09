@@ -1,0 +1,59 @@
+<div class="board-page">
+
+  <header class="header">
+
+    <div>
+      <h1>Task Board</h1>
+      <p>Welcome to your protected board</p>
+    </div>
+
+    <button
+      class="logout-btn"
+      (click)="logout()">
+      Logout
+    </button>
+
+  </header>
+
+  <main class="content">
+
+    <div class="info-card">
+
+      <h2>Protected Board</h2>
+
+      <p>
+        You can access this page only after successful login.
+      </p>
+
+      <div class="status">
+        <span class="dot"></span>
+        Authentication Active
+      </div>
+
+    </div>
+
+    <div class="tasks">
+
+      <div class="task-card">
+        <h3>Angular Authentication</h3>
+        <p>Implement Auth Service and Login.</p>
+        <span>Completed</span>
+      </div>
+
+      <div class="task-card">
+        <h3>Route Guard</h3>
+        <p>Protect the board route from unauthorized users.</p>
+        <span>Completed</span>
+      </div>
+
+      <div class="task-card">
+        <h3>HTTP Interceptor</h3>
+        <p>Attach authentication token to HTTP requests.</p>
+        <span>In Progress</span>
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

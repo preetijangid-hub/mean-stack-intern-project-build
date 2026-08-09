@@ -1,0 +1,45 @@
+<div class="container">
+
+  <div class="form-box">
+
+    <h1>Task Manager</h1>
+
+    <input
+      type="text"
+      placeholder="Task Title"
+      [(ngModel)]="newTask.title">
+
+    <textarea
+      placeholder="Task Description"
+      [(ngModel)]="newTask.description">
+    </textarea>
+
+    <input
+      type="date"
+      [(ngModel)]="newTask.dueDate">
+
+    <select [(ngModel)]="newTask.status">
+      <option>Pending</option>
+      <option>In Progress</option>
+      <option>Completed</option>
+    </select>
+
+    <button (click)="addTask()">
+      Add Task
+    </button>
+
+  </div>
+
+  <div class="cards">
+
+    @for(task of tasks; track task.id){
+
+      <app-task-card
+        [task]="task">
+      </app-task-card>
+
+    }
+
+  </div>
+
+</div>

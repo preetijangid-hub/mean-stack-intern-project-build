@@ -1,0 +1,53 @@
+<div class="card" [appStatusColor]="task.status">
+
+@if(!isEditing){
+
+<h2>{{task.title}}</h2>
+
+<p>{{task.description}}</p>
+
+<p>
+<strong>Due:</strong>
+{{task.dueDate | dueSoon}}
+</p>
+
+<p>
+<strong>Status:</strong>
+{{task.status}}
+</p>
+
+<button (click)="editTask()">
+Edit
+</button>
+
+}
+
+@else{
+
+<h2>Edit Task</h2>
+
+<label>Title</label>
+<input type="text" [(ngModel)]="task.title">
+
+<label>Description</label>
+<textarea [(ngModel)]="task.description"></textarea>
+
+<label>Due Date</label>
+<input type="date" [(ngModel)]="task.dueDate">
+
+<label>Status</label>
+
+<select [(ngModel)]="task.status">
+<option>Pending</option>
+<option>In Progress</option>
+<option>Completed</option>
+</select>
+
+<div class="buttons">
+<button (click)="saveTask()">Save</button>
+<button (click)="cancelEdit()">Cancel</button>
+</div>
+
+}
+
+</div>
