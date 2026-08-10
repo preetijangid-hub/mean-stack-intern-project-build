@@ -1,0 +1,87 @@
+<div class="reports-page">
+
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">PROGRESS REPORT</p>
+      <h1>Reports</h1>
+      <p class="subtitle">
+        Overview of your task progress and learning activity.
+      </p>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+
+    <mat-card class="stat-card">
+
+      <div class="stat-icon">
+        <mat-icon>assignment</mat-icon>
+      </div>
+
+      <p class="stat-label">Total Tasks</p>
+      <h2>{{ totalTasks }}</h2>
+      <p class="stat-description">All assigned tasks</p>
+
+    </mat-card>
+
+    <mat-card class="stat-card">
+
+      <div class="stat-icon success">
+        <mat-icon>check_circle</mat-icon>
+      </div>
+
+      <p class="stat-label">Completed</p>
+      <h2>{{ completedTasks }}</h2>
+      <p class="stat-description">Successfully completed</p>
+
+    </mat-card>
+
+    <mat-card class="stat-card">
+
+      <div class="stat-icon pending">
+        <mat-icon>schedule</mat-icon>
+      </div>
+
+      <p class="stat-label">Pending Tasks</p>
+      <h2>{{ pendingTasks }}</h2>
+      <p class="stat-description">Tasks still in progress</p>
+
+    </mat-card>
+
+  </div>
+
+  <mat-card class="progress-card">
+
+    <mat-card-header>
+      <div mat-card-avatar class="progress-icon">
+        <mat-icon>trending_up</mat-icon>
+      </div>
+
+      <mat-card-title>Overall Progress</mat-card-title>
+
+      <mat-card-subtitle>
+        Your current learning completion rate
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <div class="progress-value">
+        {{ progress }}%
+      </div>
+
+      <mat-progress-bar
+        mode="determinate"
+        [value]="progress">
+      </mat-progress-bar>
+
+      <div class="progress-footer">
+        <span>{{ completedTasks }} completed</span>
+        <span>{{ pendingTasks }} remaining</span>
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

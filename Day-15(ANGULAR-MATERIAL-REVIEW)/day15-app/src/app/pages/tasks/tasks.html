@@ -1,0 +1,115 @@
+<div class="tasks-page">
+
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">TASK MANAGEMENT</p>
+      <h1>Tasks</h1>
+      <p class="subtitle">Manage your daily learning tasks and track completion.</p>
+    </div>
+  </div>
+
+  <mat-card class="add-task-card">
+    <mat-card-header>
+      <mat-card-title>Add New Task</mat-card-title>
+      <mat-card-subtitle>Create a task for your learning plan</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="add-task-form">
+
+        <mat-form-field appearance="outline" class="task-input">
+          <mat-label>Task name</mat-label>
+
+          <input
+            matInput
+            [(ngModel)]="newTask"
+            (keyup.enter)="addTask()"
+            placeholder="Enter a new task"
+          />
+
+          <mat-icon matSuffix>assignment</mat-icon>
+        </mat-form-field>
+
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="addTask()"
+          class="add-button"
+        >
+          <mat-icon>add</mat-icon>
+          Add Task
+        </button>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="section-header">
+    <div>
+      <h2>Your Tasks</h2>
+      <p>{{ tasks.length }} total tasks</p>
+    </div>
+  </div>
+
+  <div class="task-grid">
+
+    @for (task of tasks; track $index) {
+
+      <mat-card class="task-card">
+
+        <mat-card-content>
+
+          <div class="task-top">
+
+            <mat-checkbox
+              [(ngModel)]="task.completed"
+              color="primary"
+            >
+              <span [class.completed]="task.completed">
+                {{ task.title }}
+              </span>
+            </mat-checkbox>
+
+            @if (task.completed) {
+              <span class="status completed-status">
+                Completed
+              </span>
+            } @else {
+              <span class="status pending-status">
+                Pending
+              </span>
+            }
+
+          </div>
+
+          <div class="task-actions">
+
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="editTask($index)"
+            >
+              <mat-icon>edit</mat-icon>
+              Edit
+            </button>
+
+            <button
+              mat-stroked-button
+              color="warn"
+              (click)="deleteTask($index)"
+            >
+              <mat-icon>delete</mat-icon>
+              Delete
+            </button>
+
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+
+    }
+
+  </div>
+
+</div>

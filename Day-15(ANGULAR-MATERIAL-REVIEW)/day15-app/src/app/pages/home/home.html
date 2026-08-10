@@ -1,0 +1,53 @@
+<section class="home-page">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">DASHBOARD</p>
+      <h1>Welcome to TaskBoard</h1>
+      <p class="subtitle">
+        Manage your tasks, track progress and stay organized.
+      </p>
+    </div>
+
+    <a mat-raised-button color="primary" routerLink="/tasks">
+      <mat-icon>add</mat-icon>
+      View Tasks
+    </a>
+  </div>
+
+  <div class="stats-grid">
+    @for (stat of stats; track stat.title) {
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-top">
+            <div>
+              <p>{{ stat.title }}</p>
+              <h2>{{ stat.value }}</h2>
+            </div>
+
+            <div class="stat-icon">
+              <mat-icon>{{ stat.icon }}</mat-icon>
+            </div>
+          </div>
+
+          <span>{{ stat.description }}</span>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+
+  <mat-card class="welcome-card">
+    <mat-card-content>
+      <div class="welcome-icon">
+        <mat-icon>dashboard</mat-icon>
+      </div>
+
+      <div>
+        <h2>Everything in one place</h2>
+        <p>
+          Use the navigation above to manage active tasks, review completed
+          work and monitor your overall progress.
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

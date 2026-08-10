@@ -1,0 +1,51 @@
+<div class="completed-page">
+
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">COMPLETED WORK</p>
+      <h1>Completed Tasks</h1>
+      <p class="subtitle">
+        Review the work you have successfully completed.
+      </p>
+    </div>
+  </div>
+
+  <mat-card class="completed-card">
+
+    <mat-card-header>
+      <div mat-card-avatar class="success-icon">
+        <mat-icon>check</mat-icon>
+      </div>
+
+      <mat-card-title>Successfully Completed</mat-card-title>
+
+      <mat-card-subtitle>
+        {{ completedTasks.length }} tasks completed
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <div class="completed-list">
+
+        @for (task of completedTasks; track task) {
+
+          <div class="completed-item">
+
+            <div class="check-icon">
+              <mat-icon>done</mat-icon>
+            </div>
+
+            <span>{{ task }}</span>
+
+          </div>
+
+        }
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

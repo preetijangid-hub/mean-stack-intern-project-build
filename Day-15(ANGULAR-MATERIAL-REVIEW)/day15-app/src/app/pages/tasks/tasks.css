@@ -1,0 +1,170 @@
+.tasks-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+.page-header {
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #3f51b5;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 700;
+  color: #17233c;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  font-size: 16px;
+  color: #60708f;
+}
+
+.add-task-card {
+  margin-bottom: 40px;
+  border-radius: 18px;
+}
+
+.add-task-form {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.task-input {
+  flex: 1;
+}
+
+.add-button {
+  height: 56px;
+  padding: 0 24px;
+  border-radius: 12px;
+}
+
+.section-header {
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #17233c;
+}
+
+.section-header p {
+  margin: 6px 0 0;
+  color: #71809b;
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.task-card {
+  border-radius: 18px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-3px);
+}
+
+.task-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #7a879d;
+}
+
+.status {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.completed-status {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.pending-status {
+  background: #fff4e5;
+  color: #b26a00;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.task-actions button {
+  border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+  .tasks-page {
+    padding: 32px 20px 60px;
+  }
+
+  .page-header h1 {
+    font-size: 34px;
+  }
+
+  .task-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .add-task-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .tasks-page {
+    padding: 24px 16px 50px;
+  }
+
+  .page-header h1 {
+    font-size: 30px;
+  }
+
+  .task-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .task-actions {
+    flex-direction: column;
+  }
+
+  .task-actions button {
+    width: 100%;
+  }
+}

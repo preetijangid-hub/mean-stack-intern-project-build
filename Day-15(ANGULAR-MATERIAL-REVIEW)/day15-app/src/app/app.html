@@ -1,0 +1,30 @@
+<mat-toolbar class="topbar">
+  <div class="brand">
+    <span class="brand-icon">✓</span>
+    <span>TaskBoard</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <nav class="nav-links">
+    <a mat-button routerLink="/home" routerLinkActive="active-link">
+      Home
+    </a>
+
+    <a mat-button routerLink="/tasks" routerLinkActive="active-link">
+      Tasks
+    </a>
+
+    <a mat-button routerLink="/completed" routerLinkActive="active-link">
+      Completed
+    </a>
+
+    <a mat-button routerLink="/reports" routerLinkActive="active-link">
+      Reports
+    </a>
+  </nav>
+</mat-toolbar>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
