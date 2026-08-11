@@ -25,4 +25,3 @@ Day 16 focuses on setting up the initial Express backend server.
 Install dependencies:
 
 ```bash
-npm install
