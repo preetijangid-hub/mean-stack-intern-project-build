@@ -1,14 +1,22 @@
-## MEAN Stack Internship — TaskFlow Project Build
+MEAN Stack Internship — TaskFlow Project Build
 
-Repository Overview
+Continuous Project: TaskFlowTrack: Project BuildStack: MEAN (MongoDB, Express.js, Angular, Node.js)
 
-This repository contains the continuous TaskFlow Project Build developed during the MEAN Stack internship.
+📌 Repository Overview
 
-Important: This repository is separate from the Hands-on Exercises repository.Project Build is one continuous TaskFlow application, while Hands-on Exercises contains individual daily learning tasks.
+This repository contains the continuous TaskFlow Project Build developed throughout the MEAN Stack internship.
 
-## Week 1 — Project Foundation
+Important: This repository is separate from the Hands-on Exercises repository.
 
-## Day 1 — TaskFlow Documentation
+Project Build: One continuous TaskFlow application developed across the internship.
+
+Hands-on Exercises: Individual daily exercises used to practice specific technologies and concepts.
+
+🚀 Project Progress
+
+Week 1 — Project Foundation
+
+🟦 Day 1 — TaskFlow Documentation
 
 Topics
 
@@ -24,9 +32,13 @@ Project scope
 
 Initial application planning
 
-Deliverable
+⭐ Highlights
 
-Created the initial TaskFlow project documentation and defined the major application requirements.
+Defined the overall TaskFlow application requirements.
+
+Planned the major task-management features.
+
+Established the initial application scope and workflow.
 
 Main Features Planned
 
@@ -44,7 +56,7 @@ Task workflow
 
 Board structure
 
-## Day 2 — TaskFlow Design
+🟦 Day 2 — TaskFlow Design
 
 Topics
 
@@ -60,9 +72,13 @@ Navigation planning
 
 User interaction flow
 
-Deliverable
+⭐ Highlights
 
-Created UI sketches and design notes for the TaskFlow application.
+Created UI sketches and design notes.
+
+Planned the dashboard and task-board experience.
+
+Defined the main user interaction areas.
 
 Planned UI Areas
 
@@ -78,7 +94,7 @@ Navigation
 
 Status and filter controls
 
-## Day 3 — TaskFlow Data
+🟦 Day 3 — TaskFlow Data
 
 Topics
 
@@ -93,6 +109,14 @@ Task fields
 Data relationships
 
 Mock-data planning
+
+⭐ Highlights
+
+Designed the initial TaskFlow data structure.
+
+Defined the task model and important task fields.
+
+Prepared sample data for application development.
 
 Task Data
 
@@ -110,11 +134,7 @@ Assignee
 
 Due date
 
-Deliverable
-
-Prepared the initial TaskFlow data structure and sample data for application development.
-
-## Day 4 — TaskFlow Setup
+🟦 Day 4 — TaskFlow Setup
 
 Topics
 
@@ -128,11 +148,15 @@ Git configuration
 
 Initial application setup
 
-Deliverable
+⭐ Highlights
 
-Created the initial project-build structure and prepared the project for implementation.
+Created the initial project-build structure.
 
-## Day 5 — TaskFlow Node
+Prepared the development environment.
+
+Configured the project for implementation and version control.
+
+🟦 Day 5 — TaskFlow Node
 
 Topics
 
@@ -148,13 +172,17 @@ Local backend/mock-data preparation
 
 npm scripts
 
-Deliverable
+⭐ Highlights
 
-Prepared the Node.js side of the TaskFlow project for backend-related development and data handling.
+Prepared the Node.js side of TaskFlow.
 
-## Week 2 — Angular Project Development
+Practiced npm and Node.js project setup.
 
-## Day 6 — Angular Dashboard Project
+Prepared backend-related data handling.
+
+Week 2 — Angular Project Development
+
+🟩 Day 6 — Angular Dashboard Project
 
 Topics
 
@@ -170,9 +198,15 @@ Signals
 
 Basic state management
 
-Deliverable
+⭐ Highlights
 
-Built the initial Angular dashboard for the TaskFlow application.
+Built the initial Angular dashboard.
+
+Created dashboard components and layout.
+
+Added task summary and status information.
+
+Started using Angular Signals for state.
 
 Dashboard Areas
 
@@ -184,7 +218,7 @@ Dashboard cards
 
 Application layout
 
-## Day 7 — TaskList Project
+🟩 Day 7 — TaskList Project
 
 Topics
 
@@ -200,9 +234,15 @@ Task status display
 
 Reusable UI components
 
-Deliverable
+⭐ Highlights
 
-Built the TaskList portion of the TaskFlow application.
+Built the TaskList portion of TaskFlow.
+
+Created task-card UI.
+
+Added task status display and filtering.
+
+Structured reusable Angular components.
 
 Features
 
@@ -216,37 +256,7 @@ Task filtering
 
 Task-board layout
 
-## Day 8 — Component Communication
-
-Topics
-
-Component communication
-
-Parent/child interaction
-
-Shared state
-
-Angular services
-
-Dependency Injection
-
-Signals
-
-Deliverable
-
-Implemented component communication and shared state for the TaskFlow application.
-
-Structure
-
-Parent Component
-       |
-       v
- Shared Service
-       |
-       v
-Child Components
-
-## Day 8 — TaskFlow Service Project
+🟩 Day 8 — TaskFlow Service Project
 
 Topics
 
@@ -256,15 +266,21 @@ Shared task state
 
 CRUD operations
 
-Angular service
+Angular services
 
 Dependency Injection
 
 Signal-based state
 
-Deliverable
+⭐ Highlights
 
-Implemented the main TaskService used by the TaskFlow application.
+Implemented the main TaskService.
+
+Added task CRUD operations.
+
+Created shared task state.
+
+Connected components through Angular services and Signals.
 
 Features
 
@@ -280,9 +296,9 @@ Shared task state
 
 Component synchronization
 
-Important: Project Build Day 8 focuses on TaskFlow TaskService + task state.Hands-on Day 8 focuses on Component Communication + Shared Service.These are separate learning tracks.
+Note: Project Build Day 8 focuses on TaskFlow TaskService + task state.Hands-on Day 8 focuses on Component Communication + Shared Service. These are separate learning tracks.
 
-## Day 9 — Routing Project
+🟩 Day 9 — Routing Project
 
 Topics
 
@@ -300,9 +316,15 @@ Navigation
 
 Wildcard routes
 
-Deliverable
+⭐ Highlights
 
-Added routing and navigation to the TaskFlow application.
+Added routing and navigation to TaskFlow.
+
+Added login, board, and task-detail routes.
+
+Practiced route parameters and query parameters.
+
+Added unknown-route handling.
 
 Main Routes
 
@@ -310,23 +332,9 @@ Main Routes
 /board
 /task/:id
 
-Features
+Week 3 — Angular Advanced Features
 
-Login navigation
-
-Board navigation
-
-Task detail navigation
-
-Route parameters
-
-Query parameters
-
-Unknown-route handling
-
-## Week 3 — Angular Advanced Features
-
-## Day 10 — TaskFlow Forms & Validation
+🟨 Day 10 — TaskFlow Forms & Validation
 
 Topics
 
@@ -344,9 +352,15 @@ Form state
 
 User input handling
 
-Deliverable
+⭐ Highlights
 
-Added structured forms and validation to the TaskFlow application.
+Added structured forms to TaskFlow.
+
+Implemented Reactive Forms and FormBuilder.
+
+Added validation for required fields and invalid input.
+
+Improved user-input handling.
 
 Form Areas
 
@@ -362,11 +376,7 @@ Assignee
 
 Due date
 
-Validation
-
-Implemented validation for required fields and invalid user input.
-
-## Day 11 — TaskFlow HTTP / REST Integration
+🟨 Day 11 — TaskFlow HTTP / REST Integration
 
 Topics
 
@@ -388,27 +398,28 @@ Typed responses
 
 Loading and error handling
 
-Deliverable
+⭐ Highlights
 
-Connected the Angular application to backend/API-style data operations.
+Connected Angular to backend/API-style data operations.
+
+Implemented CRUD-style HTTP operations.
+
+Practiced typed API responses.
+
+Added loading and error-handling concepts.
 
 Data Flow
 
 Angular Component
-       |
-       v
+       ↓
     Service
-       |
-       v
+       ↓
    HttpClient
-       |
-       v
-    REST API
-       |
-       v
-    Response
-       |
-       v
+       ↓
+   REST API
+       ↓
+   Response
+       ↓
       UI
 
 Operations
@@ -421,7 +432,7 @@ PUT/update task
 
 DELETE task
 
-## Day 12 — RxJS / Search & Reactive Data Flow
+🟨 Day 12 — RxJS / Search & Reactive Data Flow
 
 Topics
 
@@ -439,30 +450,33 @@ Combining reactive streams
 
 Error handling
 
-Deliverable
+⭐ Highlights
 
-Improved TaskFlow's reactive data handling and search/filter workflow.
+Improved TaskFlow's reactive data handling.
+
+Built a reactive search/filter workflow.
+
+Used debounceTime to control user input.
+
+Used switchMap for latest-result handling.
+
+Practiced reactive API/data-source workflows.
 
 Search Flow
 
 User Input
-    |
-    v
+    ↓
 debounceTime
-    |
-    v
+    ↓
 switchMap
-    |
-    v
+    ↓
 API / Data Source
-    |
-    v
+    ↓
 Latest Results
-    |
-    v
+    ↓
 TaskFlow UI
 
-## Day 13 — Custom Pipe & Directive
+🟨 Day 13 — Custom Pipe & Directive
 
 Topics
 
@@ -476,9 +490,15 @@ HostListener
 
 UI transformation
 
-Deliverable
+⭐ Highlights
 
-Added reusable display transformations and UI behavior to the TaskFlow application.
+Added reusable display transformations.
+
+Created the custom timeAgo pipe.
+
+Created a highlight-on-hover directive.
+
+Practiced HostListener for UI behavior.
 
 Custom Pipe — timeAgo
 
@@ -486,17 +506,17 @@ Converts dates into readable text.
 
 2026-08-11T10:00:00
         ↓
-   2 hours ago
+    2 hours ago
 
 Custom Directive
 
-Implemented a highlight-on-hover style directive using HostListener.
+Implemented a highlight-on-hover directive using HostListener.
 
 The directive changes the visual appearance of an element when the user moves the mouse over it.
 
-## Week 4 — Authentication, UI & Backend
+Week 4 — Authentication, UI & Backend
 
-## Day 14 — Authentication Guard
+🟥 Day 14 — Authentication Guard
 
 Topics
 
@@ -510,9 +530,15 @@ Unauthorized navigation
 
 Authentication state
 
-Deliverable
+⭐ Highlights
 
 Added authentication protection to TaskFlow routes.
+
+Protected the board route.
+
+Practiced route guards and authentication state.
+
+Redirected unauthenticated users toward login.
 
 Protected Route
 
@@ -521,18 +547,14 @@ Protected Route
 Authentication Flow
 
 User
- |
- v
+  ↓
 Protected Route
- |
- v
+  ↓
 Auth Guard
- |
- +---- Authenticated ------> Allow
- |
- +---- Not Authenticated --> Login
+  ├── Authenticated ──→ Allow
+  └── Not Authenticated ──→ Login
 
-## Day 15 — Angular Material + Review
+🟥 Day 15 — Angular Material + Review
 
 Topics
 
@@ -556,9 +578,17 @@ Responsive design
 
 Accessibility basics
 
-Deliverable
+⭐ Highlights
 
-Restyled the TaskFlow application using Angular Material components.
+Restyled TaskFlow using Angular Material.
+
+Improved board layout and spacing.
+
+Added consistent Material-based UI styling.
+
+Improved responsive behavior.
+
+Added basic accessibility improvements.
 
 Material Components
 
@@ -588,13 +618,13 @@ Improved user experience
 
 Basic accessibility improvements
 
-## Phase 3 — Backend API (Express)
+Phase 3 — Backend API (Express)
 
-## Day 16 — Backend API (Express)
+🟪 Day 16 — Backend API (Express)
 
 Objective
 
-Day 16 starts the backend API development for the TaskFlow application.
+Day 16 started backend API development for the TaskFlow application.
 
 Topics
 
@@ -612,10 +642,23 @@ Request logging middleware
 
 REST API foundation
 
+⭐ Highlights
+
+Created the Express backend foundation.
+
+Configured an Express server on port 3000.
+
+Added a health/API response.
+
+Added request logging middleware.
+
+Added Nodemon for development.
+
+Configured npm scripts for development and normal execution.
+
 Project Structure
 
 Day-16(BACKEND-API-EXPRESS)/
-│
 └── server/
     ├── server.js
     ├── package.json
@@ -638,7 +681,7 @@ Express Server
 
 The backend server is implemented in server.js.
 
-The server runs on:
+Server:
 
 http://localhost:3000
 
@@ -664,8 +707,6 @@ Nodemon watches backend files and automatically restarts the Express server when
 
 npm Scripts
 
-The backend uses npm scripts for development and production-style execution.
-
 {
   "scripts": {
     "start": "node server.js",
@@ -675,19 +716,11 @@ The backend uses npm scripts for development and production-style execution.
 
 Run Day 16
 
-Go to the server folder:
-
 cd "Day-16(BACKEND-API-EXPRESS)\server"
-
-Install dependencies:
-
 npm install
-
-Run in development mode:
-
 npm run dev
 
-Run normally:
+Normal execution:
 
 npm start
 
@@ -698,23 +731,183 @@ http://localhost:3000
 Day 16 Deliverable
 
 Express Server
-      |
-      v
+      ↓
 Nodemon Development Setup
-      |
-      v
+      ↓
 Request Logger
-      |
-      v
+      ↓
 Health / API Route
-      |
-      v
+      ↓
 JSON Response
-      |
-      v
+      ↓
 Backend Foundation Ready
 
-Current Project Build Structure
+🟪 Day 17 — Backend API with Express.js
+
+Objective
+
+Day 17 continued the backend/API phase by building a basic Task Management REST API using Node.js and Express.js.
+
+⭐ Day 17 Highlights
+
+Built a RESTful backend API.
+
+Added separate users.js and tasks.js route files.
+
+Practiced Express middleware.
+
+Used express.json() for JSON request bodies.
+
+Implemented GET, POST, PUT and DELETE operations.
+
+Practiced route parameters.
+
+Structured APIs into separate route modules.
+
+Prepared the backend for future TaskFlow API expansion.
+
+Topics Covered
+
+Node.js backend development
+
+Express.js setup and configuration
+
+Creating an Express server
+
+Middleware
+
+express.json()
+
+Routing and route handlers
+
+REST API architecture
+
+HTTP request and response
+
+JSON data handling
+
+Route parameters
+
+CRUD operations
+
+GET, POST, PUT and DELETE methods
+
+Separating routes into different files
+
+HTTP status codes
+
+Basic error handling
+
+🚀 Day 17 Project — Task Management REST API
+
+Project Structure
+
+Day-17(BACKEND-API-EXPRESS)
+│
+├── node_modules/
+├── routes/
+│   ├── tasks.js
+│   └── users.js
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── README.md
+└── server.js
+
+Server Setup
+
+const express = require("express");
+
+const app = express();
+
+app.use(express.json());
+
+Server:
+
+http://localhost:3000
+
+Users API
+
+GET /api/users
+GET /api/users/:id
+
+Tasks API
+
+GET /api/tasks
+POST /api/tasks
+PUT /api/tasks/:id
+DELETE /api/tasks/:id
+
+Create Task
+
+{
+  "title": "Learn Express"
+}
+
+Update Task
+
+{
+  "title": "Learn Express REST API",
+  "completed": true
+}
+
+REST API Operations
+
+HTTP Method
+
+Purpose
+
+GET
+
+Retrieve data
+
+POST
+
+Create new data
+
+PUT
+
+Update existing data
+
+DELETE
+
+Delete data
+
+Route Organization
+
+routes/
+├── users.js
+└── tasks.js
+
+Routes are connected to the Express application using:
+
+app.use("/api/users", usersRouter);
+app.use("/api/tasks", tasksRouter);
+
+Testing
+
+GET requests can be tested in the browser.
+
+POST requests can be tested using Postman.
+
+PUT requests can be tested using Postman.
+
+DELETE requests can be tested using Postman.
+
+Run Day 17
+
+npm install
+node server.js
+
+Server:
+
+http://localhost:3000
+
+🏁 Day 17 Completion
+
+Day 17 Project Build — Completed
+
+📁 Current Project Build Structure
 
 project-build/
 │
@@ -725,25 +918,18 @@ project-build/
 ├── Day-05(TASKFLOW-NODE)/
 ├── Day-06(ANGULAR-DASHBOARD-PROJECT)/
 ├── Day-07(TASKLIST-PROJECT)/
-├── Day-08(COMPONENT-COMMUNICATION)/
 ├── Day-08(TASKFLOW-SERVICE-PROJECT)/
 ├── Day-09(ROUTING-PROJECT)/
 ├── Day-13(CUSTOM-PIPE-DIRECTIVE)/
 ├── Day-14(AUTH-GUARD)/
 ├── Day-15(ANGULAR-MATERIAL-REVIEW)/
 ├── Day-16(BACKEND-API-EXPRESS)/
-│   └── server/
-│       ├── server.js
-│       ├── package.json
-│       └── package-lock.json
-│
+├── Day-17(BACKEND-API-EXPRESS)/
 └── README.md
 
-################ Running the Projects
+▶️ Running the Projects
 
 Angular Projects
-
-Go to the required Angular project:
 
 cd <project-folder>
 npm install
@@ -758,8 +944,6 @@ If Angular CLI is not installed globally:
 npx ng serve
 
 Node.js Projects
-
-Run a JavaScript/Node script:
 
 node script.js
 
@@ -782,37 +966,39 @@ Server:
 
 http://localhost:3000
 
-################## GitHub Workflow
+Express Backend — Day 17
 
-The Project Build work is maintained on the:
+cd "Day-17(BACKEND-API-EXPRESS)"
+npm install
+node server.js
 
-project-build
+Server:
 
-branch.
+http://localhost:3000
 
-Check Current Branch
+🔧 GitHub Workflow
+
+Check current branch:
 
 git branch --show-current
 
-Check Git Status
+Check Git status:
 
 git status
 
-Stage Changes
+Stage changes:
 
 git add .
 
-Commit Changes
+Commit:
 
-git commit -m "Day 16 Project Build: Express Backend API"
+git commit -m "Update TaskFlow Project Build"
 
-Push Changes
+Push:
 
 git push origin project-build
 
-###########3 Project Build Learning Progress
-
-By Day 16, the TaskFlow Project Build has progressed through the following areas.
+📈 Project Build Learning Progress
 
 Foundation
 
@@ -872,7 +1058,7 @@ Node.js backend foundation
 
 Express server
 
-API route
+API routes
 
 Health check
 
@@ -882,27 +1068,37 @@ npm scripts
 
 Request logging
 
-########## TaskFlow Architecture
+REST API
+
+Users routes
+
+Tasks routes
+
+CRUD operations
+
+JSON request/response handling
+
+🏗️ TaskFlow Architecture
 
 The application is progressing toward a full-stack MEAN architecture.
 
-                  TaskFlow Application
-                         |
-             +-----------+-----------+
-             |                       |
-             v                       v
-         Angular UI             Express API
-             |                       |
-             v                       v
-      Angular Services          Backend Routes
-             |                       |
-             +-----------+-----------+
-                         |
-                         v
-                      Database
+                    TaskFlow Application
+                           │
+                ┌──────────┴──────────┐
+                │                     │
+                ▼                     ▼
+           Angular UI            Express API
+                │                     │
+                ▼                     ▼
+       Angular Services        Backend Routes
+                │                     │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                       Database
                     (Future Phase)
 
-################ Project Build vs Hands-on Exercises
+🔀 Project Build vs Hands-on Exercises
 
 These two tracks must remain separate.
 
@@ -932,221 +1128,15 @@ Angular Material
 
 Express backend
 
+REST API
+
 Hands-on Exercises
 
 Hands-on Exercises are individual daily learning tasks used to practice specific technologies and concepts.
 
 They are maintained in the separate Hands-on repository.
 
-########## Day 16 Completion Status
-
-By the end of Day 16:
-
-Day 16 project folder created in the correct location
-
-Express installed
-
-Nodemon installed
-
-Express server created
-
-Server running successfully on port 3000
-
-API/health response implemented
-
-Request logging implemented
-
-npm development script configured
-
-Backend foundation ready for future TaskFlow API development
-
-########### Current Status
-
-Project Build Progress: Day 16 Completed
-
-Current Phase: Backend API — Express
-
-Next Direction: Continue expanding the Express backend into the TaskFlow REST API and connect it with the Angular frontend.
-
-Day 17 — Backend API with Express.js
-
-Overview
-
-On Day 17, I learned the fundamentals of backend API development using Node.js and Express.js. I created a RESTful backend API with separate routes for users and tasks and implemented the main HTTP methods used in CRUD operations.
-
-Topics Covered
-
-Node.js backend development
-
-Express.js setup and configuration
-
-Creating an Express server
-
-Middleware
-
-express.json()
-
-Routing and route handlers
-
-REST API architecture
-
-HTTP request and response
-
-JSON data handling
-
-Route parameters
-
-CRUD operations
-
-GET, POST, PUT and DELETE methods
-
-Separating routes into different files
-
-HTTP status codes
-
-Basic error handling
-
-Project Built
-
-Task Management REST API
-
-I built a basic Task Management REST API using Node.js and Express.js.
-
-Project Structure
-
-Day-17(BACKEND-API-EXPRESS)
-│
-├── node_modules/
-├── routes/
-│   ├── tasks.js
-│   └── users.js
-├── .gitignore
-├── package.json
-├── package-lock.json
-├── README.md
-└── server.js
-
-Server Setup
-
-The Express application uses JSON middleware:
-
-const express = require("express");
-
-const app = express();
-
-app.use(express.json());
-
-The server runs on:
-
-http://localhost:3000
-
-API Routes
-
-Users API
-
-GET /api/users
-GET /api/users/:id
-
-Tasks API
-
-GET /api/tasks
-POST /api/tasks
-PUT /api/tasks/:id
-DELETE /api/tasks/:id
-
-Create a Task
-
-{
-  "title": "Learn Express"
-}
-
-Update a Task
-
-{
-  "title": "Learn Express REST API",
-  "completed": true
-}
-
-REST API Operations
-
-HTTP Method
-
-Purpose
-
-GET
-
-Retrieve data
-
-POST
-
-Create new data
-
-PUT
-
-Update existing data
-
-DELETE
-
-Delete data
-
-Route Organization
-
-The API routes are separated into individual files:
-
-routes/
-├── users.js
-└── tasks.js
-
-They are connected to the Express application using:
-
-app.use("/api/users", usersRouter);
-app.use("/api/tasks", tasksRouter);
-
-Testing
-
-GET requests can be tested in the browser. POST, PUT and DELETE requests can be tested using an API testing tool such as Postman.
-
-How to Run
-
-Install dependencies:
-
-npm install
-
-Start the server:
-
-node server.js
-
-The console displays:
-
-Server running on http://localhost:3000
-
-Day 17 Outcome
-
-Successfully built a basic Express.js REST API with:
-
-Express server
-
-Middleware
-
-Separate routes
-
-Users API
-
-Tasks API
-
-GET, POST, PUT and DELETE APIs
-
-JSON request and response handling
-
-Route parameters
-
-Basic error handling
-
-Status
-
-Day 17 Project Build — Completed
-
-########## Technology Stack
+🛠️ Technology Stack
 
 Layer
 
@@ -1187,3 +1177,21 @@ Git + GitHub
 Development Server
 
 Nodemon
+
+✅ Current Status
+
+Project Build Progress
+
+Day 17 Completed
+
+Current Phase
+
+Backend API — Express
+
+Latest Milestone
+
+Task Management REST API with Express.js
+
+Next Direction
+
+Continue expanding the Express backend into the TaskFlow REST API and connect it with the Angular frontend.
