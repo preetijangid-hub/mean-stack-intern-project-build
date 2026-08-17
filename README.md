@@ -1658,5 +1658,67 @@ After completing this project, the following backend concepts were strengthened:
 
 ## Status
 
+
+
+# Day 20 – Authentication & Protected API
+
+## Overview
+
+Day 20 focuses on implementing authentication and authorization in an Express.js API.
+
+The project includes user registration, secure password hashing using bcrypt, login authentication using JWT, and middleware to protect task routes.
+
+## Objective
+
+Build an authentication-protected API with:
+
+- User registration
+- Password hashing using bcrypt
+- User login
+- JWT token generation
+- JWT authentication middleware
+- Protected task routes
+- CORS configuration
+- Environment variables using dotenv
+- Request validation
+- Centralized error handling
+
+## Technologies Used
+
+- Node.js
+- Express.js
+- bcrypt
+- JSON Web Token (JWT)
+- dotenv
+- CORS
+- express-validator
+- Nodemon
+- Thunder Client
+
+## Project Structure
+
+```text
+Day-20(AUTH-REGISTER-LOGIN)
+└── server
+    ├── config
+    │   └── env.js
+    ├── controllers
+    │   ├── authController.js
+    │   └── taskController.js
+    ├── middleware
+    │   ├── authMiddleware.js
+    │   ├── errorHandler.js
+    │   └── notFound.js
+    ├── routes
+    │   ├── authRoutes.js
+    │   └── taskRoutes.js
+    ├── validators
+    │   └── authValidator.js
+    ├── .env
+    ├── .gitignore
+    ├── package.json
+    ├── package-lock.json
+    └── server.js
+
 **Day 19 Project Build – Completed ✅**
 >>>>>>> Stashed changes
