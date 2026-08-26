@@ -1,0 +1,264 @@
+<div class="dashboard-page">
+
+  <header class="dashboard-header">
+
+    <div>
+
+      <h1>TaskFlow</h1>
+
+      <p>
+        Manage your tasks efficiently
+      </p>
+
+    </div>
+
+    <button
+      type="button"
+      class="logout-btn"
+      (click)="logout()">
+
+      Logout
+
+    </button>
+
+  </header>
+
+
+  <main class="dashboard-container">
+
+
+    <!-- Create Task -->
+
+    <section class="create-card">
+
+      <h2>Create New Task</h2>
+
+
+      @if (errorMessage) {
+
+        <div class="alert error">
+          {{ errorMessage }}
+        </div>
+
+      }
+
+
+      @if (successMessage) {
+
+        <div class="alert success">
+          {{ successMessage }}
+        </div>
+
+      }
+
+
+      <form
+        (ngSubmit)="createTask()">
+
+        <div class="form-group">
+
+          <label for="title">
+            Task Title
+          </label>
+
+          <input
+            id="title"
+            type="text"
+            name="title"
+            [(ngModel)]="title"
+            placeholder="Enter task title"
+          />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            name="description"
+            [(ngModel)]="description"
+            placeholder="Enter task description">
+          </textarea>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="create-btn"
+          [disabled]="creating">
+
+          @if (creating) {
+            Creating...
+          } @else {
+            Create Task
+          }
+
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <!-- Tasks -->
+
+    <section class="tasks-card">
+
+      <div class="tasks-header">
+
+        <div>
+
+          <h2>My Tasks</h2>
+
+          <span>
+            {{ tasks.length }} task(s)
+          </span>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="refresh-btn"
+          (click)="loadTasks()"
+          [disabled]="loading">
+
+          @if (loading) {
+            Loading...
+          } @else {
+            Refresh
+          }
+
+        </button>
+
+      </div>
+
+
+      @if (loading) {
+
+        <div class="empty-state">
+
+          <div class="loader"></div>
+
+          <p>
+            Loading tasks...
+          </p>
+
+        </div>
+
+      }
+
+      @else if (tasks.length === 0) {
+
+        <div class="empty-state">
+
+          <h3>
+            No tasks yet
+          </h3>
+
+          <p>
+            Create your first task above.
+          </p>
+
+        </div>
+
+      }
+
+      @else {
+
+        <div class="task-list">
+
+          @for (
+            task of tasks;
+            track task._id
+          ) {
+
+            <div
+              class="task-item"
+              [class.completed]="task.completed">
+
+
+              <div class="task-content">
+
+                <div class="task-title-row">
+
+                  <input
+                    type="checkbox"
+                    [checked]="task.completed"
+                    (change)="toggleTask(task)"
+                  />
+
+                  <h3>
+                    {{ task.title }}
+                  </h3>
+
+                </div>
+
+
+                @if (task.description) {
+
+                  <p>
+                    {{ task.description }}
+                  </p>
+
+                }
+
+
+                @if (task.completed) {
+
+                  <span
+                    class="status completed-status">
+
+                    Completed
+
+                  </span>
+
+                }
+
+                @else {
+
+                  <span
+                    class="status pending-status">
+
+                    Pending
+
+                  </span>
+
+                }
+
+              </div>
+
+
+              <button
+                type="button"
+                class="delete-btn"
+                (click)="deleteTask(task)"
+                [disabled]="deletingId === task._id">
+
+                @if (deletingId === task._id) {
+                  Deleting...
+                } @else {
+                  Delete
+                }
+
+              </button>
+
+            </div>
+
+          }
+
+        </div>
+
+      }
+
+    </section>
+
+  </main>
+
+</div>

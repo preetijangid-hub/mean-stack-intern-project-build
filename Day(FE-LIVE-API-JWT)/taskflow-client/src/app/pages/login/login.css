@@ -1,0 +1,42 @@
+.auth-container {
+  width: 380px;
+  margin: 60px auto;
+  padding: 35px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.auth-container form {
+  text-align: left;
+}
+
+.auth-container label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 6px;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.auth-container a {
+  color: blue;
+}
