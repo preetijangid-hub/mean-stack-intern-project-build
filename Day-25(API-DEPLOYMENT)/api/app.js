@@ -6,7 +6,6 @@ const taskRoutes = require("./routes/task.routes");
 
 const app = express();
 
-
 // ===============================
 // CORS
 // ===============================
@@ -23,13 +22,11 @@ app.use(
   })
 );
 
-
 // ===============================
 // MIDDLEWARE
 // ===============================
 
 app.use(express.json());
-
 
 // ===============================
 // HEALTH CHECK
@@ -42,14 +39,17 @@ app.get("/", (req, res) => {
   });
 });
 
-
 // ===============================
-// API ROUTES
+// AUTH ROUTES
 // ===============================
 
 app.use("/api/auth", authRoutes);
-app.use("/api/tasks", taskRoutes);
 
+// ===============================
+// TASK ROUTES
+// ===============================
+
+app.use("/api/tasks", taskRoutes);
 
 // ===============================
 // 404
@@ -61,7 +61,6 @@ app.use((req, res) => {
     message: "Route not found"
   });
 });
-
 
 // ===============================
 // GLOBAL ERROR HANDLER
@@ -75,6 +74,5 @@ app.use((err, req, res, next) => {
     message: "Internal server error"
   });
 });
-
 
 module.exports = app;

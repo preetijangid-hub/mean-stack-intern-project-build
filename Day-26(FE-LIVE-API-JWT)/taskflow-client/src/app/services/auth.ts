@@ -1,29 +1,19 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
-import { environment } from '../../environments/environment.development';
-
-export interface User {
-  id?: string;
-  _id?: string;
-  name?: string;
-  email?: string;
-}
-
-export interface AuthResponse {
+interface AuthResponse {
   message: string;
   token: string;
-  user?: User;
 }
 
-export interface LoginRequest {
+interface RegisterData {
+  name: string;
   email: string;
   password: string;
 }
 
-export interface RegisterRequest {
-  name: string;
+interface LoginData {
   email: string;
   password: string;
 }
@@ -33,122 +23,39 @@ export interface RegisterRequest {
 })
 export class AuthService {
 
-  private http = inject(HttpClient);
+  private apiUrl = 'https://taskflow-api-zad8.onrender.com/api/auth';
 
-  private apiUrl = `${environment.apiUrl}/auth`;
+  constructor(private http: HttpClient) {}
 
-
-  // ===============================
-  // LOGIN
-  // ===============================
-
-  login(credentials: LoginRequest): Observable<AuthResponse> {
-
+  register(data: RegisterData): Observable<AuthResponse> {
     return this.http
-      .post<AuthResponse>(
-        `${this.apiUrl}/login`,
-        credentials
-      )
+      .post<AuthResponse>(`${this.apiUrl}/register`, data)
       .pipe(
         tap((response) => {
-
-          localStorage.setItem(
-            'token',
-            response.token
-          );
-
-          if (response.user) {
-            localStorage.setItem(
-              'user',
-              JSON.stringify(response.user)
-            );
-          }
-
+          localStorage.setItem('token', response.token);
         })
       );
   }
 
-
-  // ===============================
-  // REGISTER
-  // ===============================
-
-  register(
-    data: RegisterRequest
-  ): Observable<AuthResponse> {
-
+  login(data: LoginData): Observable<AuthResponse> {
     return this.http
-      .post<AuthResponse>(
-        `${this.apiUrl}/register`,
-        data
-      )
+      .post<AuthResponse>(`${this.apiUrl}/login`, data)
       .pipe(
         tap((response) => {
-
-          localStorage.setItem(
-            'token',
-            response.token
-          );
-
-          if (response.user) {
-            localStorage.setItem(
-              'user',
-              JSON.stringify(response.user)
-            );
-          }
-
+          localStorage.setItem('token', response.token);
         })
       );
   }
-
-
-  // ===============================
-  // TOKEN
-  // ===============================
-
-  getToken(): string | null {
-
-    return localStorage.getItem('token');
-
-  }
-
-
-  // ===============================
-  // USER
-  // ===============================
-
-  getUser(): User | null {
-
-    const user = localStorage.getItem('user');
-
-    return user
-      ? JSON.parse(user)
-      : null;
-
-  }
-
-
-  // ===============================
-  // LOGIN STATUS
-  // ===============================
-
-  isLoggedIn(): boolean {
-
-    return !!this.getToken();
-
-  }
-
-
-  // ===============================
-  // LOGOUT
-  // ===============================
 
   logout(): void {
-
     localStorage.removeItem('token');
-
-    localStorage.removeItem('user');
-
   }
 
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
 }
