@@ -1,42 +1,80 @@
-require("dotenv").config();
-
 const express = require("express");
+const cors = require("cors");
 
 const authRoutes = require("./routes/auth.routes");
 const taskRoutes = require("./routes/task.routes");
 
 const app = express();
 
+
+// ===============================
+// CORS
+// ===============================
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:4200",
+      "https://taskflow-client.onrender.com"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: false
+  })
+);
+
+
+// ===============================
+// MIDDLEWARE
+// ===============================
+
 app.use(express.json());
 
-// Health check route
+
+// ===============================
+// HEALTH CHECK
+// ===============================
+
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "Day 25 API Deployment is running",
+    message: "TaskFlow API is running"
   });
 });
 
-// API routes
+
+// ===============================
+// API ROUTES
+// ===============================
+
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
-// 404 handler
+
+// ===============================
+// 404
+// ===============================
+
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    message: "Route not found",
+    message: "Route not found"
   });
 });
 
-// Global error handler
+
+// ===============================
+// GLOBAL ERROR HANDLER
+// ===============================
+
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  console.error("Server error:", err);
 
   res.status(500).json({
     success: false,
-    message: "Internal server error",
+    message: "Internal server error"
   });
 });
+
 
 module.exports = app;
