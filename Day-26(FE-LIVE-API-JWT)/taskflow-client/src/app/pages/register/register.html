@@ -1,123 +1,22 @@
 <div class="auth-page">
-
-  <div class="auth-card">
-
-    <div class="brand">
-
-      <h1>TaskFlow</h1>
-
-      <p>
-        Create your TaskFlow account
-      </p>
-
-    </div>
-
-
-    <h2>Create Account</h2>
-
-    <p class="subtitle">
-      Register to start managing your tasks
-    </p>
-
-
-    <form
-      #registerForm="ngForm"
-      (ngSubmit)="register()"
-      novalidate
-    >
-
-
-      <div class="form-group">
-
-        <label for="name">
-          Name
-        </label>
-
-        <input
-          id="name"
-          type="text"
-          name="name"
-          [(ngModel)]="name"
-          placeholder="Enter your name"
-          required
-        />
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="email">
-          Email
-        </label>
-
-        <input
-          id="email"
-          type="email"
-          name="email"
-          [(ngModel)]="email"
-          placeholder="Enter your email"
-          required
-        />
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="password">
-          Password
-        </label>
-
-        <input
-          id="password"
-          type="password"
-          name="password"
-          [(ngModel)]="password"
-          placeholder="Enter your password"
-          required
-        />
-
-      </div>
-
-
-      @if (errorMessage) {
-
-        <div class="error-message">
-          {{ errorMessage }}
-        </div>
-
-      }
-
-
-      <button
-        type="submit"
-        [disabled]="loading"
-      >
-
-        {{
-          loading
-            ? 'Creating account...'
-            : 'Create Account'
-        }}
-
-      </button>
-
-
-    </form>
-
-
-    <p class="login-link">
-
-      Already have an account?
-
-      <a routerLink="/login">
-        Login
-      </a>
-
-    </p>
-
-
+  <div class="auth-shell">
+    <section class="auth-visual" aria-label="TaskFlow introduction">
+      <div class="visual-brand"><span class="brand-mark">TF</span><span>TaskFlow</span></div>
+      <div class="visual-copy"><span class="eyebrow">Build your rhythm</span><h1>Turn intention into momentum.</h1><p>A focused workspace for the small, meaningful steps that move your day forward.</p></div>
+      <div class="visual-stats"><div class="visual-stat"><strong>Clear</strong><span>Less mental clutter</span></div><div class="visual-stat"><strong>Focused</strong><span>Better next steps</span></div><div class="visual-stat"><strong>Yours</strong><span>One calm workspace</span></div></div>
+    </section>
+    <section class="auth-card">
+      <span class="eyebrow">Get started</span>
+      <h2>Create your account</h2>
+      <p class="subtitle">Set up your personal TaskFlow workspace.</p>
+      <form #registerForm="ngForm" (ngSubmit)="register()" novalidate>
+        <div class="form-group"><label for="name">Full name</label><div class="field-shell"><span class="field-icon" aria-hidden="true">&#10022;</span><input id="name" type="text" name="name" [(ngModel)]="name" placeholder="Your name" #nameField="ngModel" required minlength="2" [class.invalid]="nameField.invalid && nameField.touched" /></div>@if (nameField.invalid && nameField.touched) { <small class="field-error">Enter your name.</small> }</div>
+        <div class="form-group"><label for="email">Email address</label><div class="field-shell"><span class="field-icon" aria-hidden="true">@</span><input id="email" type="email" name="email" [(ngModel)]="email" placeholder="you@example.com" #emailField="ngModel" required email [class.invalid]="emailField.invalid && emailField.touched" /></div>@if (emailField.invalid && emailField.touched) { <small class="field-error">Enter a valid email address.</small> }</div>
+        <div class="form-group"><label for="password">Password</label><div class="field-shell password-field"><span class="field-icon" aria-hidden="true">&#9673;</span><input id="password" [type]="showPassword ? 'text' : 'password'" name="password" [(ngModel)]="password" placeholder="At least 6 characters" #passwordField="ngModel" required minlength="6" [class.invalid]="passwordField.invalid && passwordField.touched" /><button class="password-toggle" type="button" (click)="togglePasswordVisibility()" [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">{{ showPassword ? '&#9673;' : '&#9675;' }}</button></div><div class="strength-row"><span class="strength-track"><i class="strength-fill" [class.good]="password.length >= 6 && password.length < 10" [class.strong]="password.length >= 10"></i></span><span>{{ passwordStrength }}</span></div>@if (passwordField.invalid && passwordField.touched) { <small class="field-error">Password must be at least 6 characters.</small> }</div>
+        @if (errorMessage) { <div class="error-message" role="alert">{{ errorMessage }}</div> }
+        <button class="submit-button" type="submit" [disabled]="loading || registerForm.invalid">@if (loading) { <span class="spinner" aria-hidden="true"></span> Creating account... } @else { Create account }</button>
+      </form>
+      <p class="switch">Already have an account? <a routerLink="/login">Sign in</a></p>
+    </section>
   </div>
-
 </div>

@@ -1,34 +1,176 @@
-<div class="dashboard">
-
-  <header class="navbar">
-
-    <div>
-      <h1>TaskFlow</h1>
-      <p>Dashboard</p>
+<div class="dashboard-shell" [class.sidebar-collapsed]="sidebarCollapsed">
+  <aside class="sidebar">
+    <div class="brand-lockup">
+      <span class="brand-mark" aria-hidden="true">TF</span>
+      <span class="brand-name">TaskFlow</span>
     </div>
 
-    <button (click)="logout()">
-      Logout
-    </button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="nav-item" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" title="Dashboard">
+        <span aria-hidden="true">&#9632;</span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a class="nav-item" routerLink="/tasks" routerLinkActive="active" title="My tasks">
+        <span aria-hidden="true">&#10003;</span>
+        <span class="nav-label">My tasks</span>
+      </a>
+      <a class="nav-item" routerLink="/performance" routerLinkActive="active" title="Performance">
+        <span aria-hidden="true">&#9670;</span>
+        <span class="nav-label">Performance</span>
+      </a>
+      <a class="nav-item" routerLink="/queries" routerLinkActive="active" title="Queries">
+        <span aria-hidden="true">&#8981;</span>
+        <span class="nav-label">Queries</span>
+      </a>
+      <a class="nav-item" routerLink="/settings" routerLinkActive="active" title="Settings">
+        <span aria-hidden="true">&#9881;</span>
+        <span class="nav-label">Settings</span>
+      </a>
+    </nav>
 
-  </header>
-
-  <main class="content">
-
-    <div class="welcome-card">
-
-      <h2>Welcome to TaskFlow 🎉</h2>
-
-      <p>
-        You have successfully logged in.
-      </p>
-
-      <p>
-        Your JWT authentication is working correctly.
-      </p>
-
+    <div class="sidebar-section">
+      <div class="section-heading">
+        <span>Projects</span>
+        <span class="section-count">{{ tasks.length }}</span>
+      </div>
+      <a class="project-item active" routerLink="/tasks" title="All tasks">
+        <span class="project-dot"></span>
+        <span class="nav-label">All tasks</span>
+      </a>
+      <p class="sidebar-note">Project records are not available in the Day-26 API.</p>
     </div>
 
-  </main>
+    <div class="sidebar-footer">
+      <button class="collapse-button" type="button" (click)="sidebarCollapsed = !sidebarCollapsed" [attr.aria-label]="sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'">
+        <span aria-hidden="true">{{ sidebarCollapsed ? '&raquo;' : '&laquo;' }}</span>
+        <span class="nav-label">Collapse sidebar</span>
+      </button>
+    </div>
+  </aside>
 
+  <div class="dashboard-main">
+    <header class="topbar">
+      <div class="topbar-context">
+        <span class="eyebrow">Workspace</span>
+        <span class="context-name">Personal productivity</span>
+      </div>
+      <div class="account-area">
+        <button class="avatar-button" type="button" (click)="userMenuOpen = !userMenuOpen" aria-label="Open account menu">
+          {{ (user?.name || 'T').charAt(0).toUpperCase() }}
+        </button>
+        @if (userMenuOpen) {
+          <div class="account-menu">
+            <strong>{{ user?.name || 'TaskFlow user' }}</strong>
+            <span>{{ user?.email || 'Signed in' }}</span>
+            <button type="button" (click)="logout()">Log out</button>
+          </div>
+        }
+      </div>
+    </header>
+
+    <main class="content-area">
+      <section class="welcome-row">
+        <div>
+          <span class="eyebrow">Overview</span>
+          <h1>Good to see you, {{ user?.name || 'there' }}.</h1>
+          <p>Keep the important work moving forward.</p>
+        </div>
+        <button class="primary-button" type="button" (click)="showNewTask = true">
+          <span aria-hidden="true">+</span> New task
+        </button>
+      </section>
+
+      @if (successMessage) {
+        <div class="toast success" role="status">{{ successMessage }}</div>
+      }
+      @if (errorMessage) {
+        <div class="toast error" role="alert">
+          <span>{{ errorMessage }}</span>
+          <button type="button" (click)="loadTasks()">Retry</button>
+        </div>
+      }
+
+      <section class="summary-grid" aria-label="Task summary">
+        <article class="summary-card total-card">
+          <div class="summary-icon">&#9673;</div>
+          <div><span>Total tasks</span><strong>{{ tasks.length }}</strong><small>Across your workspace</small></div>
+        </article>
+        <article class="summary-card open-card">
+          <div class="summary-icon">&#9675;</div>
+          <div><span>To do</span><strong>{{ openCount }}</strong><small>Ready for attention</small></div>
+        </article>
+        <article class="summary-card progress-card">
+          <div class="summary-icon">&#9671;</div>
+          <div><span>In progress</span><strong>{{ inProgressCount }}</strong><small>Currently underway</small></div>
+        </article>
+        <article class="summary-card complete-card">
+          <div class="summary-icon">&#10003;</div>
+          <div><span>Completed</span><strong>{{ completedCount }}</strong><small>Nice work so far</small></div>
+        </article>
+      </section>
+
+      <section class="workspace-grid">
+        <div class="tasks-panel">
+          <div class="panel-header">
+            <div><span class="eyebrow">Live from the API</span><h2>Task board</h2></div>
+            <div class="view-tabs" role="tablist" aria-label="Task views">
+              <button type="button" [class.selected]="selectedView === 'all'" (click)="selectedView = 'all'">All</button>
+              <button type="button" [class.selected]="selectedView === 'open'" (click)="selectedView = 'open'">Open</button>
+              <button type="button" [class.selected]="selectedView === 'completed'" (click)="selectedView = 'completed'">Done</button>
+            </div>
+          </div>
+
+          @if (loading) {
+            <div class="skeleton-list" aria-label="Loading tasks"><span></span><span></span><span></span></div>
+          } @else if (filteredTasks.length) {
+            <div class="task-list">
+              @for (task of filteredTasks; track trackTask($index, task)) {
+                <article class="task-row" [class.completed]="task.completed">
+                  <button class="check-button" type="button" (click)="toggleTask(task)" [attr.aria-label]="task.completed ? 'Mark task open' : 'Mark task completed'">{{ task.completed ? '&#10003;' : '' }}</button>
+                  <div class="task-copy"><h3>{{ task.title }}</h3><p>{{ task.description || 'No description added.' }}</p></div>
+                  <span class="task-status" [class.done]="task.completed">{{ task.completed ? 'Completed' : 'To do' }}</span>
+                  <button class="icon-button danger" type="button" (click)="deleteTask(task)" aria-label="Delete task">&#10005;</button>
+                </article>
+              }
+            </div>
+          } @else {
+            <div class="empty-state">
+              <div class="empty-icon" aria-hidden="true">&#10003;</div>
+              <h3>{{ selectedView === 'all' ? 'A clear desk is a good start.' : 'Nothing in this view yet.' }}</h3>
+              <p>{{ selectedView === 'all' ? 'Create your first task and turn intention into momentum.' : 'Try another task view or add something new.' }}</p>
+              @if (selectedView === 'all') { <button class="secondary-button" type="button" (click)="showNewTask = true">Create your first task</button> }
+            </div>
+          }
+        </div>
+
+        <aside class="quick-panel">
+          <span class="eyebrow">Quick action</span>
+          <h2>Make space for progress.</h2>
+          <p>Capture the next meaningful thing before it gets lost in the noise.</p>
+          <button class="secondary-button full" type="button" (click)="showNewTask = true">Create a task <span aria-hidden="true">&rarr;</span></button>
+          <div class="api-status"><span class="status-dot"></span><span>Connected to live API</span></div>
+        </aside>
+      </section>
+    </main>
+  </div>
 </div>
+
+@if (showNewTask) {
+  <div class="modal-backdrop" (click)="showNewTask = false">
+    <section class="task-modal" role="dialog" aria-modal="true" aria-labelledby="new-task-title" (click)="$event.stopPropagation()">
+      <button class="modal-close" type="button" (click)="showNewTask = false" aria-label="Close">&#10005;</button>
+      <span class="eyebrow">New item</span>
+      <h2 id="new-task-title">Create a task</h2>
+      <p>Give your next action a clear place to land.</p>
+      <form (ngSubmit)="createTask()">
+        <label for="task-title">Task title</label>
+        <input id="task-title" name="title" [(ngModel)]="newTaskTitle" required maxlength="120" placeholder="What needs doing?" autofocus />
+        <label for="task-description">Description <span>Optional</span></label>
+        <textarea id="task-description" name="description" [(ngModel)]="newTaskDescription" rows="4" maxlength="500" placeholder="Add useful context..."></textarea>
+        <button class="primary-button full" type="submit" [disabled]="creating || !newTaskTitle.trim()">
+          @if (creating) { <span class="button-spinner" aria-hidden="true"></span> Saving task... } @else { Create task }
+        </button>
+      </form>
+    </section>
+  </div>
+}

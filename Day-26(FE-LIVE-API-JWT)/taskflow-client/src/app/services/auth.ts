@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, timeout } from 'rxjs';
+import { environment } from '../../environments/environment';
 
-interface AuthResponse {
-  message: string;
-  token: string;
+export interface AuthResponse {
+  message?: string;
+  token?: string;
+  user?: AuthUser;
 }
 
-interface RegisterData {
+export interface AuthUser {
+  id: string;
+  name: string;
+  email: string;
+}
+
+export interface RegisterData {
   name: string;
   email: string;
   password: string;
 }
 
-interface LoginData {
+export interface LoginData {
   email: string;
   password: string;
 }
@@ -23,7 +31,8 @@ interface LoginData {
 })
 export class AuthService {
 
-  private apiUrl = 'https://taskflow-api-zad8.onrender.com/api/auth';
+  private readonly apiUrl = `${environment.apiUrl}/auth`;
+  private readonly tokenKey = 'token';
 
   constructor(private http: HttpClient) {}
 
@@ -31,8 +40,12 @@ export class AuthService {
     return this.http
       .post<AuthResponse>(`${this.apiUrl}/register`, data)
       .pipe(
+        timeout(30000),
         tap((response) => {
-          localStorage.setItem('token', response.token);
+          if (response.token) {
+            this.saveToken(response.token);
+          }
+          this.saveUser(response.user);
         })
       );
   }
@@ -41,21 +54,63 @@ export class AuthService {
     return this.http
       .post<AuthResponse>(`${this.apiUrl}/login`, data)
       .pipe(
+        timeout(30000),
         tap((response) => {
-          localStorage.setItem('token', response.token);
+          if (response.token) {
+            this.saveToken(response.token);
+          }
+          this.saveUser(response.user);
         })
       );
   }
 
+  saveToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  private saveUser(user: AuthUser | undefined): void {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+  }
+
+  getUser(): AuthUser | null {
+    const storedUser = localStorage.getItem('user');
+
+    if (!storedUser) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(storedUser) as AuthUser;
+    } catch {
+      localStorage.removeItem('user');
+      return null;
+    }
+  }
+
   logout(): void {
-    localStorage.removeItem('token');
+    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem('user');
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem(this.tokenKey);
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+    const token = this.getToken();
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1])) as { exp?: number };
+      return !payload.exp || payload.exp * 1000 > Date.now();
+    } catch {
+      this.logout();
+      return false;
+    }
   }
 }
