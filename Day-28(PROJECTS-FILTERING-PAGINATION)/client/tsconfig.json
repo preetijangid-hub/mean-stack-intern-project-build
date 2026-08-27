@@ -1,0 +1,1 @@
+{"compileOnSave":false,"compilerOptions":{"outDir":"./out-tsc","strict":true,"skipLibCheck":true,"moduleResolution":"bundler","experimentalDecorators":true,"target":"ES2022","module":"preserve","lib":["ES2022","dom"]},"angularCompilerOptions":{"strictInjectionParameters":true,"strictInputAccessModifiers":true,"strictTemplates":true}}
