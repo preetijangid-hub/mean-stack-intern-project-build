@@ -1,0 +1,123 @@
+<div class="page">
+
+  <header class="header">
+    <div>
+      <span class="eyebrow">TASKFLOW • HTTPCLIENT</span>
+
+      <h1>My Tasks</h1>
+
+      <p>
+        Tasks loaded from a mock REST API using Angular HttpClient.
+      </p>
+    </div>
+
+    <div class="api-badge">
+      REST API
+    </div>
+  </header>
+
+  <main class="content">
+
+    @if (loading) {
+
+      <div class="state-card">
+        <div class="spinner"></div>
+
+        <h2>Loading tasks...</h2>
+
+        <p>
+          Fetching tasks from the mock REST server.
+        </p>
+      </div>
+
+    } @else if (errorMessage) {
+
+      <div class="error-card">
+        <div class="error-icon">!</div>
+
+        <div>
+          <h2>Unable to load tasks</h2>
+
+          <p>{{ errorMessage }}</p>
+        </div>
+      </div>
+
+    } @else {
+
+      @if (tasks$ | async; as tasks) {
+
+        <div class="results-header">
+
+          <div>
+            <h2>All Tasks</h2>
+
+            <p>
+              {{ tasks.length }} task{{ tasks.length === 1 ? '' : 's' }}
+              loaded successfully
+            </p>
+          </div>
+
+          <span class="http-badge">
+            GET /tasks
+          </span>
+
+        </div>
+
+        @if (tasks.length > 0) {
+
+          <div class="task-grid">
+
+            @for (task of tasks; track task.id) {
+
+              <article class="task-card">
+
+                <div class="task-top">
+
+                  <span
+                    class="status"
+                    [class.pending]="task.status === 'Pending'"
+                    [class.progress]="task.status === 'In Progress'"
+                    [class.completed]="task.status === 'Completed'"
+                  >
+                    {{ task.status }}
+                  </span>
+
+                  <span class="task-id">
+                    #{{ task.id }}
+                  </span>
+
+                </div>
+
+                <h3>{{ task.title }}</h3>
+
+                <div class="due-date">
+                  <span class="calendar">📅</span>
+
+                  <div>
+                    <small>Due date</small>
+                    <strong>{{ task.dueDate }}</strong>
+                  </div>
+                </div>
+
+              </article>
+
+            }
+
+          </div>
+
+        } @else {
+
+          <div class="empty-card">
+            <h2>No tasks found</h2>
+            <p>Your mock API returned an empty task list.</p>
+          </div>
+
+        }
+
+      }
+
+    }
+
+  </main>
+
+</div>

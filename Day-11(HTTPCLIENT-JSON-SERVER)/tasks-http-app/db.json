@@ -1,0 +1,29 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Complete Angular Dashboard",
+      "status": "In Progress",
+      "dueDate": "2026-09-05"
+    },
+    {
+      "id": "2",
+      "title": "Build REST API",
+      "status": "Pending",
+      "dueDate": "2026-09-08"
+    },
+    {
+      "id": "3",
+      "title": "Connect MongoDB",
+      "status": "Completed",
+      "dueDate": "2026-09-01"
+    },
+    {
+      "id": "4",
+      "title": "Write API Tests",
+      "status": "Pending",
+      "dueDate": "2026-09-10"
+    }
+  ]
+}
+  
