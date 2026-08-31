@@ -1,0 +1,197 @@
+<div class="page">
+
+  <header class="header">
+
+    <div>
+      <span class="eyebrow">
+        TASKFLOW • RXJS SEARCH
+      </span>
+
+      <h1>Task Explorer</h1>
+
+      <p>
+        Search and filter tasks with RxJS.
+      </p>
+    </div>
+
+    <div class="tech-badge">
+      switchMap
+    </div>
+
+  </header>
+
+
+  <main class="content">
+
+    <section class="filter-card">
+
+      <div class="filter-field search-field">
+
+        <label for="search">
+          Search tasks
+        </label>
+
+        <div class="search-box">
+
+          <span class="search-icon">
+            🔍
+          </span>
+
+          <input
+            id="search"
+            type="search"
+            placeholder="Search by task title..."
+            autocomplete="off"
+            (input)="onSearch($event)"
+          />
+
+        </div>
+
+        <small>
+          Search waits 400ms before sending the request.
+        </small>
+
+      </div>
+
+
+      <div class="filter-field">
+
+        <label for="status">
+          Status
+        </label>
+
+        <select
+          id="status"
+          (change)="onStatusChange($event)"
+        >
+          <option value="All">
+            All Statuses
+          </option>
+
+          <option value="Pending">
+            Pending
+          </option>
+
+          <option value="In Progress">
+            In Progress
+          </option>
+
+          <option value="Completed">
+            Completed
+          </option>
+        </select>
+
+      </div>
+
+    </section>
+
+
+    @if (loading) {
+
+      <div class="loading">
+        <span></span>
+        Loading filtered tasks...
+      </div>
+
+    }
+
+
+    @if (errorMessage) {
+
+      <div class="error">
+        <strong>Request failed</strong>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+    }
+
+
+    @if (tasks$ | async; as tasks) {
+
+      <section class="results-heading">
+
+        <div>
+          <h2>Tasks</h2>
+
+          <p>
+            {{ tasks.length }}
+            result{{ tasks.length === 1 ? '' : 's' }}
+          </p>
+        </div>
+
+        <span class="request-badge">
+          GET /tasks
+        </span>
+
+      </section>
+
+
+      @if (tasks.length > 0) {
+
+        <div class="task-grid">
+
+          @for (task of tasks; track task.id) {
+
+            <article class="task-card">
+
+              <div class="card-top">
+
+                <span
+                  class="status"
+                  [class.pending]="task.status === 'Pending'"
+                  [class.progress]="task.status === 'In Progress'"
+                  [class.completed]="task.status === 'Completed'"
+                >
+                  {{ task.status }}
+                </span>
+
+                <span class="task-id">
+                  #{{ task.id }}
+                </span>
+
+              </div>
+
+              <h3>
+                {{ task.title }}
+              </h3>
+
+              <div class="date">
+
+                <span>📅</span>
+
+                <div>
+                  <small>Due date</small>
+                  <strong>{{ task.dueDate }}</strong>
+                </div>
+
+              </div>
+
+            </article>
+
+          }
+
+        </div>
+
+      } @else {
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            🔎
+          </div>
+
+          <h2>No tasks found</h2>
+
+          <p>
+            Try another search term or status.
+          </p>
+
+        </div>
+
+      }
+
+    }
+
+  </main>
+
+</div>
