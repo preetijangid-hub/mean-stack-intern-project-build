@@ -1,0 +1,177 @@
+<div class="page">
+
+  <div class="form-card">
+
+    <div class="header">
+      <div class="icon">
+        ✓
+      </div>
+
+      <div>
+        <span class="eyebrow">TASKFLOW</span>
+
+        <h1>
+          {{ isEditMode ? 'Edit Task' : 'Add New Task' }}
+        </h1>
+
+        <p>
+          {{ isEditMode
+            ? 'Update your task details below.'
+            : 'Create a new task and keep your work organized.' }}
+        </p>
+      </div>
+    </div>
+
+    <form
+      [formGroup]="taskForm"
+      (ngSubmit)="onSubmit()"
+      novalidate
+    >
+
+      <!-- TITLE -->
+
+      <div class="form-group">
+
+        <label for="title">
+          Task Title
+          <span class="required">*</span>
+        </label>
+
+        <input
+          id="title"
+          type="text"
+          formControlName="title"
+          placeholder="e.g. Complete Angular dashboard"
+          [class.invalid]="title.invalid && title.touched"
+          [class.valid]="title.valid && title.touched"
+        />
+
+        @if (title.touched && title.hasError('required')) {
+          <small class="error">
+            Task title is required.
+          </small>
+        }
+
+        @if (title.touched && title.hasError('minlength')) {
+          <small class="error">
+            Task title must contain at least 3 characters.
+          </small>
+        }
+
+        @if (title.touched && title.hasError('maxlength')) {
+          <small class="error">
+            Task title cannot exceed 100 characters.
+          </small>
+        }
+
+      </div>
+
+
+      <!-- STATUS -->
+
+      <div class="form-group">
+
+        <label for="status">
+          Status
+          <span class="required">*</span>
+        </label>
+
+        <select
+          id="status"
+          formControlName="status"
+          [class.invalid]="status.invalid && status.touched"
+          [class.valid]="status.valid && status.touched"
+        >
+
+          <option value="Pending">
+            Pending
+          </option>
+
+          <option value="In Progress">
+            In Progress
+          </option>
+
+          <option value="Completed">
+            Completed
+          </option>
+
+        </select>
+
+        @if (status.touched && status.hasError('required')) {
+          <small class="error">
+            Please select a status.
+          </small>
+        }
+
+      </div>
+
+
+      <!-- DUE DATE -->
+
+      <div class="form-group">
+
+        <label for="dueDate">
+          Due Date
+          <span class="required">*</span>
+        </label>
+
+        <input
+          id="dueDate"
+          type="date"
+          formControlName="dueDate"
+          [class.invalid]="dueDate.invalid && dueDate.touched"
+          [class.valid]="dueDate.valid && dueDate.touched"
+        />
+
+        @if (dueDate.touched && dueDate.hasError('required')) {
+          <small class="error">
+            Due date is required.
+          </small>
+        }
+
+        @if (dueDate.touched && dueDate.hasError('pastDate')) {
+          <small class="error">
+            Due date cannot be in the past.
+          </small>
+        }
+
+      </div>
+
+
+      <!-- FORM STATE -->
+
+      @if (taskForm.dirty) {
+        <div class="form-state">
+          <span class="state-dot"></span>
+          You have unsaved changes
+        </div>
+      }
+
+
+      <!-- ACTIONS -->
+
+      <div class="actions">
+
+        <button
+          type="button"
+          class="cancel-button"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="submit-button"
+          [disabled]="taskForm.invalid"
+        >
+          {{ isEditMode ? 'Update Task' : 'Add Task' }}
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
