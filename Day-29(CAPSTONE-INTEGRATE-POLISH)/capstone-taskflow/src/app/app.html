@@ -1,0 +1,14 @@
+<div class="app-root">
+  @if (shellVisible()) {
+    <app-sidebar class="app-sidebar" />
+  }
+  <div class="app-main">
+    @if (shellVisible()) {
+      <app-header class="app-header" />
+    }
+    <main class="app-content">
+      <router-outlet />
+    </main>
+  </div>
+</div>
+<app-toast />

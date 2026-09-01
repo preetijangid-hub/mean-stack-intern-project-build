@@ -1,0 +1,276 @@
+<div class="page">
+  <header class="page-header">
+    <div class="page-heading">
+      <p class="eyebrow">Tasks</p>
+      <h1>Tasks</h1>
+      <p class="page-subtitle">Manage and track all your work in one place.</p>
+    </div>
+    <button type="button" class="btn-primary" (click)="openCreate()">+ Add Task</button>
+  </header>
+
+  @if (loading()) {
+    <div class="state-block">
+      <span class="spinner" aria-hidden="true"></span>
+      <p>Loading tasks...</p>
+    </div>
+  } @else if (errorMessage(); as error) {
+    <div class="state-block error">
+      <p class="state-title">Something went wrong</p>
+      <p class="state-message">{{ error }}</p>
+      <button type="button" class="btn-primary" (click)="loadTasks()">Retry</button>
+    </div>
+  } @else {
+    <section class="toolbar">
+      <input
+        class="search"
+        type="search"
+        placeholder="Search by title or description..."
+        aria-label="Search tasks"
+        [formControl]="searchControl"
+      />
+      <form [formGroup]="filterForm" class="filters">
+        <select formControlName="status" aria-label="Filter by status">
+          <option value="all">All Statuses</option>
+          @for (option of statusOptions; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+        <select formControlName="priority" aria-label="Filter by priority">
+          <option value="all">All Priorities</option>
+          @for (option of priorityOptions; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+        <select formControlName="project" aria-label="Filter by project">
+          <option value="all">All Projects</option>
+          @for (project of projects(); track project.id) {
+            <option [value]="project.id">{{ project.name }}</option>
+          }
+        </select>
+        <select formControlName="sort" aria-label="Sort tasks">
+          <option value="newest">Sort: Newest</option>
+          <option value="oldest">Sort: Oldest</option>
+          <option value="priority">Sort: Priority</option>
+          <option value="progress">Sort: Progress</option>
+        </select>
+      </form>
+    </section>
+
+    <p class="results-line">
+      Showing {{ shownCount() }} of {{ totalCount() }} tasks
+      @if (pageCount() > 1) {
+        <span class="results-page">· Page {{ currentPage() }} of {{ pageCount() }}</span>
+      }
+    </p>
+
+    @if (totalCount() === 0) {
+      <section class="state-block empty">
+        <div class="empty-icon" aria-hidden="true">✓</div>
+        <p class="state-title">No tasks yet</p>
+        <p class="state-message">
+          Create your first task to start tracking progress, priorities and team performance.
+        </p>
+        <button type="button" class="btn-primary" (click)="openCreate()">+ Add Task</button>
+      </section>
+    } @else if (shownCount() === 0) {
+      <section class="state-block empty">
+        <div class="empty-icon" aria-hidden="true">🔍</div>
+        <p class="state-title">No tasks found</p>
+        <p class="state-message">
+          No tasks match your current search or filters. Try adjusting or clearing them.
+        </p>
+        <button type="button" class="btn-ghost" (click)="clearFilters()">Clear filters</button>
+      </section>
+    } @else {
+      <div class="task-grid">
+        @for (task of pagedTasks(); track task.id) {
+          <article class="task-card" [class.done]="task.completed">
+            <div class="task-top">
+              <span class="badge" [class]="'badge ' + task.status">{{ task.status | taskStatus }}</span>
+              <span class="badge" [class]="'badge ' + task.priority">{{ priorityLabel(task.priority) }}</span>
+            </div>
+            <h3 class="task-title">{{ task.title }}</h3>
+            <p class="task-desc">{{ task.description || 'No description provided.' }}</p>
+            <div class="task-progress">
+              <div class="progress-bar slim">
+                <span [style.width.%]="task.progress"></span>
+              </div>
+              <span class="progress-value">{{ task.progress }}%</span>
+            </div>
+            <div class="task-meta">
+              <span class="meta-item">
+                <span class="meta-label">Project</span>
+                {{ projectName(task.projectId) }}
+              </span>
+              <span class="meta-item">
+                <span class="meta-label">Assignee</span>
+                {{ memberName(task.assigneeId) }}
+              </span>
+            </div>
+            <div class="task-actions">
+              <button
+                type="button"
+                class="btn-ghost complete"
+                [disabled]="togglingId() === task.id"
+                (click)="toggleComplete(task)"
+              >
+                {{ togglingId() === task.id ? 'Updating...' : (task.completed ? 'Mark Incomplete' : 'Mark Complete') }}
+              </button>
+              <button type="button" class="btn-ghost" (click)="openEdit(task)">Edit</button>
+              <button type="button" class="btn-ghost danger" (click)="requestDelete(task)">Delete</button>
+            </div>
+          </article>
+        }
+      </div>
+
+      @if (pageCount() > 1) {
+        <nav class="pagination" aria-label="Task list pagination">
+          <button
+            type="button"
+            class="page-btn"
+            (click)="previousPage()"
+            [disabled]="currentPage() <= 1"
+          >
+            ← Prev
+          </button>
+          <span class="page-indicator">Page {{ currentPage() }} of {{ pageCount() }}</span>
+          <button
+            type="button"
+            class="page-btn"
+            (click)="nextPage()"
+            [disabled]="currentPage() >= pageCount()"
+          >
+            Next →
+          </button>
+        </nav>
+      }
+    }
+  }
+</div>
+@if (modalOpen()) {
+  <div class="modal-backdrop" (click)="closeModal()">
+    <div class="modal" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <div class="modal-head">
+        <h2>{{ editingTask() ? 'Edit Task' : 'Add New Task' }}</h2>
+        <button type="button" class="modal-close" (click)="closeModal()" aria-label="Close">×</button>
+      </div>
+
+      @if (formError(); as error) {
+        <div class="alert" role="alert">{{ error }}</div>
+      }
+
+      <form [formGroup]="taskForm" (ngSubmit)="saveTask()" novalidate>
+        <div class="field">
+          <label for="title">Title *</label>
+          <input
+            id="title"
+            type="text"
+            formControlName="title"
+            placeholder="What needs to be done?"
+            [class.invalid]="titleError()"
+          />
+          @if (titleError(); as message) {
+            <p class="field-error">{{ message }}</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            rows="3"
+            formControlName="description"
+            placeholder="Add more details (optional)"
+          ></textarea>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="status">Status</label>
+            <select id="status" formControlName="status">
+              @for (option of statusOptions; track option.value) {
+                <option [value]="option.value">{{ option.label }}</option>
+              }
+            </select>
+          </div>
+          <div class="field">
+            <label for="priority">Priority</label>
+            <select id="priority" formControlName="priority">
+              @for (option of priorityOptions; track option.value) {
+                <option [value]="option.value">{{ option.label }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="progress">Progress</label>
+            <select id="progress" formControlName="progress">
+              @for (option of progressOptions; track option) {
+                <option [ngValue]="option">{{ option }}%</option>
+              }
+            </select>
+          </div>
+          <div class="field">
+            <label for="project">Project</label>
+            <select id="project" formControlName="projectId">
+              <option value="">No Project</option>
+              @for (project of projects(); track project.id) {
+                <option [value]="project.id">{{ project.name }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="assignee">Team Member</label>
+          <select id="assignee" formControlName="assigneeId">
+            <option value="">Unassigned</option>
+            @for (member of teamMembers(); track member.id) {
+              <option [value]="member.id">{{ member.name }} — {{ member.role }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-ghost" (click)="closeModal()" [disabled]="saving()">
+            Cancel
+          </button>
+          <button type="submit" class="btn-primary" [disabled]="saving()">
+            @if (saving()) {
+              <span class="spinner small" aria-hidden="true"></span>
+              <span>{{ editingTask() ? 'Saving...' : 'Creating...' }}</span>
+            } @else {
+              <span>{{ editingTask() ? 'Save Changes' : 'Create Task' }}</span>
+            }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+@if (deleteTaskId()) {
+  <div class="modal-backdrop">
+    <div class="modal small" role="alertdialog" aria-modal="true">
+      <h2>Delete Task</h2>
+      <p class="confirm-text">
+        Are you sure you want to delete this task? This action cannot be undone.
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" (click)="cancelDelete()" [disabled]="deleting()">
+          Cancel
+        </button>
+        <button type="button" class="btn-danger" (click)="confirmDelete()" [disabled]="deleting()">
+          @if (deleting()) {
+            <span class="spinner small" aria-hidden="true"></span>
+            <span>Deleting...</span>
+          } @else {
+            <span>Delete Task</span>
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+}

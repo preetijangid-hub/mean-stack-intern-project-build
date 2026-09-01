@@ -1,0 +1,242 @@
+<div class="page">
+  <header class="page-header">
+    <div class="page-heading">
+      <p class="eyebrow">Workspace</p>
+      <h1>Team Members</h1>
+      <p class="page-subtitle">Manage your team and track individual performance.</p>
+    </div>
+    <button type="button" class="btn-primary" (click)="openCreate()">+ Add Member</button>
+  </header>
+
+  <section class="summary-grid" aria-label="Team summary">
+    <article class="summary-card">
+      <p class="summary-label">Total Members</p>
+      <p class="summary-value">{{ totalMembers() }}</p>
+    </article>
+    <article class="summary-card">
+      <p class="summary-label">Members With Tasks</p>
+      <p class="summary-value">{{ membersWithTasks() }}</p>
+    </article>
+    <article class="summary-card">
+      <p class="summary-label">Top Performer</p>
+      <p class="summary-value small">{{ topPerformer() }}</p>
+    </article>
+    <article class="summary-card">
+      <p class="summary-label">Average Team Completion</p>
+      <p class="summary-value">{{ averageCompletion() }}%</p>
+    </article>
+  </section>
+
+  @if (loadingTasks()) {
+    <div class="state-block">
+      <span class="spinner" aria-hidden="true"></span>
+      <p>Loading team performance...</p>
+    </div>
+  } @else if (errorMessage(); as error) {
+    <div class="state-block error">
+      <p class="state-title">Something went wrong</p>
+      <p class="state-message">{{ error }}</p>
+      <button type="button" class="btn-primary" (click)="loadTasks()">Retry</button>
+    </div>
+  } @else {
+    <section class="toolbar">
+      <input
+        class="search"
+        type="search"
+        placeholder="Search by name or role..."
+        aria-label="Search team"
+        [formControl]="searchControl"
+      />
+      <select [formControl]="sortControl" aria-label="Sort team members">
+        <option value="recent">Sort: Recently Added</option>
+        <option value="name">Sort: Name A-Z</option>
+        <option value="tasks">Sort: Most Tasks</option>
+        <option value="performance">Sort: Highest Performance</option>
+      </select>
+    </section>
+
+    @if (totalMembers() === 0) {
+      <section class="state-block empty">
+        <div class="empty-icon" aria-hidden="true">👥</div>
+        <p class="state-title">No team members yet</p>
+        <p class="state-message">
+          Add your first team member to start tracking individual performance.
+        </p>
+        <button type="button" class="btn-primary" (click)="openCreate()">+ Add Member</button>
+      </section>
+    } @else if (visibleMembers().length === 0) {
+      <section class="state-block empty">
+        <div class="empty-icon" aria-hidden="true">🔍</div>
+        <p class="state-title">No team members found</p>
+        <p class="state-message">No members match your current search. Try a different term.</p>
+        <button type="button" class="btn-ghost" (click)="clearSearch()">Clear search</button>
+      </section>
+    } @else {
+      <section class="performance-section">
+        <div class="performance-head">
+          <h2>Team Performance</h2>
+          <p>Individual completion rates calculated from live task data.</p>
+        </div>
+        <div class="member-grid">
+          @for (member of visibleMembers(); track member.id) {
+            <article class="member-card">
+              <div class="member-head">
+                <span
+                  class="avatar"
+                  [style.background]="member.avatarColor || '#6366f1'"
+                  aria-hidden="true"
+                >{{ initials(member.name) }}</span>
+                <div class="member-id">
+                  <h3 class="member-name">{{ member.name }}</h3>
+                  <p class="member-role">{{ member.role }}</p>
+                </div>
+              </div>
+
+              <div class="rate-line">
+                <div class="progress-bar large">
+                  <span [style.width.%]="stats(member.id).rate"></span>
+                </div>
+                <span class="rate-value">{{ stats(member.id).rate }}%</span>
+              </div>
+
+              <dl class="stat-grid">
+                <div class="stat-cell">
+                  <dt>Assigned</dt>
+                  <dd>{{ stats(member.id).total }}</dd>
+                </div>
+                <div class="stat-cell">
+                  <dt>Completed</dt>
+                  <dd>{{ stats(member.id).completed }}</dd>
+                </div>
+                <div class="stat-cell">
+                  <dt>In Progress</dt>
+                  <dd>{{ stats(member.id).inProgress }}</dd>
+                </div>
+                <div class="stat-cell">
+                  <dt>Not Started</dt>
+                  <dd>{{ stats(member.id).notStarted }}</dd>
+                </div>
+              </dl>
+
+              @if (stats(member.id).total === 0) {
+                <p class="zero-note">No tasks assigned</p>
+              }
+
+              <div class="member-actions">
+                <button type="button" class="btn-ghost" (click)="toggleExpanded(member.id)">
+                  {{ expandedMemberId() === member.id ? 'Hide Tasks' : 'View Tasks' }}
+                </button>
+                <button type="button" class="btn-ghost" (click)="openEdit(member)">Edit</button>
+                <button type="button" class="btn-ghost danger" (click)="requestDelete(member)">
+                  Delete
+                </button>
+              </div>
+
+              @if (expandedMemberId() === member.id) {
+                <div class="member-tasks">
+                  <p class="member-tasks-title">Assigned Tasks</p>
+                  @if (tasksFor(member.id).length === 0) {
+                    <p class="zero-note">No tasks assigned to this member yet.</p>
+                  } @else {
+                    @for (task of tasksFor(member.id); track task.id) {
+                      <div class="task-row">
+                        <span class="task-row-title">{{ task.title }}</span>
+                        <span class="badge" [class]="'badge ' + task.status">{{ task.status | taskStatus }}</span>
+                        <span class="badge" [class]="'badge ' + task.priority">{{ priorityLabel(task.priority) }}</span>
+                        <span class="task-row-progress">{{ task.progress }}%</span>
+                        <span class="task-row-project">{{ projectName(task.projectId) }}</span>
+                      </div>
+                    }
+                  }
+                </div>
+              }
+            </article>
+          }
+        </div>
+      </section>
+    }
+  }
+</div>
+@if (modalOpen()) {
+  <div class="modal-backdrop" (click)="closeModal()">
+    <div class="modal" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <div class="modal-head">
+        <h2>{{ editingMember() ? 'Edit Member' : 'Add Member' }}</h2>
+        <button type="button" class="modal-close" (click)="closeModal()" aria-label="Close">×</button>
+      </div>
+
+      @if (formError(); as error) {
+        <div class="alert" role="alert">{{ error }}</div>
+      }
+
+      <form [formGroup]="memberForm" (ngSubmit)="saveMember()" novalidate>
+        <div class="field">
+          <label for="member-name">Name *</label>
+          <input
+            id="member-name"
+            type="text"
+            formControlName="name"
+            placeholder="e.g. Alex Morgan"
+            [class.invalid]="nameError()"
+          />
+          @if (nameError(); as message) {
+            <p class="field-error">{{ message }}</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="member-role">Role *</label>
+          <input
+            id="member-role"
+            type="text"
+            formControlName="role"
+            placeholder="e.g. Frontend Developer"
+            [class.invalid]="roleError()"
+          />
+          @if (roleError(); as message) {
+            <p class="field-error">{{ message }}</p>
+          }
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-ghost" (click)="closeModal()" [disabled]="saving()">
+            Cancel
+          </button>
+          <button type="submit" class="btn-primary" [disabled]="saving()">
+            @if (saving()) {
+              <span class="spinner small" aria-hidden="true"></span>
+              <span>Saving...</span>
+            } @else {
+              <span>{{ editingMember() ? 'Save Changes' : 'Add Member' }}</span>
+            }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+@if (deleteMemberId()) {
+  <div class="modal-backdrop">
+    <div class="modal small" role="alertdialog" aria-modal="true">
+      <h2>Delete Team Member</h2>
+      <p class="confirm-text">
+        Are you sure you want to delete this member? Tasks assigned to them will show
+        "Unassigned" afterwards. This action cannot be undone.
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" (click)="cancelDelete()" [disabled]="deleting()">
+          Cancel
+        </button>
+        <button type="button" class="btn-danger" (click)="confirmDelete()" [disabled]="deleting()">
+          @if (deleting()) {
+            <span class="spinner small" aria-hidden="true"></span>
+            <span>Deleting...</span>
+          } @else {
+            <span>Delete Member</span>
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+}

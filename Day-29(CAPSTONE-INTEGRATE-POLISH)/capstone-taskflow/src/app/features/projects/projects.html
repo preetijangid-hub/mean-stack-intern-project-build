@@ -1,0 +1,210 @@
+<div class="page">
+  <header class="page-header">
+    <div class="page-heading">
+      <p class="eyebrow">Workspace</p>
+      <h1>Projects</h1>
+      <p class="page-subtitle">Organize your work and track project progress.</p>
+    </div>
+    <button type="button" class="btn-primary" (click)="openCreate()">+ Add Project</button>
+  </header>
+
+  <section class="summary-grid" aria-label="Project summary">
+    <article class="summary-card">
+      <p class="summary-label">Total Projects</p>
+      <p class="summary-value">{{ totalProjects() }}</p>
+    </article>
+    <article class="summary-card">
+      <p class="summary-label">Active Projects</p>
+      <p class="summary-value">{{ activeProjects() }}</p>
+    </article>
+    <article class="summary-card">
+      <p class="summary-label">Completed Projects</p>
+      <p class="summary-value">{{ completedProjects() }}</p>
+    </article>
+    <article class="summary-card">
+      <p class="summary-label">Average Progress</p>
+      <p class="summary-value">{{ averageProgress() }}%</p>
+    </article>
+  </section>
+
+  @if (loadingTasks()) {
+    <div class="state-block">
+      <span class="spinner" aria-hidden="true"></span>
+      <p>Loading projects...</p>
+    </div>
+  } @else if (errorMessage(); as error) {
+    <div class="state-block error">
+      <p class="state-title">Something went wrong</p>
+      <p class="state-message">{{ error }}</p>
+      <button type="button" class="btn-primary" (click)="loadTasks()">Retry</button>
+    </div>
+  } @else {
+    <section class="toolbar">
+      <input
+        class="search"
+        type="search"
+        placeholder="Search by name or description..."
+        aria-label="Search projects"
+        [formControl]="searchControl"
+      />
+      <select [formControl]="sortControl" aria-label="Sort projects">
+        <option value="recent">Sort: Recently Added</option>
+        <option value="name">Sort: Name A-Z</option>
+        <option value="tasks">Sort: Most Tasks</option>
+        <option value="progress">Sort: Highest Progress</option>
+      </select>
+    </section>
+
+    @if (totalProjects() === 0) {
+      <section class="state-block empty">
+        <div class="empty-icon" aria-hidden="true">📁</div>
+        <p class="state-title">No projects yet</p>
+        <p class="state-message">
+          Create your first project to organize tasks and track delivery progress.
+        </p>
+        <button type="button" class="btn-primary" (click)="openCreate()">+ Add Project</button>
+      </section>
+    } @else if (visibleProjects().length === 0) {
+      <section class="state-block empty">
+        <div class="empty-icon" aria-hidden="true">🔍</div>
+        <p class="state-title">No projects found</p>
+        <p class="state-message">No projects match your current search. Try a different term.</p>
+        <button type="button" class="btn-ghost" (click)="clearSearch()">Clear search</button>
+      </section>
+    } @else {
+      <div class="project-grid">
+        @for (project of visibleProjects(); track project.id) {
+          <article class="project-card">
+            <div class="project-head">
+              <span
+                class="project-swatch"
+                [style.background]="project.color || '#6366f1'"
+                aria-hidden="true"
+              ></span>
+              <div class="project-title-wrap">
+                <h3 class="project-name">{{ project.name }}</h3>
+                <p class="project-desc">{{ project.description || 'No description provided.' }}</p>
+              </div>
+            </div>
+
+            <div class="progress-line">
+              <div class="progress-bar large">
+                <span [style.width.%]="stats(project.id).percent"></span>
+              </div>
+              <span class="progress-value">{{ stats(project.id).percent }}%</span>
+            </div>
+
+            <dl class="stat-grid">
+              <div class="stat-cell">
+                <dt>Total Tasks</dt>
+                <dd>{{ stats(project.id).total }}</dd>
+              </div>
+              <div class="stat-cell">
+                <dt>Completed</dt>
+                <dd>{{ stats(project.id).completed }}</dd>
+              </div>
+              <div class="stat-cell">
+                <dt>In Progress</dt>
+                <dd>{{ stats(project.id).inProgress }}</dd>
+              </div>
+              <div class="stat-cell">
+                <dt>Not Started</dt>
+                <dd>{{ stats(project.id).notStarted }}</dd>
+              </div>
+            </dl>
+
+            @if (stats(project.id).total === 0) {
+              <p class="zero-note">No tasks assigned to this project yet.</p>
+            }
+
+            <div class="project-actions">
+              <button type="button" class="btn-ghost" (click)="openEdit(project)">Edit</button>
+              <button type="button" class="btn-ghost danger" (click)="requestDelete(project)">
+                Delete
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  }
+</div>
+@if (modalOpen()) {
+  <div class="modal-backdrop" (click)="closeModal()">
+    <div class="modal" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <div class="modal-head">
+        <h2>{{ editingProject() ? 'Edit Project' : 'Add Project' }}</h2>
+        <button type="button" class="modal-close" (click)="closeModal()" aria-label="Close">×</button>
+      </div>
+
+      @if (formError(); as error) {
+        <div class="alert" role="alert">{{ error }}</div>
+      }
+
+      <form [formGroup]="projectForm" (ngSubmit)="saveProject()" novalidate>
+        <div class="field">
+          <label for="project-name">Project Name *</label>
+          <input
+            id="project-name"
+            type="text"
+            formControlName="name"
+            placeholder="e.g. Website Redesign"
+            [class.invalid]="nameError()"
+          />
+          @if (nameError(); as message) {
+            <p class="field-error">{{ message }}</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="project-description">Description</label>
+          <textarea
+            id="project-description"
+            rows="3"
+            formControlName="description"
+            placeholder="What is this project about? (optional)"
+          ></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-ghost" (click)="closeModal()" [disabled]="saving()">
+            Cancel
+          </button>
+          <button type="submit" class="btn-primary" [disabled]="saving()">
+            @if (saving()) {
+              <span class="spinner small" aria-hidden="true"></span>
+              <span>Saving...</span>
+            } @else {
+              <span>{{ editingProject() ? 'Save Changes' : 'Create Project' }}</span>
+            }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
+
+@if (deleteProjectId()) {
+  <div class="modal-backdrop">
+    <div class="modal small" role="alertdialog" aria-modal="true">
+      <h2>Delete Project</h2>
+      <p class="confirm-text">
+        Are you sure you want to delete this project? Tasks assigned to it will show
+        "No Project" afterwards. This action cannot be undone.
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" (click)="cancelDelete()" [disabled]="deleting()">
+          Cancel
+        </button>
+        <button type="button" class="btn-danger" (click)="confirmDelete()" [disabled]="deleting()">
+          @if (deleting()) {
+            <span class="spinner small" aria-hidden="true"></span>
+            <span>Deleting...</span>
+          } @else {
+            <span>Delete Project</span>
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+}

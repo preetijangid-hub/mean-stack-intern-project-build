@@ -1,0 +1,12 @@
+<header class="header">
+  <div class="header-left">
+    <span class="page-title">{{ pageTitle() }}</span>
+  </div>
+  <div class="header-right">
+    <span class="user-chip" [title]="displayName()">
+      <span class="user-avatar" aria-hidden="true">{{ initial() }}</span>
+      <span class="user-name">{{ displayName() }}</span>
+    </span>
+    <button type="button" class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+</header>

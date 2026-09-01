@@ -1,0 +1,89 @@
+<main class="auth-page">
+  <section class="auth-card">
+    <div class="brand">
+      <span class="brand-mark">TF</span>
+      <span class="brand-title">TaskFlow</span>
+    </div>
+
+    <h1 class="welcome">Create your account</h1>
+    <p class="subtitle">Join TaskFlow to organize tasks, track progress and boost team performance.</p>
+
+    @if (errorMessage(); as error) {
+      <div class="alert" role="alert">
+        <span class="alert-icon" aria-hidden="true">!</span>
+        <span>{{ error }}</span>
+      </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="field">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Your full name"
+          autocomplete="name"
+          [class.invalid]="nameError()"
+        />
+        @if (nameError(); as message) {
+          <p class="field-error">{{ message }}</p>
+        }
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          [class.invalid]="emailError()"
+        />
+        @if (emailError(); as message) {
+          <p class="field-error">{{ message }}</p>
+        }
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input
+            id="password"
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="At least 6 characters"
+            autocomplete="new-password"
+            [class.invalid]="passwordError()"
+          />
+          <button
+            type="button"
+            class="toggle"
+            (click)="togglePassword()"
+            [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+          >
+            {{ showPassword() ? 'Hide' : 'Show' }}
+          </button>
+        </div>
+        @if (passwordError(); as message) {
+          <p class="field-error">{{ message }}</p>
+        }
+      </div>
+
+      <button type="submit" class="submit" [disabled]="loading()">
+        @if (loading()) {
+          <span class="spinner" aria-hidden="true"></span>
+          <span>Creating Account...</span>
+        } @else {
+          <span>Create Account</span>
+        }
+      </button>
+    </form>
+
+    <p class="switch">
+      Already have an account?
+      <a routerLink="/login">Log in</a>
+    </p>
+  </section>
+</main>

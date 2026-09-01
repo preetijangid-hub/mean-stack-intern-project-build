@@ -1,0 +1,198 @@
+<div class="page">
+  <header class="page-header">
+    <div class="page-heading">
+      <p class="eyebrow">Dashboard</p>
+      <h1>Productivity Overview</h1>
+      <p class="page-subtitle">Welcome back! Here is how your work is progressing today.</p>
+    </div>
+    <a routerLink="/tasks" class="btn-primary">+ Add New Task</a>
+  </header>
+
+  @if (loading()) {
+    <div class="state-block">
+      <span class="spinner dark" aria-hidden="true"></span>
+      <p>Loading your workspace...</p>
+    </div>
+  } @else if (errorMessage(); as error) {
+    <div class="state-block error">
+      <p class="state-title">Something went wrong</p>
+      <p class="state-message">{{ error }}</p>
+      <button type="button" class="btn-primary" (click)="loadTasks()">Retry</button>
+    </div>
+  } @else {
+    <section class="summary-grid" aria-label="Task summary">
+      <article class="summary-card" appHighlight>
+        <p class="summary-label">Total Tasks</p>
+        <p class="summary-value">{{ totalTasks() }}</p>
+        <p class="summary-hint">Everything in your workspace</p>
+      </article>
+      <article class="summary-card" appHighlight>
+        <p class="summary-label">Not Started</p>
+        <p class="summary-value">{{ notStartedCount() }}</p>
+        <p class="summary-hint">Waiting to be picked up</p>
+      </article>
+      <article class="summary-card" appHighlight>
+        <p class="summary-label">In Progress</p>
+        <p class="summary-value">{{ inProgressCount() }}</p>
+        <p class="summary-hint">Currently moving forward</p>
+      </article>
+      <article class="summary-card" appHighlight>
+        <p class="summary-label">Completed</p>
+        <p class="summary-value">{{ completedCount() }}</p>
+        <p class="summary-hint">Finished tasks</p>
+      </article>
+      <article class="summary-card" appHighlight>
+        <p class="summary-label">High Priority</p>
+        <p class="summary-value">{{ highPriorityCount() }}</p>
+        <p class="summary-hint">Needs attention first</p>
+      </article>
+      <article class="summary-card" appHighlight>
+        <p class="summary-label">Completion Rate</p>
+        <p class="summary-value">{{ completionRate() }}%</p>
+        <p class="summary-hint">Completed vs total tasks</p>
+      </article>
+    </section>
+
+    <section class="panel progress-panel">
+      <div class="panel-head">
+        <h2>Task Progress</h2>
+        <span class="progress-chip">{{ overallProgress() }}% overall</span>
+      </div>
+      <div class="progress-bar large">
+        <span [style.width.%]="overallProgress()"></span>
+      </div>
+      <p class="progress-note">
+        {{ completedCount() }} of {{ totalTasks() }} tasks completed · average progress across all
+        tasks
+      </p>
+    </section>
+
+    @if (totalTasks() === 0) {
+      <section class="state-block empty">
+        <div class="empty-icon" aria-hidden="true">✓</div>
+        <p class="state-title">No tasks yet</p>
+        <p class="state-message">
+          Create your first task to start tracking progress, priorities and team performance.
+        </p>
+        <a routerLink="/tasks" class="btn-primary">Create your first task</a>
+      </section>
+    }
+    <!-- Performance Overview -->
+    <section class="performance">
+      <div class="performance-head">
+        <h2>Performance Overview</h2>
+        <p>Live metrics calculated from your tasks, projects and team.</p>
+      </div>
+      <div class="performance-grid">
+        <article class="panel">
+          <h3>Overall Performance</h3>
+          <dl class="stat-rows">
+            <div><dt>Total Tasks</dt><dd>{{ totalTasks() }}</dd></div>
+            <div><dt>Completed Tasks</dt><dd>{{ completedCount() }}</dd></div>
+            <div><dt>Remaining Tasks</dt><dd>{{ totalTasks() - completedCount() }}</dd></div>
+            <div><dt>Completion Rate</dt><dd>{{ completionRate() }}%</dd></div>
+          </dl>
+          <div class="progress-bar">
+            <span [style.width.%]="completionRate()"></span>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h3>Status Distribution</h3>
+          @for (item of statusDistribution(); track item.label) {
+            <div class="dist-row">
+              <div class="dist-top">
+                <span [class]="'dot ' + item.cssClass">{{ item.label }}</span>
+                <span class="dist-count">{{ item.count }}</span>
+              </div>
+              <div class="progress-bar slim">
+                <span [class]="'bar-' + item.cssClass" [style.width.%]="item.percent"></span>
+              </div>
+            </div>
+          }
+        </article>
+
+        <article class="panel">
+          <h3>Priority Distribution</h3>
+          @for (item of priorityDistribution(); track item.label) {
+            <div class="dist-row">
+              <div class="dist-top">
+                <span [class]="'dot ' + item.cssClass">{{ item.label }}</span>
+                <span class="dist-count">{{ item.count }}</span>
+              </div>
+              <div class="progress-bar slim">
+                <span [class]="'bar-' + item.cssClass" [style.width.%]="item.percent"></span>
+              </div>
+            </div>
+          }
+        </article>
+
+        <article class="panel">
+          <h3>Project Performance</h3>
+          @for (project of projectPerformance(); track project.id) {
+            <div class="group-row">
+              <div class="group-top">
+                <span class="group-name">{{ project.name }}</span>
+                <span class="group-count">{{ project.completed }}/{{ project.total }} done · {{ project.percent }}%</span>
+              </div>
+              <div class="progress-bar slim">
+                <span [style.width.%]="project.percent"></span>
+              </div>
+            </div>
+          } @empty {
+            <p class="empty-line">No projects configured yet.</p>
+          }
+        </article>
+
+        <article class="panel wide">
+          <h3>Team Performance</h3>
+          @for (member of teamPerformance(); track member.id) {
+            <div class="group-row">
+              <div class="group-top">
+                <span class="group-name">{{ member.name }}<small>{{ member.subtitle }}</small></span>
+                <span class="group-count">{{ member.completed }}/{{ member.total }} tasks · {{ member.percent }}%</span>
+              </div>
+              <div class="progress-bar slim">
+                <span [style.width.%]="member.percent"></span>
+              </div>
+            </div>
+          } @empty {
+            <p class="empty-line">No team members configured yet.</p>
+          }
+        </article>
+      </div>
+    </section>
+
+    <!-- Your Tasks -->
+    <section class="panel tasks-panel">
+      <div class="panel-head">
+        <h2>Your Tasks</h2>
+        <a routerLink="/tasks" class="link">View all tasks →</a>
+      </div>
+      @if (recentTasks().length === 0) {
+        <p class="empty-line">No tasks to display yet. Head to the Tasks page to create one.</p>
+      } @else {
+        <div class="mini-task-grid">
+          @for (task of recentTasks(); track task.id) {
+            <article class="mini-task" [class.done]="task.completed">
+              <div class="mini-head">
+                <span class="badge" [class]="'badge ' + task.status">{{ task.status | taskStatus }}</span>
+                <span class="badge" [class]="'badge ' + task.priority">{{ task.priority }} priority</span>
+              </div>
+              <h3 class="mini-title">{{ task.title }}</h3>
+              <p class="mini-desc">{{ task.description || 'No description provided.' }}</p>
+              <div class="progress-bar slim">
+                <span [style.width.%]="task.progress"></span>
+              </div>
+              <div class="mini-meta">
+                <span>{{ task.progress }}%</span>
+                <span>{{ projectName(task.projectId) }}</span>
+                <span>{{ memberName(task.assigneeId) }}</span>
+              </div>
+            </article>
+          }
+        </div>
+      }
+    </section>
+  }
+</div>
