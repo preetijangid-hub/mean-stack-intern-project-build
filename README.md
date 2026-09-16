@@ -1,1724 +1,742 @@
-🚀 MEAN Stack Internship — TaskFlow Project Build
+# MEAN Stack Internship — 30 Day Project Build
 
-📌 Repository Overview
+A structured 30-day MEAN Stack internship journey covering JavaScript, TypeScript, Node.js, Express.js, MongoDB, Mongoose, Angular, REST APIs, authentication, testing, deployment, and full-stack application development.
 
-This repository contains the continuous TaskFlow Project Build developed during the MEAN Stack internship.
+This repository contains the **Project Build** work completed throughout the internship, progressing from individual concepts and backend/frontend exercises to a complete full-stack application.
 
-Important: This repository is separate from the Hands-on Exercises repository.Project Build is one continuous TaskFlow application, while Hands-on Exercises contains individual daily learning tasks.
+---
 
-📅 Week 1 — Project Foundation
+## 🚀 Final Project — TaskFlow
 
-Day 1 — TaskFlow Documentation
+**TaskFlow** is a full-stack task management application developed as the final capstone project.
 
-Topics
+The application brings together the concepts covered throughout the internship:
 
-Project requirements documentation
+* User authentication
+* JWT-based authorization
+* Task management
+* Project management
+* Task status and priority
+* Protected Angular routes
+* HTTP authentication interceptor
+* REST API integration
+* MongoDB persistence
+* Server-side project search and pagination
+* Loading, error and empty states
+* Angular UI/UX
+* API testing
+* Production deployment
 
-TaskFlow application overview
-
-Feature identification
-
-User flows
-
-Project scope
-
-Initial application planning
-
-Deliverable
-
-Created the initial TaskFlow project documentation and defined the major application requirements.
-
-Main Features Planned
-
-Task management
-
-Task creation
-
-Task editing
-
-Task deletion
-
-Task status
-
-Task workflow
-
-Board structure
-
-Day 2 — TaskFlow Design
-
-Topics
-
-UI/UX planning
-
-Wireframes
-
-Board layout
-
-Task card design
-
-Navigation planning
-
-User interaction flow
-
-Deliverable
-
-Created UI sketches and design notes for the TaskFlow application.
-
-Planned UI Areas
-
-Dashboard
-
-Task board
-
-Task cards
-
-Task forms
-
-Navigation
-
-Status and filter controls
-
-Day 3 — TaskFlow Data
-
-Topics
-
-Application data structure
-
-Task model
-
-JSON data
-
-Task fields
-
-Data relationships
-
-Mock-data planning
-
-Task Data
-
-Task ID
-
-Title
-
-Description
-
-Status
-
-Priority
-
-Assignee
-
-Due date
-
-Deliverable
-
-Prepared the initial TaskFlow data structure and sample data for application development.
-
-Day 4 — TaskFlow Setup
-
-Topics
-
-Project setup
-
-Repository structure
-
-Development environment
-
-Git configuration
-
-Initial application setup
-
-Deliverable
-
-Created the initial project-build structure and prepared the project for implementation.
-
-Day 5 — TaskFlow Node
-
-Topics
-
-Node.js setup
-
-npm
-
-Node modules
-
-JSON data handling
-
-Local backend/mock-data preparation
-
-npm scripts
-
-Deliverable
-
-Prepared the Node.js side of the TaskFlow project for backend-related development and data handling.
-
-📅 Week 2 — Angular Project Development
-
-Day 6 — Angular Dashboard Project
-
-Topics
-
-Angular application setup
-
-Angular components
-
-Templates
-
-Styling
-
-Signals
-
-Basic state management
-
-Deliverable
-
-Built the initial Angular dashboard for the TaskFlow application.
-
-Dashboard Areas
-
-Task summary
-
-Task status information
-
-Dashboard cards
-
-Application layout
-
-Day 7 — TaskList Project
-
-Topics
-
-Angular component structure
-
-Task list
-
-Task cards
-
-Filtering
-
-Task status display
-
-Reusable UI components
-
-Deliverable
-
-Built the TaskList portion of the TaskFlow application.
-
-Features
-
-Task list rendering
-
-Task card component
-
-Task status
-
-Task filtering
-
-Task-board layout
-
-Day 8 — Component Communication
-
-Topics
-
-Component communication
-
-Parent/child interaction
-
-Shared state
-
-Angular services
-
-Dependency Injection
-
-Signals
-
-Deliverable
-
-Implemented component communication and shared state for the TaskFlow application.
-
-Structure
-
-Parent Component
-       |
-       v
- Shared Service
-       |
-       v
-Child Components
-
-Day 8 — TaskFlow Service Project
-
-Topics
-
-TaskService
-
-Shared task state
-
-CRUD operations
-
-Angular service
-
-Dependency Injection
-
-Signal-based state
-
-Deliverable
-
-Implemented the main TaskService used by the TaskFlow application.
-
-Features
-
-Add task
-
-Edit task
-
-Delete task
-
-Read/display tasks
-
-Shared task state
-
-Component synchronization
-
-Important: Project Build Day 8 focuses on TaskFlow TaskService + task state.Hands-on Day 8 focuses on Component Communication + Shared Service.These are separate learning tracks.
-
-Day 9 — Routing Project
-
-Topics
-
-Angular Router
-
-Routes
-
-routerLink
-
-Route parameters
-
-Query parameters
-
-Navigation
-
-Wildcard routes
-
-Deliverable
-
-Added routing and navigation to the TaskFlow application.
-
-Main Routes
-
-/login
-/board
-/task/:id
-
-Features
-
-Login navigation
-
-Board navigation
-
-Task detail navigation
-
-Route parameters
-
-Query parameters
-
-Unknown-route handling
-
-📅 Week 3 — Angular Advanced Features
-
-Day 10 — TaskFlow Forms & Validation
-
-Topics
-
-Angular Reactive Forms
-
-FormBuilder
-
-Form controls
-
-Validators
-
-Validation messages
-
-Form state
-
-User input handling
-
-Deliverable
-
-Added structured forms and validation to the TaskFlow application.
-
-Form Areas
-
-Task title
-
-Task description
-
-Priority
-
-Status
-
-Assignee
-
-Due date
-
-Validation
-
-Implemented validation for required fields and invalid user input.
-
-Day 11 — TaskFlow HTTP / REST Integration
-
-Topics
-
-Angular HttpClient
-
-REST API communication
-
-GET
-
-POST
-
-PUT
-
-DELETE
-
-Observables
-
-Typed responses
-
-Loading and error handling
-
-Deliverable
-
-Connected the Angular application to backend/API-style data operations.
-
-Data Flow
-
-Angular Component
-       |
-       v
-    Service
-       |
-       v
-   HttpClient
-       |
-       v
-    REST API
-       |
-       v
-    Response
-       |
-       v
-      UI
-
-Operations
-
-GET tasks
-
-POST new task
-
-PUT/update task
-
-DELETE task
-
-Day 12 — RxJS / Search & Reactive Data Flow
-
-Topics
-
-RxJS Observables
-
-Reactive data flow
-
-Search/filtering
-
-debounceTime
-
-switchMap
-
-Combining reactive streams
-
-Error handling
-
-Deliverable
-
-Improved TaskFlow's reactive data handling and search/filter workflow.
-
-Search Flow
-
-User Input
-    |
-    v
-debounceTime
-    |
-    v
-switchMap
-    |
-    v
-API / Data Source
-    |
-    v
-Latest Results
-    |
-    v
-TaskFlow UI
-
-Day 13 — Custom Pipe & Directive
-
-Topics
-
-Angular pipes
-
-Custom pipes
-
-Attribute directives
-
-HostListener
-
-UI transformation
-
-Deliverable
-
-Added reusable display transformations and UI behavior to the TaskFlow application.
-
-Custom Pipe — timeAgo
-
-Converts dates into readable text.
-
-2026-08-11T10:00:00
-        ↓
-   2 hours ago
-
-Custom Directive
-
-Implemented a highlight-on-hover style directive using HostListener.
-
-The directive changes the visual appearance of an element when the user moves the mouse over it.
-
-📅 Week 4 — Authentication, UI & Backend
-
-Day 14 — Authentication Guard
-
-Topics
-
-Angular route guards
-
-Authentication flow
-
-Protected routes
-
-Unauthorized navigation
-
-Authentication state
-
-Deliverable
-
-Added authentication protection to TaskFlow routes.
-
-Protected Route
-
-/board
-
-Authentication Flow
-
-User
- |
- v
-Protected Route
- |
- v
-Auth Guard
- |
- +---- Authenticated ------> Allow
- |
- +---- Not Authenticated --> Login
-
-Day 15 — Angular Material + Review
-
-Topics
-
-Angular Material
-
-Toolbar
-
-Cards
-
-Form fields
-
-Buttons
-
-Inputs
-
-Tables
-
-Theming
-
-Responsive design
-
-Accessibility basics
-
-Deliverable
-
-Restyled the TaskFlow application using Angular Material components.
-
-Material Components
-
-Toolbar
-
-Cards
-
-Form fields
-
-Buttons
-
-Inputs
-
-Table-related UI
-
-Improvements
-
-Improved board layout
-
-Responsive design
-
-Consistent visual styling
-
-Better spacing
-
-Improved user experience
-
-Basic accessibility improvements
-
-🖥️ Phase 3 — Backend API (Express)
-
-Day 16 — Backend API (Express)
-
-Objective
-
-Day 16 starts the backend API development for the TaskFlow application.
-
-Topics
-
-Express server setup
-
-Backend project structure
-
-Health/API route
-
-Nodemon
-
-npm scripts
-
-Request logging middleware
-
-REST API foundation
-
-Project Structure
-
-Day-16(BACKEND-API-EXPRESS)/
-│
-└── server/
-    ├── server.js
-    ├── package.json
-    ├── package-lock.json
-    └── node_modules/
-
-node_modules is generated locally by npm and should normally be excluded from Git.
-
-Dependencies
-
-Production dependency
-
-express
-
-Development dependency
-
-nodemon
-
-Express Server
-
-The backend server is implemented in server.js.
-
-The server runs on:
-
-http://localhost:3000
-
-API Response
-
-The backend returns a JSON response confirming that the Day 16 backend is running.
-
-{
-  "message": "Day 16 Backend API is running"
-}
-
-Request Logging
-
-Request logging middleware records incoming HTTP requests in the terminal.
-
-Example:
-
-GET /health - 11ms
-
-Nodemon
-
-Nodemon watches backend files and automatically restarts the Express server whenever source files are changed.
-
-npm Scripts
-
-The backend uses npm scripts for development and production-style execution.
-
-{
-  "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
-  }
-}
-
-Run Day 16
-
-Go to the server folder:
-
-cd "Day-16(BACKEND-API-EXPRESS)\server"
-
-Install dependencies:
-
-npm install
-
-Run in development mode:
-
-npm run dev
-
-Run normally:
-
-npm start
-
-Open:
-
-http://localhost:3000
-
-Day 16 Deliverable
-
-Express Server
-      |
-      v
-Nodemon Development Setup
-      |
-      v
-Request Logger
-      |
-      v
-Health / API Route
-      |
-      v
-JSON Response
-      |
-      v
-Backend Foundation Ready
-
-📂 Current Project Build Structure
-
-project-build/
-│
-├── Day-01(TASKFLOW-DOCUMENTATION)/
-├── Day-02(TASKFLOW-DESIGN)/
-├── Day-03(TASKFLOW-DATA)/
-├── Day-04(TASKFLOW-SETUP)/
-├── Day-05(TASKFLOW-NODE)/
-├── Day-06(ANGULAR-DASHBOARD-PROJECT)/
-├── Day-07(TASKLIST-PROJECT)/
-├── Day-08(COMPONENT-COMMUNICATION)/
-├── Day-08(TASKFLOW-SERVICE-PROJECT)/
-├── Day-09(ROUTING-PROJECT)/
-├── Day-13(CUSTOM-PIPE-DIRECTIVE)/
-├── Day-14(AUTH-GUARD)/
-├── Day-15(ANGULAR-MATERIAL-REVIEW)/
-├── Day-16(BACKEND-API-EXPRESS)/
-│   └── server/
-│       ├── server.js
-│       ├── package.json
-│       └── package-lock.json
-│
-└── README.md
-
-▶️ Running the Projects
-
-Angular Projects
-
-Go to the required Angular project:
-
-cd <project-folder>
-npm install
-ng serve
-
-Open:
-
-http://localhost:4200
-
-If Angular CLI is not installed globally:
-
-npx ng serve
-
-Node.js Projects
-
-Run a JavaScript/Node script:
-
-node script.js
-
-or:
-
-node app.js
-
-For an npm project:
-
-npm install
-npm run <script-name>
-
-Express Backend — Day 16
-
-cd "Day-16(BACKEND-API-EXPRESS)\server"
-npm install
-npm run dev
-
-Server:
-
-http://localhost:3000
-
-🔀 GitHub Workflow
-
-The Project Build work is maintained on the:
-
-project-build
-
-branch.
-
-Check Current Branch
-
-git branch --show-current
-
-Check Git Status
-
-git status
-
-Stage Changes
-
-git add .
-
-Commit Changes
-
-git commit -m "Day 16 Project Build: Express Backend API"
-
-Push Changes
-
-git push origin project-build
-
-📈 Project Build Learning Progress
-
-By Day 16, the TaskFlow Project Build has progressed through the following areas.
-
-Foundation
-
-Project documentation
-
-UI/UX design
-
-Data modeling
-
-Project setup
-
-Node.js foundation
-
-Angular
-
-Angular dashboard
-
-Components
-
-Task list
-
-Component communication
-
-Services
-
-Dependency Injection
-
-Shared state
-
-Routing
-
-Reactive Forms
-
-Validation
-
-HttpClient
-
-REST API integration
-
-RxJS
-
-Custom pipes
-
-Directives
-
-Authentication guards
-
-Angular Material
-
-Responsive UI
-
-Accessibility basics
-
-Backend
-
-Node.js backend foundation
-
-Express server
-
-API route
-
-Health check
-
-Nodemon
-
-npm scripts
-
-Request logging
-
-🏗️ TaskFlow Architecture
-
-The application is progressing toward a full-stack MEAN architecture.
-
-                  TaskFlow Application
-                         |
-             +-----------+-----------+
-             |                       |
-             v                       v
-         Angular UI             Express API
-             |                       |
-             v                       v
-      Angular Services          Backend Routes
-             |                       |
-             +-----------+-----------+
-                         |
-                         v
-                      Database
-                    (Future Phase)
-
-🔄 Project Build vs Hands-on Exercises
-
-These two tracks must remain separate.
-
-Project Build
-
-The Project Build is the continuous TaskFlow application.
-
-It combines features across multiple days into one application.
-
-Examples:
-
-TaskService
-
-Add task
-
-Edit task
-
-Delete task
-
-Shared task state
-
-Routing
-
-Authentication
-
-Angular Material
-
-Express backend
-
-Hands-on Exercises
-
-Hands-on Exercises are individual daily learning tasks used to practice specific technologies and concepts.
-
-They are maintained in the separate Hands-on repository.
-
-✅ Day 16 Completion Status
-
-By the end of Day 16:
-
-Day 16 project folder created in the correct location
-
-Express installed
-
-Nodemon installed
-
-Express server created
-
-Server running successfully on port 3000
-
-API/health response implemented
-
-Request logging implemented
-
-npm development script configured
-
-Backend foundation ready for future TaskFlow API development
-
-🎯 Current Status
-
-Project Build Progress: Day 16 Completed
-
-Current Phase: Backend API — Express
-
-Next Direction: Continue expanding the Express backend into the TaskFlow REST API and connect it with the Angular frontend.
-
-📌 Technology Stack
-
-Layer
-
-Technology
-
-Frontend
-
-Angular
-
-Language
-
-TypeScript
-
-Backend
-
-Node.js + Express
-
-API Communication
-
-REST API
-
-Reactive Programming
-
-RxJS
-
-UI Library
-
-Angular Material
-
-State
-
-Angular Signals / Services
-
-Version Control
-
-Git + GitHub
-
-Development Server
-
-Nodemon
-
-<<<<<<< Updated upstream
-Day 17 — Backend API with Express.js
-
-Overview
-
-On Day 17, I learned the fundamentals of backend API development using Node.js and Express.js. I created a RESTful backend API with separate routes for users and tasks and implemented the main HTTP methods used in CRUD operations.
-
-Topics Covered
-
-Node.js backend development
-
-Express.js setup and configuration
-
-Creating an Express server
-
-Middleware
-
-express.json()
-
-Routing and route handlers
-
-REST API architecture
-
-HTTP request and response
-
-JSON data handling
-
-Route parameters
-
-CRUD operations
-
-GET, POST, PUT and DELETE methods
-
-Separating routes into different files
-
-HTTP status codes
-
-Basic error handling
-
-Project Built
-
-Task Management REST API
-
-I built a basic Task Management REST API using Node.js and Express.js.
-
-Project Structure
-
-_____________________________________________________________________________________________________________________________________________________
-## Day-17(BACKEND-API-EXPRESS)
-│
-├── node_modules/
-├── routes/
-│   ├── tasks.js
-│   └── users.js
-├── .gitignore
-├── package.json
-├── package-lock.json
-├── README.md
-└── server.js
-
-Server Setup
-
-The Express application uses JSON middleware:
-
-const express = require("express");
-
-const app = express();
-
-app.use(express.json());
-
-The server runs on:
-
-http://localhost:3000
-API Routes
-
-Users API
-
-GET /api/users
-GET /api/users/:id
-
-Tasks API
-
-GET /api/tasks
-POST /api/tasks
-PUT /api/tasks/:id
-DELETE /api/tasks/:id
-
-Create a Task
-
-{
-  "title": "Learn Express"
-   
-}
-
-Update a Task
-
-{
-  "title": "Learn Express REST API",
-  "completed": true
-}
-
-REST API Operations
-
-HTTP Method
-
-Purpose
-
-GET
-
-
-Retrieve data
-
-POST
-
-Create new data
-
-PUT
-
-Update existing data
-
-DELETE
-
-Delete data
-
-Route Organization
-
-The API routes are separated into individual files:
-
-routes/
-├── users.js
-└── tasks.js
-
-They are connected to the Express application using:
-
-app.use("/api/users", usersRouter);
-app.use("/api/tasks", tasksRouter);
-
-Testing
-
-GET requests can be tested in the browser. POST, PUT and DELETE requests can be tested using an API testing tool such as Postman.
-
-How to Run
-
-Install dependencies:
-
-npm install
-
-Start the server:
-
-node server.js
-
-The console displays:
-
-Server running on http://localhost:3000
-
-Day 17 Outcome
-
-Successfully built a basic Express.js REST API with:
-
-Express server
-
-Middleware
-
-Separate routes
-
-Users API
-
-Tasks API
-
-GET, POST, PUT and DELETE APIs
-
-JSON request and response handling
-
-Route parameters
-
-Basic error handling
-
-Status
-
-Day 17 Project Build — Completed
-
-_____________________________________________________________________________________________________________________________________________
-# Day 18 — Project Routes & Controllers
-
-## Overview
-
-This project implements a **Projects REST API** using Node.js and Express.js.
-
-The main focus is separating API **routes** from **controllers** and maintaining consistent response shapes.
-
-## Topics Covered
-
-* Express.js routing
-* REST API design
-* Routes and controllers
-* CRUD operations
-* HTTP methods
-* HTTP status codes
-* Route parameters
-* JSON request and response handling
-* Consistent API response structure
-=======
-
-# Day 19 – Validated & Safe API
-
-## Overview
-
-Day 19 Project Build focuses on improving an Express.js backend by adding input validation, centralized error handling, CORS, and environment-based configuration.
-
-The goal is to create a **validated, safe, and maintainable API** using a layered backend structure.
-
-## Project Objective
-
-Build an Express.js User API with:
-
-* Input validation using `express-validator`
-* Centralized error-handling middleware
-* 404 route handling
-* CORS configuration
-* Environment configuration using `dotenv`
-* Controller-based API logic
-* Consistent JSON responses
->>>>>>> Stashed changes
-
-## Project Structure
+### Core Entities
 
 ```text
-<<<<<<< Updated upstream
-Day-18(PROJECT-ROUTES)/
-├── controllers/
-│   └── projectsController.js
-├── routes/
-│   └── projects.js
-├── server.js
-├── package.json
-├── package-lock.json
-├── .gitignore
-└── README.md
+User
+ ├── Projects
+ └── Tasks
+
+Project
+ └── Team Members
+
+Task
+ ├── Title
+ ├── Description
+ ├── Status
+ └── Priority
 ```
 
-## API Endpoints
+---
 
-| Method | Endpoint            | Purpose          |
-| ------ | ------------------- | ---------------- |
-| GET    | `/api/projects`     | Get all projects |
-| GET    | `/api/projects/:id` | Get one project  |
-| POST   | `/api/projects`     | Create project   |
-| PUT    | `/api/projects/:id` | Update project   |
-| DELETE | `/api/projects/:id` | Delete project   |
+## 🛠️ Technology Stack
 
-## Response Shape
+### Frontend
 
-Successful responses use:
+* Angular
+* TypeScript
+* HTML5
+* CSS3
+* Angular Router
+* Angular HttpClient
+* RxJS
+* Angular Guards
+* HTTP Interceptors
+* Angular Material
 
-```json
-{
-  "success": true,
-  "data": {}
-}
-```
-
-Error responses use:
-
-```json
-{
-  "success": false,
-  "message": "Project not found"
-}
-```
-
-This keeps the API responses consistent.
-
-## Running the Project
-=======
-Day-19(VALIDATION-ERRORS-CONFIG)
-└── server
-    ├── config
-    │   └── env.js
-    ├── controllers
-    │   └── userController.js
-    ├── middleware
-    │   ├── errorHandler.js
-    │   └── notFound.js
-    ├── routes
-    │   └── userRoutes.js
-    ├── validators
-    │   └── userValidator.js
-    ├── .env
-    ├── .gitignore
-    ├── package.json
-    ├── package-lock.json
-    └── server.js
-```
-
-## Technologies Used
+### Backend
 
 * Node.js
 * Express.js
+* REST API
+* JWT
+* bcrypt
 * express-validator
-* dotenv
-* CORS
-* Nodemon
-* Thunder Client
 
-## Architecture
+### Database
 
-The project follows a simple layered architecture:
+* MongoDB
+* MongoDB Atlas
+* Mongoose
 
-```text
-Client
-   ↓
-CORS
-   ↓
-Express JSON Middleware
-   ↓
-Routes
-   ↓
-Validation
-   ↓
-Controller
-   ↓
-Response
-```
+### Testing
 
-Errors follow:
-
-```text
-Error
-  ↓
-next(error)
-  ↓
-Central Error Handler
-  ↓
-Consistent JSON Response
-```
-
-## Installation
-
-Initialize the project:
+* Jest
+* Supertest
+* Postman
 
-```bash
-npm init -y
-```
->>>>>>> Stashed changes
+### Development & Deployment
 
-Install dependencies:
+* Git
+* GitHub
+* VS Code
+* PowerShell
+* Render
 
-```bash
-<<<<<<< Updated upstream
-npm install
-```
+---
 
-Start the server:
+# 📚 30-Day Learning Roadmap
 
-```bash
-node server.js
-=======
-npm install express express-validator cors dotenv
-```
+## Week 1 — JavaScript & TypeScript Foundations
 
-Install Nodemon:
+### Day 01 — JavaScript Basics
 
-```bash
-npm install --save-dev nodemon
-```
+Covered the fundamentals of JavaScript:
 
-## Environment Configuration
+* Variables
+* Data types
+* Operators
+* Conditional statements
+* Loops
+* Basic problem solving
 
-`.env`:
+---
 
-```env
-PORT=5000
-NODE_ENV=development
-```
+### Day 02 — Functions, Arrays & Objects
 
-Environment configuration is loaded through:
+Worked with core JavaScript data structures and reusable logic:
 
-```text
-config/env.js
-```
+* Functions
+* Function parameters and return values
+* Arrays
+* Array methods
+* Objects
+* Object properties and methods
 
-The `.env` file is excluded from version control.
+---
 
-## API Endpoints
+### Day 03 — Asynchronous JavaScript
 
-### 1. Health Check
+Learned how JavaScript handles asynchronous operations:
 
-```http
-GET /
-```
+* Callbacks
+* Promises
+* Async/await
+* Error handling
+* Asynchronous execution
 
-Example response:
+---
 
-```json
-{
-  "success": true,
-  "message": "Day 19 Validated API is running",
-  "environment": "development"
-}
-```
+### Day 04 — TypeScript Fundamentals
 
-### 2. Create User
+Introduced TypeScript and static typing:
 
-```http
-POST /api/users
-```
+* Type annotations
+* Primitive types
+* Arrays
+* Objects
+* Interfaces
+* Functions
+* Type-safe development
 
-Request body:
+---
 
-```json
-{
-  "name": "Preeti",
-  "email": "preeti@example.com",
-  "age": 22
-}
-```
+### Day 05 — Node.js, npm & Modules
 
-Successful response:
+Started backend development with Node.js:
 
-```json
-{
-  "success": true,
-  "message": "User created successfully",
-  "data": {
-    "id": 123456789,
-    "name": "Preeti",
-    "email": "preeti@example.com",
-    "age": 22
-  }
-}
-```
+* Node.js runtime
+* npm
+* `package.json`
+* CommonJS modules
+* `require` and `module.exports`
+* Basic Node.js application structure
 
-## Input Validation
+---
 
-The API validates the following fields.
+## Week 2 — Angular Foundations
 
-### Name
+### Day 06 — Angular Setup & Components
 
-* Required
-* Minimum 3 characters
-* Maximum 50 characters
+Started Angular development:
 
-### Email
+* Angular CLI
+* Project structure
+* Components
+* Component metadata
+* TypeScript in Angular
+* Angular development workflow
 
-* Required
-* Must be a valid email address
-* Normalized using `normalizeEmail()`
+---
 
-### Age
+### Day 07 — Angular Templates & Directives
 
-* Required
-* Must be an integer
-* Minimum 18
-* Maximum 100
+Worked with Angular templates:
 
-Example invalid request:
+* Template syntax
+* Property binding
+* Event binding
+* Interpolation
+* Structural directives
+* Attribute directives
 
-```json
-{
-  "name": "P",
-  "email": "invalid-email",
-  "age": 15
-}
-```
+---
 
-The API returns:
+### Day 08 — Component Communication & Dependency Injection
 
-```text
-400 Bad Request
-```
+Covered communication between Angular components:
 
-with validation details.
+* Parent-child communication
+* `@Input`
+* `@Output`
+* Event emitters
+* Services
+* Dependency injection
 
-## Centralized Error Handling
+---
 
-The project uses:
+### Day 09 — Routing & Navigation
 
-```text
-middleware/errorHandler.js
-```
+Implemented Angular navigation:
 
-Instead of handling errors separately in every route, errors are forwarded to one central middleware.
+* Angular Router
+* Routes
+* Router links
+* Route parameters
+* Navigation
+* Page-based application structure
 
-Example:
+---
 
-```javascript
-next(error);
-```
+### Day 10 — Forms & Validation
 
-Consistent error response:
+Worked with Angular forms:
 
-```json
-{
-  "success": false,
-  "error": {
-    "message": "Input validation failed",
-    "statusCode": 400,
-    "details": []
-  }
-}
-```
+* Form handling
+* Reactive forms
+* Form controls
+* Validation
+* Validation messages
+* User input handling
 
-## 404 Handling
+---
 
-Unknown routes are handled through:
+### Day 11 — HttpClient & REST APIs
 
-```text
-middleware/notFound.js
-```
+Connected Angular applications with backend APIs:
 
-Example:
+* Angular HttpClient
+* GET requests
+* POST requests
+* PUT requests
+* DELETE requests
+* REST API concepts
+* API response handling
 
-```http
-GET /api/unknown
-```
+---
 
-Response:
+### Day 12 — RxJS
 
-```json
-{
-  "success": false,
-  "error": {
-    "message": "Route not found: /api/unknown",
-    "statusCode": 404,
-    "details": []
-  }
-}
-```
+Introduced reactive programming:
 
-## CORS Configuration
+* Observables
+* Subscriptions
+* RxJS operators
+* Asynchronous data streams
+* HTTP observables
 
-CORS is enabled globally:
+---
 
-```javascript
-app.use(cors());
-```
+### Day 13 — Pipes, Directives & Lifecycle
 
-This prepares the backend to communicate with frontend applications hosted on different origins.
+Covered Angular application behavior and presentation:
 
-## Controller Layer
+* Custom pipes
+* Directives
+* Component lifecycle
+* Lifecycle hooks
+* Reusable UI behavior
 
-User creation logic is separated into:
+---
 
-```text
-controllers/userController.js
-```
+### Day 14 — Guards, Interceptors & State
 
-This keeps route definitions clean and makes the application easier to maintain.
+Introduced application-level control:
 
-## Validation Layer
+* Route guards
+* HTTP interceptors
+* Authentication flow
+* Request handling
+* Basic state management concepts
 
-Validation is separated into:
+---
 
-```text
-validators/userValidator.js
-```
+### Day 15 — Angular Material & Review
 
-This ensures that invalid requests are rejected before reaching the controller.
+Worked with Angular Material and reviewed the Angular concepts covered during the first two weeks:
 
-## Running the Project
+* Angular Material components
+* UI structure
+* Forms
+* Routing
+* Services
+* HTTP
+* Guards
+* Interceptors
 
-Development mode:
+---
 
-```bash
-npm run dev
-```
+# 🧩 Week 3 — Backend & API Development
 
-Normal start:
+The third phase focused on building backend applications with Node.js, Express and MongoDB.
 
-```bash
-npm start
->>>>>>> Stashed changes
-```
+### Day 16 — Node.js & Express Backend
 
-Server:
+Worked with:
 
-```text
-<<<<<<< Updated upstream
-http://localhost:3000
-```
+* Express.js
+* Server setup
+* Routes
+* Middleware
+* Request/response handling
+* REST API structure
 
-## Example POST Request
+---
 
-```json
-{
-  "name": "E-Commerce Application",
-  "description": "An online shopping project",
-  "status": "active"
-}
-```
+### Day 17 — REST API Development
 
-## Key Learning
+Practiced designing REST APIs:
 
-The project demonstrates how to keep Express applications organized by moving business/request-handling logic into **controllers** while keeping URL definitions inside **routes**.
+* API routes
+* HTTP methods
+* Request bodies
+* Route parameters
+* Status codes
+* JSON responses
 
-### Day 18 Highlight
+---
 
-**Projects API + Route/Controller Separation + CRUD + Consistent Response Shapes**
-=======
-http://localhost:5000
-```
+### Day 18 — MongoDB & Mongoose
 
-## Testing
+Introduced database integration:
 
-The API was tested using Thunder Client.
+* MongoDB
+* MongoDB Atlas
+* Mongoose
+* Schemas
+* Models
+* Database connection
+* CRUD operations
 
-### Tested Cases
+---
 
-* Health check
-* Valid user creation
-* Invalid name
-* Invalid email
-* Invalid age
-* Missing fields
-* Unknown routes
-* Centralized error responses
-* Environment configuration
+### Day 19 — Validation & Error Handling
 
-## Deliverable
+Implemented consistent API validation and error handling using:
 
-**Validated, safe API ✅**
-
-The project successfully implements:
-
+* `express-validator`
 * Request validation
-* Centralized error handling
-* CORS
-* dotenv configuration
-* 404 handling
-* Layered Express architecture
-* Consistent JSON API responses
+* Email validation
+* Centralized validation handling
+* Central error middleware
+* Structured error responses
+* HTTP status codes
 
-## Learning Outcome
+---
 
-After completing this project, the following backend concepts were strengthened:
+### Day 20 — Authentication
 
-* Express middleware architecture
-* Request validation
-* Error propagation
-* Centralized error handling
-* Environment configuration
-* CORS
-* Controller and route separation
-* Building safer APIs
+Implemented backend authentication concepts:
+
+* Password hashing
+* bcrypt
+* JWT
+* Login
+* Registration
+* Authentication middleware
+* Protected API routes
+
+---
+
+### Day 21 — Environment Configuration & API Structure
+
+Worked with production-oriented backend configuration:
+
+* Environment variables
+* `.env`
+* `.gitignore`
+* Database configuration
+* API organization
+* Controllers
+* Routes
+* Middleware
+
+Sensitive environment files were kept out of version control.
+
+---
+
+### Day 22 — Backend CRUD
+
+Built CRUD functionality around application data:
+
+* Create
+* Read
+* Update
+* Delete
+* MongoDB queries
+* Mongoose models
+* Controller-based architecture
 * API testing
 
-## Status
+---
 
+### Day 23 — Full API Integration & Review
 
+Reviewed and integrated the backend concepts:
 
-# Day 20 – Authentication & Protected API
+* Authentication
+* CRUD APIs
+* Validation
+* Error handling
+* Database integration
+* Protected endpoints
+* API testing
 
-## Overview
+---
 
-Day 20 focuses on implementing authentication and authorization in an Express.js API.
+# 🧪 Week 4 — Testing & Deployment
 
-The project includes user registration, secure password hashing using bcrypt, login authentication using JWT, and middleware to protect task routes.
+## Day 24 — API Testing with Jest & Supertest
 
-## Objective
+Implemented automated API testing using:
 
-Build an authentication-protected API with:
+* Jest
+* Supertest
+* Authentication tests
+* API response assertions
+* Validation tests
+* Protected route tests
+* Error response tests
 
-- User registration
-- Password hashing using bcrypt
-- User login
-- JWT token generation
-- JWT authentication middleware
-- Protected task routes
-- CORS configuration
-- Environment variables using dotenv
-- Request validation
-- Centralized error handling
+The Day-24 API test suite was verified with **17 passing tests across 2 test suites**.
 
-## Technologies Used
+---
 
-- Node.js
-- Express.js
-- bcrypt
-- JSON Web Token (JWT)
-- dotenv
-- CORS
-- express-validator
-- Nodemon
-- Thunder Client
+## Day 25 — API Deployment
 
-## Project Structure
+Deployed the Express/MongoDB backend and worked with:
+
+* Production environment variables
+* MongoDB Atlas
+* Render
+* Production API configuration
+* API health checks
+* Deployed API testing
+
+---
+
+# 🏗️ Week 5 — TaskFlow Capstone
+
+## Day 26 — Frontend + Live API + JWT
+
+Integrated the Angular frontend with the deployed backend.
+
+Implemented:
+
+* Angular services
+* HttpClient
+* Login
+* Registration
+* JWT authentication
+* Authentication interceptor
+* Protected routes
+* Local token handling
+* Live API integration
+
+The frontend communicates with the deployed TaskFlow API instead of relying only on mock/local data.
+
+---
+
+## Day 27 — Task CRUD
+
+Implemented the core TaskFlow task management functionality:
+
+* Create tasks
+* Read tasks
+* Update tasks
+* Delete tasks
+* Task status
+* Task priority
+* Authentication-protected task operations
+* Angular task service
+* Backend task API
+
+TaskFlow supports statuses such as:
+
+* Not Started
+* In Progress
+* Completed
+
+and priorities:
+
+* High
+* Medium
+* Low
+
+---
+
+## Day 28 — Projects, Filtering & Pagination
+
+Extended TaskFlow with project management and improved data handling.
+
+### Projects
+
+Implemented:
+
+* Project model
+* Project API
+* Authenticated project routes
+* Project creation
+* Project listing
+* Team members
+* Project descriptions
+
+### Server-side pagination
+
+The backend supports:
+
+* `page`
+* `limit`
+* `search`
+* MongoDB `skip()`
+* MongoDB `limit()`
+* Total record count
+* Total page count
+
+### Search
+
+Project search is handled on the server using a case-insensitive name search.
+
+### Frontend
+
+The Angular project page includes:
+
+* Search
+* Pagination
+* Loading state
+* Error state
+* Empty state
+* Protected project route
+
+---
+
+## Day 29 — Capstone Integration & Polish
+
+Focused on bringing the complete application together.
+
+Work included:
+
+* Frontend/backend integration
+* Authentication flow verification
+* Task CRUD verification
+* Project functionality
+* Search and pagination
+* UI improvements
+* Error handling
+* Loading states
+* Empty states
+* Code cleanup
+* Test verification
+* README/documentation preparation
+
+The Angular production build was verified successfully.
+
+---
+
+## Day 30 — Final Deployment & Demo
+
+Final stage of the internship project:
+
+* Production frontend build
+* Frontend deployment
+* Backend/frontend integration verification
+* Final application testing
+* Project documentation
+* Screenshots/demo preparation
+* Final TaskFlow presentation
+
+This marks the completion of the 30-day MEAN Stack Project Build journey.
+
+---
+
+# 📂 Repository Structure
+
+The repository is organized by learning day.
 
 ```text
-Day-20(AUTH-REGISTER-LOGIN)
-└── server
-    ├── config
-    │   └── env.js
-    ├── controllers
-    │   ├── authController.js
-    │   └── taskController.js
-    ├── middleware
-    │   ├── authMiddleware.js
-    │   ├── errorHandler.js
-    │   └── notFound.js
-    ├── routes
-    │   ├── authRoutes.js
-    │   └── taskRoutes.js
-    ├── validators
-    │   └── authValidator.js
-    ├── .env
-    ├── .gitignore
-    ├── package.json
-    ├── package-lock.json
-    └── server.js
+mean-stack-intern-project-build/
+│
+├── Day-01/
+├── Day-02/
+├── Day-03/
+├── ...
+│
+├── Day-24(API-TESTING-JEST-SUPERTEST)/
+│   ├── api/
+│   └── tests/
+│
+├── Day-25(API-DEPLOYMENT)/
+│   └── api/
+│
+├── Day-26(FE-LIVE-API-JWT)/
+│   └── taskflow-client/
+│
+├── Day-27(TASK-CRUD-LIVE-API)/
+│   ├── api/
+│   └── client/
+│
+├── Day-28(PROJECTS-FILTERING-PAGINATION)/
+│   ├── api/
+│   └── client/
+│
+├── Day-29(CAPSTONE-INTEGRATE-POLISH)/
+│   └── capstone-taskflow/
+│
+├── Day-30/
+│
+├── .gitignore
+└── README.md
+```
 
-**Day 19 Project Build – Completed ✅**
->>>>>>> Stashed changes
+Generated Angular build and cache directories such as `dist/` and `.angular/` are excluded through the root `.gitignore`.
+
+---
+
+# 🔐 Security Practices
+
+The project follows basic security practices throughout development:
+
+* Passwords are hashed using bcrypt.
+* JWT is used for authentication.
+* Protected routes require authentication.
+* Environment variables are not committed.
+* `.env` files are ignored by Git.
+* Sensitive credentials were removed from repository history when required.
+* Input validation is applied to API requests.
+* Unauthorized and forbidden requests are handled separately.
+* Centralized error handling is used by the backend.
+
+---
+
+# 🧪 Testing
+
+Testing was performed using:
+
+* Jest
+* Supertest
+* Postman
+* PowerShell API requests
+* Angular production builds
+
+Testing covered areas including:
+
+* Registration
+* Login
+* Authentication
+* Protected routes
+* Task CRUD
+* Validation
+* Error responses
+* Project creation
+* Project search
+* Server-side pagination
+* Invalid page/limit handling
+
+---
+
+# 🌐 Backend API
+
+The TaskFlow backend was deployed using Render.
+
+```text
+https://taskflow-api-zad8.onrender.com/api
+```
+
+The backend includes authentication, task and project functionality.
+
+---
+
+# 📌 Key Learning Outcomes
+
+By the end of the internship, the project covered the complete flow from frontend development to backend deployment:
+
+```text
+Angular UI
+    ↓
+Angular Services
+    ↓
+HttpClient / Interceptor
+    ↓
+Express REST API
+    ↓
+JWT Authentication
+    ↓
+Controllers
+    ↓
+Mongoose Models
+    ↓
+MongoDB Atlas
+```
+
+The internship provided practical experience with:
+
+* Full-stack web development
+* Angular application architecture
+* REST API design
+* Authentication and authorization
+* MongoDB database integration
+* API validation
+* Error handling
+* Automated API testing
+* Frontend/backend integration
+* Server-side pagination
+* Search
+* Git and GitHub
+* Production deployment
+* Debugging and code maintenance
+
+---
+
+# 🎯 Final Capstone
+
+**TaskFlow** represents the final integration of the concepts learned throughout the 30-day MEAN Stack internship.
+
+The project demonstrates the ability to build a full-stack application from:
+
+**Planning → Database → Backend API → Authentication → Angular Frontend → Testing → Deployment → Final Integration**
+
+---
+
+## 👩‍💻 Developer
+
+**Preeti Jangid**
+
+B.Tech — Computer Science & Engineering
+
+GitHub:
+https://github.com/preetijangid-hub
+
+---
+
+## 📖 Repository
+
+**MEAN Stack Internship — Project Build**
+
+https://github.com/preetijangid-hub/mean-stack-intern-project-build
