@@ -1,1 +1,33 @@
-<main class="auth"><section class="card"><h1>TaskFlow</h1><h2>Create account</h2>@if(error){<div class="error">{{error}}</div>}<form #f="ngForm" (ngSubmit)="submit(f)"><label>Name</label><input name="name" [(ngModel)]="name" required><label>Email</label><input name="email" type="email" [(ngModel)]="email" required email><label>Password</label><input name="password" type="password" [(ngModel)]="password" required minlength="6"><button [disabled]="loading">{{loading?"Creating...":"Register"}}</button></form><p>Already registered? <a routerLink="/login">Login</a></p></section></main>
+<main class="auth">
+  <section class="card">
+    <h1>TaskFlow</h1>
+    <h2>Create account</h2>
+
+    @if (error) {
+      <div class="error">{{ error }}</div>
+    }
+
+    <form #f="ngForm" (ngSubmit)="submit(f)">
+      <label>Name</label>
+      <input name="name" [(ngModel)]="name" required />
+
+      <label>Email</label>
+      <input name="email" type="email" [(ngModel)]="email" required email />
+
+      <label>Password</label>
+      <input
+        name="password"
+        type="password"
+        [(ngModel)]="password"
+        required
+        minlength="6"
+      />
+
+      <button [disabled]="loading">
+        {{ loading ? "Creating..." : "Register" }}
+      </button>
+    </form>
+
+    <p>Already registered? <a routerLink="/login">Login</a></p>
+  </section>
+</main>

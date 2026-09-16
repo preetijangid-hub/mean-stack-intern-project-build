@@ -1,1 +1,74 @@
-const bcrypt=require("bcryptjs"),jwt=require("jsonwebtoken"),User=require("../models/User"); const token=id=>jwt.sign({id},process.env.JWT_SECRET,{expiresIn:"1d"}); exports.register=async(req,res,next)=>{try{const{name,email,password}=req.body;const e=email.toLowerCase().trim();if(await User.findOne({email:e})){const error=new Error("Email already registered");error.statusCode=409;return next(error);}const u=await User.create({name:name.trim(),email:e,password:await bcrypt.hash(password,10)});res.status(201).json({success:true,message:"User registered successfully",token:token(u._id.toString())});}catch(e){return next(e)}}; exports.login=async(req,res,next)=>{try{const{email,password}=req.body;const u=await User.findOne({email:(email||"").toLowerCase().trim()});if(!u||!(await bcrypt.compare(password||"",u.password))){const error=new Error("Invalid email or password");error.statusCode=401;return next(error);}res.json({success:true,message:"Login successful",token:token(u._id.toString())});}catch(e){return next(e)}};
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+
+const generateToken = (id) => {
+  return jwt.sign(
+    { id },
+    process.env.JWT_SECRET,
+    { expiresIn: "1d" }
+  );
+};
+
+exports.register = async (req, res, next) => {
+  try {
+    const { name, email, password } = req.body;
+    const normalizedEmail = email.toLowerCase().trim();
+
+    const existingUser = await User.findOne({
+      email: normalizedEmail,
+    });
+
+    if (existingUser) {
+      const error = new Error("Email already registered");
+      error.statusCode = 409;
+      return next(error);
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name: name.trim(),
+      email: normalizedEmail,
+      password: hashedPassword,
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      token: generateToken(user._id.toString()),
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+exports.login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    const normalizedEmail = (email || "").toLowerCase().trim();
+
+    const user = await User.findOne({
+      email: normalizedEmail,
+    });
+
+    const isPasswordValid =
+      user && (await bcrypt.compare(password || "", user.password));
+
+    if (!user || !isPasswordValid) {
+      const error = new Error("Invalid email or password");
+      error.statusCode = 401;
+      return next(error);
+    }
+
+    res.json({
+      success: true,
+      message: "Login successful",
+      token: generateToken(user._id.toString()),
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+

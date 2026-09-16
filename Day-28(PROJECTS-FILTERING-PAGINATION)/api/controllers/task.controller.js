@@ -1,1 +1,126 @@
-const mongoose=require("mongoose"),Task=require("../models/Task"); const valid=id=>mongoose.isValidObjectId(id); exports.getTasks=async(req,res,next)=>{try{const tasks=await Task.find({user:req.userId}).sort({createdAt:-1});res.json({success:true,count:tasks.length,tasks});}catch(e){return next(e)}}; exports.createTask=async(req,res,next)=>{try{const{title,description=""}=req.body;const task=await Task.create({title:title.trim(),description:description.trim(),user:req.userId});res.status(201).json({success:true,message:"Task created successfully",task});}catch(e){return next(e)}}; exports.updateTask=async(req,res,next)=>{try{if(!valid(req.params.id)){const error=new Error("Invalid task id");error.statusCode=400;return next(error);}const updates={};if(typeof req.body.title==="string")updates.title=req.body.title.trim();if(typeof req.body.description==="string")updates.description=req.body.description.trim();if(typeof req.body.completed==="boolean")updates.completed=req.body.completed;const task=await Task.findOneAndUpdate({_id:req.params.id,user:req.userId},updates,{new:true,runValidators:true});if(!task){const error=new Error("Task not found");error.statusCode=404;return next(error);}res.json({success:true,message:"Task updated successfully",task});}catch(e){return next(e)}}; exports.deleteTask=async(req,res,next)=>{try{if(!valid(req.params.id)){const error=new Error("Invalid task id");error.statusCode=400;return next(error);}const t=await Task.findOneAndDelete({_id:req.params.id,user:req.userId});if(!t){const error=new Error("Task not found");error.statusCode=404;return next(error);}res.json({success:true,message:"Task deleted successfully"});}catch(e){return next(e)}};
+const mongoose = require("mongoose");
+const Task = require("../models/Task");
+
+const isValidTaskId = (id) => {
+  return mongoose.isValidObjectId(id);
+};
+
+exports.getTasks = async (req, res, next) => {
+  try {
+    const tasks = await Task.find({
+      user: req.userId,
+    }).sort({
+      createdAt: -1,
+    });
+
+    res.json({
+      success: true,
+      count: tasks.length,
+      tasks,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+exports.createTask = async (req, res, next) => {
+  try {
+    const {
+      title,
+      description = "",
+    } = req.body;
+
+    const task = await Task.create({
+      title: title.trim(),
+      description: description.trim(),
+      user: req.userId,
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "Task created successfully",
+      task,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+exports.updateTask = async (req, res, next) => {
+  try {
+    if (!isValidTaskId(req.params.id)) {
+      const error = new Error("Invalid task id");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const updates = {};
+
+    if (typeof req.body.title === "string") {
+      updates.title = req.body.title.trim();
+    }
+
+    if (typeof req.body.description === "string") {
+      updates.description = req.body.description.trim();
+    }
+
+    if (typeof req.body.completed === "boolean") {
+      updates.completed = req.body.completed;
+    }
+
+    const task = await Task.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        user: req.userId,
+      },
+      updates,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!task) {
+      const error = new Error("Task not found");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    res.json({
+      success: true,
+      message: "Task updated successfully",
+      task,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+exports.deleteTask = async (req, res, next) => {
+  try {
+    if (!isValidTaskId(req.params.id)) {
+      const error = new Error("Invalid task id");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const deletedTask = await Task.findOneAndDelete({
+      _id: req.params.id,
+      user: req.userId,
+    });
+
+    if (!deletedTask) {
+      const error = new Error("Task not found");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    res.json({
+      success: true,
+      message: "Task deleted successfully",
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
