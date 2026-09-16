@@ -1,4 +1,33 @@
 <main class="projects-page">
   <header class="topbar"><div class="brand"><span class="brand-mark">TF</span><div><strong>TaskFlow</strong><span>Live workspace</span></div></div><div class="top-actions"><a routerLink="/dashboard">Dashboard</a><a routerLink="/tasks">Tasks</a><span>{{ user?.name || 'Workspace' }}</span><button type="button" (click)="logout()">Log out</button></div></header>
-  <section class="projects-content"><nav class="workspace-nav" aria-label="Workspace navigation"><a routerLink="/dashboard">Dashboard</a><a routerLink="/tasks">Tasks</a><a class="active" routerLink="/projects">Projects</a></nav><section class="projects-card"><span class="eyebrow">Day 28 / live data</span><h1>Projects</h1><p class="lead">Projects are ready to organize your work when the deployed API supports them.</p><div class="empty-projects"><div class="project-icon" aria-hidden="true">+</div><h2>No projects yet.</h2><p>The verified Day-28 backend currently exposes authentication and task CRUD only. It has no project routes, project model, or project-task relationship, so no fake project data or unsupported requests are shown here.</p><a class="button" routerLink="/tasks">Work with tasks</a></div></section></section>
-+</main>
+
+  <section class="projects-content">
+    <nav class="workspace-nav" aria-label="Workspace navigation"><a routerLink="/dashboard">Dashboard</a><a routerLink="/tasks">Tasks</a><a class="active" routerLink="/projects">Projects</a></nav>
+
+    <section class="projects-card">
+      <div class="projects-head"><div><span class="eyebrow">Day 28 / live data</span><h1>Projects</h1><p class="lead">Projects load from the TaskFlow API with server-side search and pagination.</p></div><button class="primary" type="button" (click)="openCreateForm()">+ New project</button></div>
+
+      @if (error) { <div class="alert error" role="alert">{{ error }} <button type="button" (click)="loadProjects()">Retry</button></div> }
+      @if (success) { <div class="alert success" role="status">{{ success }}</div> }
+
+      <div class="controls"><input name="query" [(ngModel)]="query" (keyup.enter)="searchProjects()" placeholder="Search projects by name..." aria-label="Search projects" /><button type="button" (click)="searchProjects()" [disabled]="loading">Search</button></div>
+
+      @if (loading) {
+        <div class="loading">Loading projects from the live API...</div>
+      } @else if (!projects.length) {
+        <div class="empty-projects"><div class="project-icon" aria-hidden="true">+</div><h2>{{ query ? 'No matching projects.' : 'No projects yet.' }}</h2><p>{{ query ? 'Try a different project name.' : 'Create your first project to organize your team work.' }}</p><button class="primary" type="button" (click)="openCreateForm()">Create project</button></div>
+      } @else {
+        <div class="project-list">
+          @for (project of projects; track project._id) {
+            <article class="project-row"><div class="project-copy"><h3>{{ project.name }}</h3><p>{{ project.description || 'No description.' }}</p><small>{{ project.createdAt ? (project.createdAt | date:'mediumDate') : 'Recently added' }}</small></div><div class="team"><span class="eyebrow">Team</span><p>{{ project.team.length ? project.team.join(', ') : 'No team members yet.' }}</p></div></article>
+          }
+        </div>
+        <div class="pagination"><button type="button" (click)="previousPage()" [disabled]="page === 1">Previous</button><span>Page {{ page }} of {{ totalPages }} · {{ total }} project{{ total === 1 ? '' : 's' }}</span><button type="button" (click)="nextPage()" [disabled]="page >= totalPages">Next</button></div>
+      }
+    </section>
+  </section>
+</main>
+
+@if (showForm) {
+  <div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="project-form-title"><button class="close" type="button" (click)="closeForm()" aria-label="Close">×</button><span class="eyebrow">New project</span><h2 id="project-form-title">Start a new project.</h2><form #projectForm="ngForm" (ngSubmit)="saveProject(projectForm)" novalidate><label for="project-name">Name</label><input id="project-name" name="name" [(ngModel)]="name" required minlength="2" maxlength="80" placeholder="What is this project called?" #nameField="ngModel" [class.invalid]="nameField.invalid && nameField.touched" />@if (nameField.invalid && nameField.touched) { <small>Enter a project name.</small> }<label for="project-description">Description</label><textarea id="project-description" name="description" [(ngModel)]="description" maxlength="500" rows="3" placeholder="Add useful context..."></textarea><label for="project-team">Team</label><input id="project-team" name="team" [(ngModel)]="team" placeholder="Team member names, comma separated" /><button class="primary full" type="submit" [disabled]="creating">{{ creating ? 'Creating...' : 'Create project' }}</button></form></section></div>
+}
