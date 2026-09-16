@@ -4,6 +4,7 @@ const express = require("express");
 
 const authRoutes = require("./routes/auth.routes");
 const taskRoutes = require("./routes/task.routes");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -18,10 +19,12 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
-app.use((req, res) => {
-  res.status(404).json({
-    message: "Route not found",
-  });
+app.use((req, res, next) => {
+  const error = new Error("Route not found");
+  error.statusCode = 404;
+  next(error);
 });
+
+app.use(errorHandler);
 
 module.exports = app;

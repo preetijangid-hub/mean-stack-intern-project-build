@@ -7,7 +7,12 @@ const {
   login,
 } = require("../controllers/auth.controller");
 
-router.post("/register", register);
-router.post("/login", login);
+const {
+  validateRegister,
+  validateLogin,
+} = require("../validators/auth.validator");
+
+router.post("/register", validateRegister, register);
+router.post("/login", validateLogin, login);
 
 module.exports = router;

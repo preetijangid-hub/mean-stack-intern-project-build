@@ -1,7 +1,6 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
 
-
 const app = require("../app");
 const connectDB = require("../config/db");
 
@@ -37,6 +36,18 @@ describe("AUTH API TESTS", () => {
       .post("/api/auth/register")
       .send({
         email: "missing@example.com",
+      });
+
+    expect(response.statusCode).toBe(400);
+  });
+
+  test("POST /api/auth/register - should reject invalid email", async () => {
+    const response = await request(app)
+      .post("/api/auth/register")
+      .send({
+        name: "Invalid Email",
+        email: "invalid-email",
+        password: "password123",
       });
 
     expect(response.statusCode).toBe(400);

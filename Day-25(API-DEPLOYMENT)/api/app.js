@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const authRoutes = require("./routes/auth.routes");
 const taskRoutes = require("./routes/task.routes");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -55,24 +56,16 @@ app.use("/api/tasks", taskRoutes);
 // 404
 // ===============================
 
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message: "Route not found"
-  });
+app.use((req, res, next) => {
+  const error = new Error("Route not found");
+  error.statusCode = 404;
+  next(error);
 });
 
 // ===============================
 // GLOBAL ERROR HANDLER
 // ===============================
 
-app.use((err, req, res, next) => {
-  console.error("Server error:", err);
-
-  res.status(500).json({
-    success: false,
-    message: "Internal server error"
-  });
-});
+app.use(errorHandler);
 
 module.exports = app;

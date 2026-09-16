@@ -1,6 +1,7 @@
+require("dotenv").config();
+
 const request = require("supertest");
 const mongoose = require("mongoose");
-
 
 const app = require("../app");
 const connectDB = require("../config/db");
@@ -10,7 +11,7 @@ beforeAll(async () => {
 }, 15000);
 
 afterAll(async () => {
-  await mongoose.connection.close();
+  await mongoose.connection.close(); 
 });
 
 describe("AUTH API TESTS", () => {
@@ -95,3 +96,4 @@ describe("AUTH API TESTS", () => {
     expect(response.statusCode).toBe(400);
   });
 });
+
