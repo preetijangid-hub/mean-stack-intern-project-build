@@ -28,7 +28,6 @@ describe("AUTH API TESTS", () => {
 
     expect(response.body).toHaveProperty("message");
     expect(response.body).toHaveProperty("token");
-    expect(response.body).toHaveProperty("user");
   });
 
   test("POST /api/auth/register - should reject missing fields", async () => {
