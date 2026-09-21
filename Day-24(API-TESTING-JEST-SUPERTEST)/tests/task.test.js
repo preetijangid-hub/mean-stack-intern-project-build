@@ -1,20 +1,14 @@
+require("./setup");
+
 const request = require("supertest");
-const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 const app = require("../app");
-const connectDB = require("../config/db");
-
-beforeAll(async () => {
-  await connectDB();
-}, 15000);
-
-afterAll(async () => {
-  await mongoose.connection.close();
-});
 
 describe("TASK API TESTS", () => {
   let token;
   let taskId;
+  let userId;
 
   beforeAll(async () => {
     const user = {
@@ -28,6 +22,7 @@ describe("TASK API TESTS", () => {
       .send(user);
 
     token = registerResponse.body.token;
+    userId = jwt.decode(token).id;
   });
 
   test("GET /api/tasks - should reject request without token", async () => {
@@ -47,7 +42,7 @@ describe("TASK API TESTS", () => {
     expect(response.body).toHaveProperty("count");
   });
 
-  test("POST /api/tasks - should create task", async () => {
+  test("POST /api/tasks - should create task for logged in user", async () => {
     const response = await request(app)
       .post("/api/tasks")
       .set("Authorization", `Bearer ${token}`)
@@ -58,7 +53,13 @@ describe("TASK API TESTS", () => {
       });
 
     expect(response.statusCode).toBe(201);
-    expect(response.body).toHaveProperty("task");
+    expect(response.body.message).toBe("Task created successfully");
+    expect(response.body.task.title).toBe("Learn Jest");
+    expect(response.body.task.description).toBe("Write API tests");
+    expect(response.body.task.completed).toBe(false);
+
+    // task should belong to the authenticated user
+    expect(String(response.body.task.user)).toBe(userId);
 
     taskId = response.body.task._id;
   });
@@ -80,7 +81,8 @@ describe("TASK API TESTS", () => {
       .set("Authorization", `Bearer ${token}`);
 
     expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveProperty("task");
+    expect(response.body.task._id).toBe(taskId);
+    expect(response.body.task.title).toBe("Learn Jest");
   });
 
   test("PUT /api/tasks/:id - should update task", async () => {

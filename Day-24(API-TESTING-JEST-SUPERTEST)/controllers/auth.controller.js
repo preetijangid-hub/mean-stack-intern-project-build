@@ -31,16 +31,10 @@ const register = async (req, res, next) => {
       password: hashedPassword,
     });
 
-    const token = generateToken(user._id);
-
     return res.status(201).json({
+      success: true,
       message: "User registered successfully",
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-      },
+      token: generateToken(user._id),
     });
   } catch (error) {
     return next(error);
@@ -68,16 +62,10 @@ const login = async (req, res, next) => {
       return next(error);
     }
 
-    const token = generateToken(user._id);
-
     return res.status(200).json({
+      success: true,
       message: "Login successful",
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-      },
+      token: generateToken(user._id),
     });
   } catch (error) {
     return next(error);

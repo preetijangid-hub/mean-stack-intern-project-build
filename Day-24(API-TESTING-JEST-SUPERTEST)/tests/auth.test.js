@@ -1,16 +1,10 @@
+require("./setup");
+
 const request = require("supertest");
-const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 const app = require("../app");
-const connectDB = require("../config/db");
-
-beforeAll(async () => {
-  await connectDB();
-}, 15000);
-
-afterAll(async () => {
-  await mongoose.connection.close();
-});
+const User = require("../models/User");
 
 describe("AUTH API TESTS", () => {
   const testUser = {
@@ -25,9 +19,25 @@ describe("AUTH API TESTS", () => {
       .send(testUser);
 
     expect(response.statusCode).toBe(201);
+    expect(response.body.success).toBe(true);
+    expect(response.body.message).toBe("User registered successfully");
+    expect(typeof response.body.token).toBe("string");
+    expect(response.body.token.length).toBeGreaterThan(0);
 
-    expect(response.body).toHaveProperty("message");
-    expect(response.body).toHaveProperty("token");
+    // contract matches the Day-28 auth API: token only, no user object
+    expect(response.body).not.toHaveProperty("user");
+
+    // token should carry the new user's id
+    const payload = jwt.decode(response.body.token);
+    expect(payload).toHaveProperty("id");
+  });
+
+  test("POST /api/auth/register - should save user with hashed password", async () => {
+    const savedUser = await User.findOne({ email: testUser.email });
+
+    expect(savedUser).not.toBeNull();
+    expect(savedUser.name).toBe(testUser.name);
+    expect(savedUser.password).not.toBe(testUser.password);
   });
 
   test("POST /api/auth/register - should reject missing fields", async () => {
@@ -81,7 +91,14 @@ describe("AUTH API TESTS", () => {
       });
 
     expect(response.statusCode).toBe(200);
-    expect(response.body).toHaveProperty("token");
+    expect(response.body.success).toBe(true);
+    expect(response.body.message).toBe("Login successful");
+    expect(typeof response.body.token).toBe("string");
+    expect(response.body.token.length).toBeGreaterThan(0);
+    expect(response.body).not.toHaveProperty("user");
+
+    const payload = jwt.decode(response.body.token);
+    expect(payload).toHaveProperty("id");
   });
 
   test("POST /api/auth/login - should reject wrong password", async () => {
