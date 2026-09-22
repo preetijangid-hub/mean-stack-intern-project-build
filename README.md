@@ -1,742 +1,465 @@
-# MEAN Stack Internship — 30 Day Project Build
+﻿# TaskFlow
 
-A structured 30-day MEAN Stack internship journey covering JavaScript, TypeScript, Node.js, Express.js, MongoDB, Mongoose, Angular, REST APIs, authentication, testing, deployment, and full-stack application development.
+TaskFlow is a full-stack task management application built with the MEAN stack — MongoDB, Express, Angular, and Node.js.
 
-This repository contains the **Project Build** work completed throughout the internship, progressing from individual concepts and backend/frontend exercises to a complete full-stack application.
+It allows users to securely manage tasks, organize work into projects, manage team members, track progress, and quickly find tasks using search and filters.
 
----
-
-## 🚀 Final Project — TaskFlow
-
-**TaskFlow** is a full-stack task management application developed as the final capstone project.
-
-The application brings together the concepts covered throughout the internship:
-
-* User authentication
-* JWT-based authorization
-* Task management
-* Project management
-* Task status and priority
-* Protected Angular routes
-* HTTP authentication interceptor
-* REST API integration
-* MongoDB persistence
-* Server-side project search and pagination
-* Loading, error and empty states
-* Angular UI/UX
-* API testing
-* Production deployment
-
-### Core Entities
-
-```text
-User
- ├── Projects
- └── Tasks
-
-Project
- └── Team Members
-
-Task
- ├── Title
- ├── Description
- ├── Status
- └── Priority
-```
+TaskFlow was developed as the final capstone project of a 30-day MEAN Stack internship. The final integrated application is documented in Day 29 and Day 30.
 
 ---
 
-## 🛠️ Technology Stack
+## Live Application
 
-### Frontend
+- **Frontend:** https://task-flow-4wow.onrender.com
+- **Backend API:** https://capstone-9pn7.onrender.com
+- **API Base URL:** https://capstone-9pn7.onrender.com/api
 
-* Angular
-* TypeScript
-* HTML5
-* CSS3
-* Angular Router
-* Angular HttpClient
-* RxJS
-* Angular Guards
-* HTTP Interceptors
-* Angular Material
+The Angular frontend is deployed on Render and communicates with the deployed Express API.
 
-### Backend
-
-* Node.js
-* Express.js
-* REST API
-* JWT
-* bcrypt
-* express-validator
-
-### Database
-
-* MongoDB
-* MongoDB Atlas
-* Mongoose
-
-### Testing
-
-* Jest
-* Supertest
-* Postman
-
-### Development & Deployment
-
-* Git
-* GitHub
-* VS Code
-* PowerShell
-* Render
+> The backend is hosted on Render's free tier, so the first request after inactivity may take some time while the service starts.
 
 ---
 
-# 📚 30-Day Learning Roadmap
-
-## Week 1 — JavaScript & TypeScript Foundations
-
-### Day 01 — JavaScript Basics
-
-Covered the fundamentals of JavaScript:
-
-* Variables
-* Data types
-* Operators
-* Conditional statements
-* Loops
-* Basic problem solving
-
----
-
-### Day 02 — Functions, Arrays & Objects
-
-Worked with core JavaScript data structures and reusable logic:
-
-* Functions
-* Function parameters and return values
-* Arrays
-* Array methods
-* Objects
-* Object properties and methods
-
----
-
-### Day 03 — Asynchronous JavaScript
-
-Learned how JavaScript handles asynchronous operations:
-
-* Callbacks
-* Promises
-* Async/await
-* Error handling
-* Asynchronous execution
-
----
-
-### Day 04 — TypeScript Fundamentals
-
-Introduced TypeScript and static typing:
-
-* Type annotations
-* Primitive types
-* Arrays
-* Objects
-* Interfaces
-* Functions
-* Type-safe development
-
----
-
-### Day 05 — Node.js, npm & Modules
-
-Started backend development with Node.js:
-
-* Node.js runtime
-* npm
-* `package.json`
-* CommonJS modules
-* `require` and `module.exports`
-* Basic Node.js application structure
-
----
-
-## Week 2 — Angular Foundations
-
-### Day 06 — Angular Setup & Components
-
-Started Angular development:
-
-* Angular CLI
-* Project structure
-* Components
-* Component metadata
-* TypeScript in Angular
-* Angular development workflow
-
----
-
-### Day 07 — Angular Templates & Directives
-
-Worked with Angular templates:
-
-* Template syntax
-* Property binding
-* Event binding
-* Interpolation
-* Structural directives
-* Attribute directives
-
----
-
-### Day 08 — Component Communication & Dependency Injection
-
-Covered communication between Angular components:
-
-* Parent-child communication
-* `@Input`
-* `@Output`
-* Event emitters
-* Services
-* Dependency injection
-
----
-
-### Day 09 — Routing & Navigation
-
-Implemented Angular navigation:
-
-* Angular Router
-* Routes
-* Router links
-* Route parameters
-* Navigation
-* Page-based application structure
-
----
-
-### Day 10 — Forms & Validation
-
-Worked with Angular forms:
-
-* Form handling
-* Reactive forms
-* Form controls
-* Validation
-* Validation messages
-* User input handling
-
----
-
-### Day 11 — HttpClient & REST APIs
-
-Connected Angular applications with backend APIs:
-
-* Angular HttpClient
-* GET requests
-* POST requests
-* PUT requests
-* DELETE requests
-* REST API concepts
-* API response handling
-
----
-
-### Day 12 — RxJS
-
-Introduced reactive programming:
-
-* Observables
-* Subscriptions
-* RxJS operators
-* Asynchronous data streams
-* HTTP observables
-
----
-
-### Day 13 — Pipes, Directives & Lifecycle
-
-Covered Angular application behavior and presentation:
-
-* Custom pipes
-* Directives
-* Component lifecycle
-* Lifecycle hooks
-* Reusable UI behavior
-
----
-
-### Day 14 — Guards, Interceptors & State
-
-Introduced application-level control:
-
-* Route guards
-* HTTP interceptors
-* Authentication flow
-* Request handling
-* Basic state management concepts
-
----
-
-### Day 15 — Angular Material & Review
-
-Worked with Angular Material and reviewed the Angular concepts covered during the first two weeks:
-
-* Angular Material components
-* UI structure
-* Forms
-* Routing
-* Services
-* HTTP
-* Guards
-* Interceptors
-
----
-
-# 🧩 Week 3 — Backend & API Development
-
-The third phase focused on building backend applications with Node.js, Express and MongoDB.
-
-### Day 16 — Node.js & Express Backend
-
-Worked with:
-
-* Express.js
-* Server setup
-* Routes
-* Middleware
-* Request/response handling
-* REST API structure
-
----
-
-### Day 17 — REST API Development
-
-Practiced designing REST APIs:
-
-* API routes
-* HTTP methods
-* Request bodies
-* Route parameters
-* Status codes
-* JSON responses
-
----
-
-### Day 18 — MongoDB & Mongoose
-
-Introduced database integration:
-
-* MongoDB
-* MongoDB Atlas
-* Mongoose
-* Schemas
-* Models
-* Database connection
-* CRUD operations
-
----
-
-### Day 19 — Validation & Error Handling
-
-Implemented consistent API validation and error handling using:
-
-* `express-validator`
-* Request validation
-* Email validation
-* Centralized validation handling
-* Central error middleware
-* Structured error responses
-* HTTP status codes
-
----
-
-### Day 20 — Authentication
-
-Implemented backend authentication concepts:
-
-* Password hashing
-* bcrypt
-* JWT
-* Login
-* Registration
-* Authentication middleware
-* Protected API routes
-
----
-
-### Day 21 — Environment Configuration & API Structure
-
-Worked with production-oriented backend configuration:
-
-* Environment variables
-* `.env`
-* `.gitignore`
-* Database configuration
-* API organization
-* Controllers
-* Routes
-* Middleware
-
-Sensitive environment files were kept out of version control.
-
----
-
-### Day 22 — Backend CRUD
-
-Built CRUD functionality around application data:
-
-* Create
-* Read
-* Update
-* Delete
-* MongoDB queries
-* Mongoose models
-* Controller-based architecture
-* API testing
-
----
-
-### Day 23 — Full API Integration & Review
-
-Reviewed and integrated the backend concepts:
-
-* Authentication
-* CRUD APIs
-* Validation
-* Error handling
-* Database integration
-* Protected endpoints
-* API testing
-
----
-
-# 🧪 Week 4 — Testing & Deployment
-
-## Day 24 — API Testing with Jest & Supertest
-
-Implemented automated API testing using:
-
-* Jest
-* Supertest
-* Authentication tests
-* API response assertions
-* Validation tests
-* Protected route tests
-* Error response tests
-
-The Day-24 API test suite was verified with **17 passing tests across 2 test suites**.
-
----
-
-## Day 25 — API Deployment
-
-Deployed the Express/MongoDB backend and worked with:
-
-* Production environment variables
-* MongoDB Atlas
-* Render
-* Production API configuration
-* API health checks
-* Deployed API testing
-
----
-
-# 🏗️ Week 5 — TaskFlow Capstone
-
-## Day 26 — Frontend + Live API + JWT
-
-Integrated the Angular frontend with the deployed backend.
-
-Implemented:
-
-* Angular services
-* HttpClient
-* Login
-* Registration
-* JWT authentication
-* Authentication interceptor
-* Protected routes
-* Local token handling
-* Live API integration
-
-The frontend communicates with the deployed TaskFlow API instead of relying only on mock/local data.
-
----
-
-## Day 27 — Task CRUD
-
-Implemented the core TaskFlow task management functionality:
-
-* Create tasks
-* Read tasks
-* Update tasks
-* Delete tasks
-* Task status
-* Task priority
-* Authentication-protected task operations
-* Angular task service
-* Backend task API
-
-TaskFlow supports statuses such as:
-
-* Not Started
-* In Progress
-* Completed
-
-and priorities:
-
-* High
-* Medium
-* Low
-
----
-
-## Day 28 — Projects, Filtering & Pagination
-
-Extended TaskFlow with project management and improved data handling.
+## Features
+
+### Authentication
+
+- User registration and login
+- JWT-based authentication
+- Password hashing with bcrypt
+- Protected routes
+- JWT HTTP interceptor
+- Logout functionality
+
+### Dashboard
+
+- Task overview
+- Completion progress
+- Recent tasks
+- Status and priority summary
+
+### Task Management
+
+- Create, view, edit and delete tasks
+- Task status: Not Started, In Progress, Completed
+- Task priority: High, Medium, Low
+- Search tasks
+- Filter by status, priority and project
+- Sorting
+- Pagination
+- Loading, error and empty states
 
 ### Projects
 
-Implemented:
+- Create, edit and delete projects
+- Search and sort projects
+- Project progress and statistics
 
-* Project model
-* Project API
-* Authenticated project routes
-* Project creation
-* Project listing
-* Team members
-* Project descriptions
+### Team Members
 
-### Server-side pagination
+- Add, edit and delete team members
+- Search and sort members
+- Assignment and completion information
 
-The backend supports:
+### UI
 
-* `page`
-* `limit`
-* `search`
-* MongoDB `skip()`
-* MongoDB `limit()`
-* Total record count
-* Total page count
+- Responsive design
+- Angular Material
+- Reactive forms and validation
+- Toast notifications
+- Loading and empty states
 
-### Search
-
-Project search is handled on the server using a case-insensitive name search.
-
-### Frontend
-
-The Angular project page includes:
-
-* Search
-* Pagination
-* Loading state
-* Error state
-* Empty state
-* Protected project route
+> **Data note:** The deployed API provides authentication and task endpoints. Projects and team members are managed by the frontend and persisted in the browser.
 
 ---
 
-## Day 29 — Capstone Integration & Polish
+## Tech Stack
 
-Focused on bringing the complete application together.
-
-Work included:
-
-* Frontend/backend integration
-* Authentication flow verification
-* Task CRUD verification
-* Project functionality
-* Search and pagination
-* UI improvements
-* Error handling
-* Loading states
-* Empty states
-* Code cleanup
-* Test verification
-* README/documentation preparation
-
-The Angular production build was verified successfully.
+| Area | Technologies |
+|---|---|
+| Frontend | Angular 21, TypeScript, SCSS, RxJS |
+| UI | Angular Material |
+| Routing | Angular Router |
+| HTTP | Angular HttpClient |
+| Forms | Reactive Forms |
+| Backend | Node.js, Express 5 |
+| Authentication | JWT, bcryptjs |
+| Validation | express-validator |
+| Database | MongoDB Atlas, Mongoose |
+| Testing | Jest, Supertest, Vitest |
+| Deployment | Render |
 
 ---
 
-## Day 30 — Final Deployment & Demo
+## Project Structure
 
-Final stage of the internship project:
-
-* Production frontend build
-* Frontend deployment
-* Backend/frontend integration verification
-* Final application testing
-* Project documentation
-* Screenshots/demo preparation
-* Final TaskFlow presentation
-
-This marks the completion of the 30-day MEAN Stack Project Build journey.
-
----
-
-# 📂 Repository Structure
-
-The repository is organized by learning day.
+The repository contains the complete 30-day internship development journey.
 
 ```text
 mean-stack-intern-project-build/
 │
-├── Day-01/
-├── Day-02/
-├── Day-03/
+├── Day-01(TASKFLOW-DOCUMENTATION)/
+├── Day-02(TASKFLOW-DESIGN)/
+├── Day-03(TASKFLOW-DATA)/
+├── Day-04(TASKFLOW-SETUP)/
+├── Day-05(TASKFLOW-NODE)/
 ├── ...
-│
 ├── Day-24(API-TESTING-JEST-SUPERTEST)/
-│   ├── api/
-│   └── tests/
-│
 ├── Day-25(API-DEPLOYMENT)/
-│   └── api/
-│
 ├── Day-26(FE-LIVE-API-JWT)/
-│   └── taskflow-client/
-│
-├── Day-27(TASK-CRUD-LIVE-API)/
-│   ├── api/
-│   └── client/
-│
-├── Day-28(PROJECTS-FILTERING-PAGINATION)/
-│   ├── api/
-│   └── client/
+├── Day-27(CAPSTONE-BACKEND)/
+├── Day-28(CAPSTONE-FEATURES)/
 │
 ├── Day-29(CAPSTONE-INTEGRATE-POLISH)/
 │   └── capstone-taskflow/
 │
-├── Day-30/
+├── Day-30(FINAL-DEPLOYMENT-DEMO)/
+│
+├── Doc/
+├── docs/
+│   └── screenshots/
 │
 ├── .gitignore
 └── README.md
-```
+````
 
-Generated Angular build and cache directories such as `dist/` and `.angular/` are excluded through the root `.gitignore`.
-
----
-
-# 🔐 Security Practices
-
-The project follows basic security practices throughout development:
-
-* Passwords are hashed using bcrypt.
-* JWT is used for authentication.
-* Protected routes require authentication.
-* Environment variables are not committed.
-* `.env` files are ignored by Git.
-* Sensitive credentials were removed from repository history when required.
-* Input validation is applied to API requests.
-* Unauthorized and forbidden requests are handled separately.
-* Centralized error handling is used by the backend.
-
----
-
-# 🧪 Testing
-
-Testing was performed using:
-
-* Jest
-* Supertest
-* Postman
-* PowerShell API requests
-* Angular production builds
-
-Testing covered areas including:
-
-* Registration
-* Login
-* Authentication
-* Protected routes
-* Task CRUD
-* Validation
-* Error responses
-* Project creation
-* Project search
-* Server-side pagination
-* Invalid page/limit handling
-
----
-
-# 🌐 Backend API
-
-The TaskFlow backend was deployed using Render.
+The final Angular application is located at:
 
 ```text
-https://taskflow-api-zad8.onrender.com/api
+Day-29(CAPSTONE-INTEGRATE-POLISH)/capstone-taskflow/
 ```
-
-The backend includes authentication, task and project functionality.
 
 ---
 
-# 📌 Key Learning Outcomes
+## Local Setup
 
-By the end of the internship, the project covered the complete flow from frontend development to backend deployment:
+### Backend
+
+Open the backend folder:
+
+```bash
+cd "Day-25(API-DEPLOYMENT)/api"
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env` file:
+
+```env
+PORT=5000
+MONGO_URI=your-mongodb-connection-string
+JWT_SECRET=your-secret-key
+CLIENT_ORIGIN=http://localhost:4200
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Or:
+
+```bash
+npm start
+```
+
+### Frontend
+
+Open the final Angular application:
+
+```bash
+cd "Day-29(CAPSTONE-INTEGRATE-POLISH)/capstone-taskflow"
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start Angular:
+
+```bash
+npm start
+```
+
+The application runs at:
 
 ```text
-Angular UI
-    ↓
-Angular Services
-    ↓
-HttpClient / Interceptor
-    ↓
-Express REST API
-    ↓
-JWT Authentication
-    ↓
-Controllers
-    ↓
-Mongoose Models
-    ↓
-MongoDB Atlas
+http://localhost:4200
 ```
 
-The internship provided practical experience with:
+For local backend development, the API URL can be configured as:
 
-* Full-stack web development
-* Angular application architecture
-* REST API design
-* Authentication and authorization
-* MongoDB database integration
-* API validation
-* Error handling
-* Automated API testing
-* Frontend/backend integration
-* Server-side pagination
-* Search
-* Git and GitHub
-* Production deployment
-* Debugging and code maintenance
+```text
+http://localhost:5000/api
+```
+
+### Production Build
+
+```bash
+npm run build
+```
 
 ---
 
-# 🎯 Final Capstone
+## Environment Variables
 
-**TaskFlow** represents the final integration of the concepts learned throughout the 30-day MEAN Stack internship.
+The backend uses the following environment variables:
 
-The project demonstrates the ability to build a full-stack application from:
+| Variable        | Purpose                             |
+| --------------- | ----------------------------------- |
+| `PORT`          | Express server port                 |
+| `MONGO_URI`     | MongoDB connection string           |
+| `JWT_SECRET`    | JWT signing and verification secret |
+| `CLIENT_ORIGIN` | Allowed frontend origin for CORS    |
 
-**Planning → Database → Backend API → Authentication → Angular Frontend → Testing → Deployment → Final Integration**
+Real credentials and secrets must not be committed to GitHub.
 
 ---
 
-## 👩‍💻 Developer
+## Testing
+
+Backend API tests are available in:
+
+```text
+Day-24(API-TESTING-JEST-SUPERTEST)
+```
+
+Run:
+
+```bash
+cd "Day-24(API-TESTING-JEST-SUPERTEST)"
+npm test
+```
+
+The backend test suite uses Jest, Supertest and an in-memory MongoDB database.
+
+Verified result:
+
+```text
+Test Suites: 2 passed, 2 total
+Tests:       18 passed, 18 total
+```
+
+The final Angular application also contains a Vitest testing setup:
+
+```bash
+cd "Day-29(CAPSTONE-INTEGRATE-POLISH)/capstone-taskflow"
+npm test
+```
+
+A passing frontend test result is not claimed because it was not successfully verified during the final documentation update.
+
+---
+
+## API
+
+### Base URL
+
+```text
+https://capstone-9pn7.onrender.com/api
+```
+
+Authenticated requests use:
+
+```text
+Authorization: Bearer <token>
+```
+
+### Authentication
+
+| Method | Endpoint             | Purpose               |
+| ------ | -------------------- | --------------------- |
+| POST   | `/api/auth/register` | Register a user       |
+| POST   | `/api/auth/login`    | Login and receive JWT |
+
+### Tasks
+
+| Method | Endpoint         | Purpose                        |
+| ------ | ---------------- | ------------------------------ |
+| GET    | `/api/tasks`     | Get authenticated user's tasks |
+| GET    | `/api/tasks/:id` | Get a task                     |
+| POST   | `/api/tasks`     | Create a task                  |
+| PUT    | `/api/tasks/:id` | Update a task                  |
+| DELETE | `/api/tasks/:id` | Delete a task                  |
+
+### Health Check
+
+```text
+GET https://capstone-9pn7.onrender.com/
+```
+
+---
+
+## Application Walkthrough
+
+1. **Register** — Create an account using name, email and password.
+2. **Login** — Login with the registered credentials and receive a JWT.
+3. **Dashboard** — View task totals, progress, recent tasks and status information.
+4. **Create Task** — Create a task with title, description, status, priority, project and assignee information.
+5. **Edit Task** — Update an existing task and save the changes.
+6. **Delete Task** — Remove an existing task.
+7. **Search & Filter** — Search tasks and filter them by status, priority and project.
+8. **Projects** — Create and manage projects and view project progress.
+9. **Team Members** — Add and manage team members and view assignment information.
+
+---
+
+## Screenshots
+
+Screenshots are stored in:
+
+```text
+docs/screenshots/
+```
+
+### Register
+
+![Register](docs/screenshots/create-account.png)
+
+### Login
+
+![Login](docs/screenshots/login.png)
+
+### Dashboard
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+### Tasks
+
+![Tasks](docs/screenshots/tasks.png)
+
+### Add Task
+
+![Add Task](docs/screenshots/add-task.png)
+
+### Projects
+
+![Projects](docs/screenshots/projects.png)
+
+### Add Project
+
+![Add Project](docs/screenshots/add-project.png)
+
+### Team Members
+
+![Team Members](docs/screenshots/team-members.png)
+
+### Add Member
+
+![Add Member](docs/screenshots/add-member.png)
+
+---
+
+## 30-Day Development Journey
+
+### Days 1–5 — Planning & Setup
+
+* TaskFlow requirements and user stories
+* UI and entity design
+* JSON data structures
+* GitHub repository setup
+* Node.js sample data script
+
+### Days 6–10 — Angular Foundations
+
+* Angular standalone application
+* Task list and task card
+* In-memory task service
+* Routing and navigation
+* Reactive forms and validation
+
+### Days 11–15 — Frontend Features
+
+* HttpClient and REST integration
+* RxJS search and filtering
+* Custom pipe and directive
+* Authentication guard
+* Angular Material UI
+
+### Days 16–20 — Backend
+
+* Express server
+* Task REST API
+* Project routes
+* Validation and error handling
+* JWT authentication
+
+### Days 21–25 — Database & Testing
+
+* MongoDB Atlas
+* Mongoose models
+* MongoDB integration
+* Jest and Supertest testing
+* Render API deployment
+
+### Days 26–28 — Integration
+
+* Angular connected to live API
+* JWT storage and interceptor
+* Real task CRUD
+* Projects and filtering
+* Pagination and empty states
+
+### Days 29–30 — Final Capstone
+
+* End-to-end integration
+* Bug fixes
+* UI polish
+* README and screenshots
+* Production build
+* Frontend deployment
+* Final demo
+
+---
+
+## Security
+
+TaskFlow includes:
+
+* bcrypt password hashing
+* JWT authentication
+* JWT expiry
+* Protected API routes
+* Angular route guards
+* HTTP authentication interceptor
+* Request validation
+* CORS configuration
+* Environment-based secrets
+* Gitignored `.env` files
+
+---
+
+## Deployment
+
+### Frontend
+
+[https://task-flow-4wow.onrender.com](https://task-flow-4wow.onrender.com)
+
+### Backend
+
+[https://capstone-9pn7.onrender.com](https://capstone-9pn7.onrender.com)
+
+### Database
+
+MongoDB Atlas is used for persistent backend data.
+
+Production credentials are provided through environment variables and are not stored in the repository.
+
+---
+
+## Author
 
 **Preeti Jangid**
 
-B.Tech — Computer Science & Engineering
+B.Tech — Computer Science and Engineering
 
-GitHub:
-https://github.com/preetijangid-hub
+GitHub: [https://github.com/preetijangid-hub](https://github.com/preetijangid-hub)
 
----
-
-## 📖 Repository
-
-**MEAN Stack Internship — Project Build**
-
-https://github.com/preetijangid-hub/mean-stack-intern-project-build
+Repository: [https://github.com/preetijangid-hub/mean-stack-intern-project-build](https://github.com/preetijangid-hub/mean-stack-intern-project-build)
